@@ -6,13 +6,13 @@
 #    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/28 12:52:11 by mapfenni          #+#    #+#              #
-#    Updated: 2023/11/23 14:07:39 by mapfenni         ###   ########.fr        #
+#    Updated: 2023/12/04 14:36:22 by mapfenni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-SRCS = src/test.c
+SRCS = main.c src/lexer.c
 
 AFILE = incl/libft/libft.a
 

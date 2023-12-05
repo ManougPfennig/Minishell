@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.h                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 19:18:40 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/11/30 16:21:21 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/12/04 14:36:38 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/12/04 19:24:28 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
-# define LEXER_H
+#include "incl/minishell.h"
+#include "src/lexer.h"
 
-typedef struct s_data {
-	char	*str;
-	int		token;
-	t_lexer	*next;
-	t_lexer	*prev;
-}				t_lexer;
+int	main(int ac, char **av)
+{
+	struct s_lexer	**lexed;
+	struct s_lexer	*link;
 
-typedef struct	s_copy {
-	int	len;
-	int	start;
-	int	i;
-	int	y;
-}				t_copy;
-
-
-# define LESS_THAN = 1
-# define MORE_THAN = 2
-# define PIPE = 3
-# define LESS_LESS = 4
-# define MORE_MORE = 5
-
-#endif
+	(void)ac;
+	lexed = lexer(av[1]);
+	(void)lexed;
+	link = *lexed;
+	while (link)
+	{
+		printf("own: %p\nprev: %p\nstr: %s\ntoken : %i\nnext : %p\n\n", link, link->prev, link->str, link->token, link->next);
+		link = link->next;
+	}
+	return (0);
+}
