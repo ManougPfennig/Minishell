@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 19:18:40 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/04 16:23:05 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/12/08 12:02:53 by nicolas           #+#    #+#             */
+/*   Updated: 2023/12/08 12:03:02 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
+
 # define LEXER_H
 
 # define LESS_THAN 1

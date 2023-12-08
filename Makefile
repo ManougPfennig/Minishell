@@ -3,31 +3,44 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
+#    By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/28 12:52:11 by mapfenni          #+#    #+#              #
-#    Updated: 2023/12/04 14:36:22 by mapfenni         ###   ########.fr        #
+#    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
+#    Updated: 2023/12/08 12:13:46 by nicolas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
+SOURCES = ./src
+OBJECTS = ./bin
 
-SRCS = main.c src/lexer.c
+SRCS = main.c \
+	   prompt.c \
+	   utils.c \
+	   utils_2.c \
+	   parsing.c \
+	   ft_split.c \
+	   lexer.c \
+	   
+OBJS = $(addprefix $(OBJECTS)/, $(SRCS:.c=.o))
 
-AFILE = incl/libft/libft.a
+CFLAGS = -Wall -Wextra -Werror -Iincludes -g
+LDFLAGS = -lreadline
+CC = gcc
+CINCLUDES = -I ./includes
 
-OBJS = ${SRCS:.c=.o}
-
-
-CFLAGS = -Wall -Wextra -Werror
+${OBJECTS}/%.o: ${SOURCES}/%.c
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) $(CINCLUDES) -o $@ -c $<
 
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-	@gcc ${CFLAGS} ${OBJS} ${AFILE} -o ${NAME}
+	$(CC) $(CFLAGS) -o ${NAME} ${OBJS} $(LDFLAGS)
+
 
 clean:
-	rm -f ${OBJS} ${BONUS}
+	rm -rf ${OBJECTS}
 
 fclean: clean
 	rm -f ${NAME}

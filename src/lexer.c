@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/29 17:32:31 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/04 19:31:19 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/12/08 12:00:10 by nicolas           #+#    #+#             */
+/*   Updated: 2023/12/08 12:18:05 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
-#include "../incl/minishell.h"
+#include "minishell.h"
 
 int	is_token(char c)
 {
@@ -43,10 +43,10 @@ char	*copy_word(char *str)
 	copy.i = 0;
 	copy.y = 0;
 	copy.len = 0;
-	while(is_token(str[copy.i]) && str[copy.i])
+	while (is_token(str[copy.i]) && str[copy.i])
 		copy.i++;
 	copy.start = copy.i;
-	while(!is_token(str[copy.i]) && str[copy.i] && ++copy.len)
+	while (!is_token(str[copy.i]) && str[copy.i] && ++copy.len)
 		copy.i++;
 	word = malloc((copy.len + 1) * sizeof(char));
 	word[copy.len] = '\0';
