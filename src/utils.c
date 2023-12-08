@@ -3,30 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:54:58 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/01 20:00:11 by nicolas          ###   ########.fr       */
+/*   Updated: 2023/12/08 13:48:02 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	print_env(t_data *data)
 {
-	size_t	i;
-	char	*tab;
+	int	i;
 
 	i = 0;
-	tab = (void *)malloc(size * nmemb);
-	if (!tab)
-		return (NULL);
-	while (i < nmemb * size)
+	while (data->copy_env[i])
 	{
-		tab[i] = 0;
+		printf("%s\n", data->copy_env[i]);
 		i++;
 	}
-	return (tab);
+}
+
+int	count(char *src)
+{
+	int	i;
+
+	i = 0;
+	while (src[i])
+		i++;
+	return (i);
 }
 
 int	ft_strcmp(char *s1, char *s2)
@@ -41,26 +46,4 @@ int	ft_strcmp(char *s1, char *s2)
 		i++;
 	}
 	return (0);
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-void	print_env(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (data->copy_env[i])
-	{
-		printf("%s\n", data->copy_env[i]);
-		i++;
-	}
 }

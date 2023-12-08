@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/08 14:19:30 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/04/08 01:10:24 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/04/08 02:31:10 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "ft_printf.h"
 
-
-int	main(int argc, char **argv)
+void	ft_putchar(char c)
 {
-	t_data	*data;
-
-	data = malloc(sizeof(t_data));
-	(void)argv;
-//	get_env(env, data);
-	if (argc != 1)
-	{
-		printf("Error\n");
-		exit(0);
-	}
-	while (1)
-	{
-		ft_prompt(data);
-		ft_exitcmd(data->input);
-	}
-	return (0);
+	write (1, &c, 1);
 }

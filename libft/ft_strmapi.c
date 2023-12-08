@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/08 14:19:30 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/04/02 15:36:43 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/04/06 17:21:35 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_data	*data;
+	unsigned int	i;
+	char			*dest;
+	unsigned int	len;
 
-	data = malloc(sizeof(t_data));
-	(void)argv;
-//	get_env(env, data);
-	if (argc != 1)
+	if (!s || !f)
+		return (NULL);
+	len = 0;
+	while (s[len])
+		len++;
+	dest = malloc((len + 1) * sizeof(char));
+	if (!(dest))
+		return (NULL);
+	dest[len] = '\0';
+	i = 0;
+	while (s[i])
 	{
-		printf("Error\n");
-		exit(0);
+		dest[i] = f(i, s[i]);
+		i++;
 	}
-	while (1)
-	{
-		ft_prompt(data);
-		ft_exitcmd(data->input);
-	}
-	return (0);
+	return (dest);
 }

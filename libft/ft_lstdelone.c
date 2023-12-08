@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.h                                            :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 12:02:53 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/08 12:03:02 by nicolas          ###   ########.fr       */
+/*   Created: 2023/04/04 15:57:32 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/04/06 16:55:31 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
+#include "libft.h"
 
-# define LEXER_H
-
-# define LESS_THAN 1
-# define MORE_THAN 2
-# define PIPE 3
-# define LESS_LESS 4
-# define MORE_MORE 5
-
-#endif
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
+{
+	if (!lst || !del)
+		return ;
+	del(lst->content);
+	free(lst);
+}

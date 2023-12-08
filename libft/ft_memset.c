@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mapfenni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 14:06:37 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/08 15:34:26 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/03/27 11:53:46 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/03/27 12:12:38 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	parsing(t_data *data)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	t_lexer	*ptr;
+	size_t	i;
+	char	*str;
 
-	ptr = data->lex[0];
-	while (ptr)
+	i = 0;
+	str = (char *)s;
+	while (i < n)
 	{
-		ptr->str = replace_env(ptr->str);
-		ptr = ptr->next;
+		str[i] = c;
+		i++;
 	}
+	return (s);
 }

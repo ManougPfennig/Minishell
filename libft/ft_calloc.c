@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/08 14:19:30 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/03/28 17:54:08 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/04/05 19:10:57 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+char	*ft_calloc(size_t count, size_t size)
 {
-	t_data	*data;
+	void	*str;
 
-	data = malloc(sizeof(t_data));
-	(void)argv;
-//	get_env(env, data);
-	if (argc != 1)
-	{
-		printf("Error\n");
-		exit(0);
-	}
-	while (1)
-	{
-		ft_prompt(data);
-		ft_exitcmd(data->input);
-	}
-	return (0);
+	if (count && SIZE_MAX / count < size)
+		return (NULL);
+	str = malloc(count * size);
+	if (!(str))
+		return (NULL);
+	ft_bzero(str, count * size);
+	return (str);
 }

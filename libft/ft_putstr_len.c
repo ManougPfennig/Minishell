@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr_len.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/08 14:19:30 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/04/08 01:09:27 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/04/09 18:04:43 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "ft_printf.h"
 
-
-int	main(int argc, char **argv)
+int	ft_putstr_len(char *str)
 {
-	t_data	*data;
+	int	i;
 
-	data = malloc(sizeof(t_data));
-	(void)argv;
-//	get_env(env, data);
-	if (argc != 1)
+	i = 0;
+	if (!str)
+		return (ft_putstr_len("(null)"));
+	while (str[i] != '\0')
 	{
-		printf("Error\n");
-		exit(0);
+		ft_putchar(str[i]);
+		i++;
 	}
-	while (1)
-	{
-		ft_prompt(data);
-		ft_exitcmd(data->input);
-	}
-	return (0);
+	return (i);
 }

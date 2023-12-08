@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mapfenni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 14:06:37 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/08 15:34:26 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/03/27 18:49:39 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/03/27 18:49:40 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	parsing(t_data *data)
+int	ft_strlen(const char *s)
 {
-	t_lexer	*ptr;
+	int	i;
 
-	ptr = data->lex[0];
-	while (ptr)
-	{
-		ptr->str = replace_env(ptr->str);
-		ptr = ptr->next;
-	}
+	i = 0;
+	while ((char)s[i])
+		i++;
+	return (i);
 }

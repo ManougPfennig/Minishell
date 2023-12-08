@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/08 14:19:30 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/04/04 16:28:47 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/04/04 16:35:57 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_data	*data;
+	t_list	*plist;
 
-	data = malloc(sizeof(t_data));
-	(void)argv;
-//	get_env(env, data);
-	if (argc != 1)
+	if (!lst)
+		return ;
+	plist = lst;
+	while (plist->next != NULL)
 	{
-		printf("Error\n");
-		exit(0);
+		f(plist->content);
+		plist = plist->next;
 	}
-	while (1)
-	{
-		ft_prompt(data);
-		ft_exitcmd(data->input);
-	}
-	return (0);
+	f(plist->content);
 }

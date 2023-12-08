@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/08 14:19:30 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/03/28 17:35:58 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/04/11 19:33:53 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	t_data	*data;
+	size_t			i;
+	unsigned char	*str;
 
-	data = malloc(sizeof(t_data));
-	(void)argv;
-//	get_env(env, data);
-	if (argc != 1)
+	if (n == 0)
+		return (NULL);
+	str = (unsigned char *)s;
+	i = 0;
+	while (n--)
 	{
-		printf("Error\n");
-		exit(0);
+		if (str[i] == (unsigned char)c)
+			return (str + i);
+		i++;
 	}
-	while (1)
-	{
-		ft_prompt(data);
-		ft_exitcmd(data->input);
-	}
-	return (0);
+	return (NULL);
 }
+
+// #include <string.h>
+// #include <stdio.h>
+// int main()
+// {
+// 	char s[] = {0, 1, 2 ,3 ,4 ,5};
+// 	printf("%s", ft_memchr(s, 2, 3));
+// }

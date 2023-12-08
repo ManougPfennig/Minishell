@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mapfenni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 14:06:37 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/08 15:34:26 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/03/27 18:19:44 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/03/27 18:19:51 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	parsing(t_data *data)
+char	*ft_strrchr(char *str, char c)
 {
-	t_lexer	*ptr;
+	int		i;
+	char	*output;
 
-	ptr = data->lex[0];
-	while (ptr)
+	i = 0;
+	output = 0;
+	while (str[i])
 	{
-		ptr->str = replace_env(ptr->str);
-		ptr = ptr->next;
+		if (str[i] == c)
+			output = (str + i);
+		i++;
 	}
+	if (c == '\0')
+		return (str + i);
+	return (output);
 }

@@ -1,41 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_2.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/01 19:51:09 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/01 22:11:39 by nicolas          ###   ########.fr       */
+/*   Created: 2023/03/28 17:52:35 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/04/05 19:22:22 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-int	count(char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i])
-		i++;
-	return (i);
-}
+#include "libft.h"
 
 char	*ft_strdup(char *src)
 {
 	int		i;
 	char	*dest;
+	int		src_size;
 
-	i = 0;
-	dest = malloc(sizeof(char) * count(src) + 1);
+	src_size = 0;
+	while (src[src_size] != '\0')
+		src_size++;
+	dest = (char *)malloc((src_size + 1) * sizeof(char));
 	if (!dest)
 		return (NULL);
+	i = 0;
 	while (src[i] != '\0')
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	dest[i] = '\0';
+	if (dest == NULL)
+		return (0);
+	if (src[i] == '\0')
+		dest[i] = '\0';
 	return (dest);
 }
+
+/*#include <stdio.h>
+int main()
+{
+	char *src = "123456789";
+	char *bam = ft_strdup(src);
+	printf("%s\n", bam);
+}*/

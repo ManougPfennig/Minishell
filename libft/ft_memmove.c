@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/08 14:19:30 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/03/28 16:59:21 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/04/02 17:03:53 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	t_data	*data;
+	size_t	i;
 
-	data = malloc(sizeof(t_data));
-	(void)argv;
-//	get_env(env, data);
-	if (argc != 1)
+	i = 0;
+	if (!dst && !src)
+		return (NULL);
+	if (dst > src)
 	{
-		printf("Error\n");
-		exit(0);
+		while (len > 0)
+		{
+			((char *)dst)[len - 1] = ((char *)src)[len - 1];
+			len--;
+		}
 	}
-	while (1)
+	else
 	{
-		ft_prompt(data);
-		ft_exitcmd(data->input);
+		while (i < len)
+		{
+			((char *)dst)[i] = ((char *)src)[i];
+			i++;
+		}
 	}
-	return (0);
+	return (dst);
 }

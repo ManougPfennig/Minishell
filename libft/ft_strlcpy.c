@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/08 14:19:30 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/02/06 14:10:58 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/04/09 20:19:23 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-
-int	main(int argc, char **argv)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	t_data	*data;
+	int		dest_size;
+	size_t	i;
 
-	data = malloc(sizeof(t_data));
-	(void)argv;
-//	get_env(env, data);
-	if (argc != 1)
+	if (size == 0)
+		return (ft_strlen((char *)src));
+	dest_size = 0;
+	while ((char)dest[dest_size] != '\0')
+		dest_size++;
+	i = 0;
+	while ((char)src[i] != '\0' && (int)i < (int)size - 1)
 	{
-		printf("Error\n");
-		exit(0);
+		dest[i] = (char)src[i];
+		i++;
 	}
-	while (1)
-	{
-		ft_prompt(data);
-		ft_exitcmd(data->input);
-	}
-	return (0);
+	if ((int)i < (int)size)
+		dest[i] = '\0';
+	return (ft_strlen((char *)src));
 }

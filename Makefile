@@ -3,24 +3,25 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+         #
+#    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2023/12/08 12:13:46 by nicolas          ###   ########.fr        #
+#    Updated: 2023/12/08 14:06:24 by mapfenni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 SOURCES = ./src
 OBJECTS = ./bin
+AFILE = libft/libft.a
 
 SRCS = main.c \
 	   prompt.c \
 	   utils.c \
-	   utils_2.c \
+	   cmd.c \
 	   parsing.c \
-	   ft_split.c \
 	   lexer.c \
+	   replace_env.c \
 	   
 OBJS = $(addprefix $(OBJECTS)/, $(SRCS:.c=.o))
 
@@ -36,7 +37,7 @@ ${OBJECTS}/%.o: ${SOURCES}/%.c
 all: ${NAME}
 
 ${NAME}: ${OBJS}
-	$(CC) $(CFLAGS) -o ${NAME} ${OBJS} $(LDFLAGS)
+	$(CC) $(CFLAGS) -o ${NAME} ${OBJS} ${AFILE} $(LDFLAGS)
 
 
 clean:

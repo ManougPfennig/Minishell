@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 15:32:15 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/08 12:18:31 by nicolas          ###   ########.fr       */
+/*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/12/08 14:17:07 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,17 @@
 # include <signal.h>
 # include <fcntl.h>
 # include <linux/limits.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include "../libft/libft.h"
 
-typedef struct s_data
-{
-	char	*input;
-	char	*buffercwd;
-	int		buffersize;
-	char	**copy_env;
-
-}	t_data;
+# define LESS_THAN 1
+# define MORE_THAN 2
+# define PIPE 3
+# define LESS_LESS 4
+# define MORE_MORE 5
+# define PATH "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:\
+/usr/games:/usr/local/games:/snap/bin:/snap/bin"
 
 typedef struct s_lexer {
 	char			*str;
@@ -38,7 +40,16 @@ typedef struct s_lexer {
 	struct s_lexer	*prev;
 }				t_lexer;
 
-typedef struct s_copy {
+typedef struct	s_data
+{
+	char	*input;
+	char	*buffercwd;
+	int		buffersize;
+	char	**copy_env;
+	t_lexer	**lex;
+}				t_data;
+
+typedef struct	s_copy {
 	int	len;
 	int	start;
 	int	i;
@@ -46,24 +57,19 @@ typedef struct s_copy {
 }				t_copy;
 
 struct s_lexer	**lexer(char *str);
-int				main(int argc, char **argv, char **env);
+char			*replace_env(char *str);
 char			*ft_prompt(t_data *data);
-void			*ft_calloc(size_t nmemb, size_t size);
 void			ft_exitcmd(char *s);
-int				ft_strcmp(char *s1, char *s2);
 void			ft_controlc(int signal);
-size_t			ft_strlen(const char *s);
 char			*create_input(char *input);
 void			ft_signal(void);
 void			print_env(t_data *data);
 char			**get_env(char	**env, t_data *data);
 void			len_env(char **env, int i, int j);
 void			print_env(t_data *data);
-char			*ft_strdup(char *src);
 int				count(char *src);
 void			ft_analyse(t_data *data, char *s);
 void			ft_env(t_data *data, char *env);
-char			**ft_split(char const *s, char c);
 void			ft_pwd(t_data *data, char *s);
 struct s_lexer	**lexer(char *str);
 int				add_word(struct s_lexer **lexer, char *str, int token);
@@ -71,4 +77,7 @@ struct s_lexer *ft_last_link(struct s_lexer **lexer);
 char			*copy_word(char *str);
 int				what_token(char word[2]);
 int				is_token(char c);
+int				ft_strcmp(char *s1, char *s2);
+void			parsing(t_data *data);
+
 #endif
