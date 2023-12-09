@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free_lexer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/09 12:00:12 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/12/09 11:47:21 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/12/09 11:59:15 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-int	main(int argc, char **argv)
+void	free_lexer(t_lexer **lexed)
 {
-	t_data	*data;
+	t_lexer	*ptr;
+	t_lexer	*ex_ptr;
 
-	data = malloc(sizeof(t_data));
-	(void)argv;
-//	get_env(env, data);
-	if (argc != 1)
+	ptr = *lexed;
+	free(lexed);
+	while (ptr)
 	{
-		printf("Error\n");
-		exit(0);
+		free(ptr->str);
+		ex_ptr = ptr;
+		ptr = ptr->next;
+		free(ex_ptr);
 	}
-	while (1)
-	{
-		ft_prompt(data);
-		ft_exitcmd(data->input);
-	}
-	return (0);
 }
