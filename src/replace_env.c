@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:31:15 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/08 15:37:33 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/09 11:40:13 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,10 @@ char	*to_env(char *str, int i)
 		i++;
 	if (!value)
 		value = "";
-	new = ft_strjoin(value, str + i);
-	new = ft_strjoin(str, new);
+	new = ft_strjoin_free(value, str + i, 0);
+	new = ft_strjoin_free(str, new, 2);
+	free(str);
+	free(name);
 	return (new);
 }
 
@@ -68,7 +70,6 @@ char	*replace_env(char *str)
 {
 	int		i;
 	int		quote;
-	int		dquote;
 
 	i = 0;
 	quote = 0;

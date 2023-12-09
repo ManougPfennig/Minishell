@@ -6,7 +6,7 @@
 #    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2023/12/08 14:06:24 by mapfenni         ###   ########.fr        #
+#    Updated: 2023/12/09 11:39:29 by mapfenni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS = main.c \
 	   parsing.c \
 	   lexer.c \
 	   replace_env.c \
+	   ft_strjoin_free.c \
 	   
 OBJS = $(addprefix $(OBJECTS)/, $(SRCS:.c=.o))
 

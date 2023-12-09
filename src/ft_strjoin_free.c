@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/31 17:18:31 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/09 11:39:29 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/12/09 11:35:54 by mapfenni          #+#    #+#             */
+/*   Updated: 2023/12/09 11:42:32 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	to_free(char *s1, char *s2, int val)
+{
+	if (val == 1)
+		free(s1);
+	if (val == 2)
+		free(s2);
+	if (val == 3)
+	{
+		free(s1);
+		free(s2);
+	}
+}
+
+char	*ft_strjoin_free(char const *s1, char const *s2, int val)
 {
 	int		i;
 	int		j;
@@ -37,13 +50,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	while (s2[i])
 		dest[j++] = s2[i++];
+	to_free((char *)s1, (char *)s2, val);
 	return (dest);
 }
-
-/*#include <stdio.h>
-int	main(int ac, char **av)
-{
-	printf("%s + %s =\n", av[1], av[2]);
-	printf("%s\n", ft_strjoin(av[1], av[2]));
-	(void) ac;
-}*/

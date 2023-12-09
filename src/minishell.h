@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/08 14:17:07 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/09 11:39:08 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ int				what_token(char word[2]);
 int				is_token(char c);
 int				ft_strcmp(char *s1, char *s2);
 void			parsing(t_data *data);
+char			*ft_strjoin_free(char const *s1, char const *s2, int val);
 
 #endif
