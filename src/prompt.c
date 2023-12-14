@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:18 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/09 12:02:41 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/14 20:22:50 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ char	**get_env(char	**env, t_data *data)
 		data->copy_env[i] = ft_strdup(env[i]);
 		i++;
 	}
+	get_home_env(data);
 	return (data->copy_env);
 }

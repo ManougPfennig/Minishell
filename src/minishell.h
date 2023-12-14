@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/09 11:57:16 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/14 20:21:37 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct	s_data
 	int		buffersize;
 	char	**copy_env;
 	t_lexer	**lex;
+	char	*home_env;
 }				t_data;
 
 typedef struct	s_copy {
@@ -81,5 +82,8 @@ int				ft_strcmp(char *s1, char *s2);
 void			parsing(t_data *data);
 char			*ft_strjoin_free(char const *s1, char const *s2, int val);
 void			free_lexer(t_lexer **lexed);
+void			ft_cd(t_data *data, char *s);
+void			get_home_env(t_data *data);
+
 
 #endif

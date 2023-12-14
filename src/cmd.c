@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:08:24 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/08 12:15:06 by nicolas          ###   ########.fr       */
+/*   Updated: 2023/12/12 16:04:07 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,8 @@ void	ft_pwd(t_data *data, char *s)
 		i++;
 	if (i == 1 && ft_strcmp(tab[0], "pwd") == 0)
 	{
-		data->input = getcwd(data->input, PATH_MAX);
-		s = data->input;
-		printf("%s\n", data->input);
+		data->buffercwd = getcwd(data->buffercwd, PATH_MAX);
+		printf("%s\n", data->buffercwd);
 		return ;
 	}
 	else
@@ -46,5 +45,6 @@ void	ft_analyse(t_data *data, char *s)
 	ft_exitcmd(data->input);
 	//ft_env(data, s);
 	ft_pwd(data, data->input);
+	ft_cd(data, data->input);
 
 }
