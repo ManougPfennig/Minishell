@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:32:31 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/09 11:15:08 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/14 23:54:02 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,6 @@ int	what_token(char word[2])
 	return (0);
 }
 
-char	*copy_word(char *str)
-{
-	t_copy	copy;
-	char	*word;
-
-	copy.i = 0;
-	copy.y = 0;
-	copy.len = 0;
-	while(is_token(str[copy.i]) && str[copy.i])
-		copy.i++;
-	copy.start = copy.i;
-	while(!is_token(str[copy.i]) && str[copy.i] && ++copy.len)
-		copy.i++;
-	word = malloc((copy.len + 1) * sizeof(char));
-	word[copy.len] = '\0';
-	while (copy.len)
-	{
-		word[copy.y] = str[copy.start];
-		copy.y++;
-		copy.start++;
-		copy.len--;
-	}
-	return (word);
-}
-
 struct s_lexer *ft_last_link(struct s_lexer **lexer)
 {
 	struct s_lexer	*link;
@@ -77,7 +52,7 @@ int	add_word(struct s_lexer **lexer, char *str, int token)
 	struct s_lexer	*new;
 
 	new = malloc(1 * sizeof(struct s_lexer));
-	new->str = copy_word(str);
+	new->str = str;
 	new->token = token;
 	new->next = NULL;
 	if (lexer[0] == NULL)
@@ -93,19 +68,22 @@ int	add_word(struct s_lexer **lexer, char *str, int token)
 struct s_lexer	**lexer(char *str)
 {
 	int				i;
-	char			word[2];
+	char			word[3];
+	char			**tab;
 	struct s_lexer	**lexer;
 
 	i = 0;
 	lexer = malloc(1 * sizeof(struct s_lexer *));
 	*lexer = NULL;
+	tab = split_quote_wspace(str);
 	add_word(lexer, str + i, what_token(word));
-	while (str[i])
+	while (tab[i])
 	{
-		word[0] = str[i];
-		word[1] = str[i + 1];
-		if (what_token(word))
-			i += add_word(lexer, str + i, what_token(word));
+		printf("word: %s\n", tab[i]);
+		word[0] = tab[i][0];
+		word[1] = tab[i][1];
+		word[2] = tab[i][2];
+		add_word(lexer, tab[i], what_token(word));
 		i++;
 	}
 	return (lexer);

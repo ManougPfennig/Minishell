@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:37:27 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/07 17:32:15 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/14 21:39:46 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void*));
 void			ft_free_tab(char **tab, char *str);
+int				is_wspace(char c);
 
 #endif

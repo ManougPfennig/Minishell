@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+         #
+#    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2023/12/12 17:08:04 by nicolas          ###   ########.fr        #
+#    Updated: 2023/12/14 21:37:34 by mapfenni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS = main.c \
 	   ft_strjoin_free.c \
 	   free_lexer.c \
 	   cd_working.c \
+	   lexer_split.c
 	   
 OBJS = $(addprefix $(OBJECTS)/, $(SRCS:.c=.o))
 

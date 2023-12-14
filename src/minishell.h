@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/14 20:21:37 by nicolas          ###   ########.fr       */
+/*   Updated: 2023/12/14 21:38:05 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ typedef struct	s_copy {
 	int	y;
 }				t_copy;
 
+typedef struct	s_quote {
+	int	q;
+	int	dq;
+	int	type;
+}				t_quote;
+
 struct s_lexer	**lexer(char *str);
 char			*replace_env(char *str);
 char			*ft_prompt(t_data *data);
@@ -84,6 +90,6 @@ char			*ft_strjoin_free(char const *s1, char const *s2, int val);
 void			free_lexer(t_lexer **lexed);
 void			ft_cd(t_data *data, char *s);
 void			get_home_env(t_data *data);
-
+char			**split_quote_wspace(char *str);
 
 #endif
