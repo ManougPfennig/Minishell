@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/14 21:38:05 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/19 00:25:42 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,8 @@ typedef struct	s_copy {
 }				t_copy;
 
 typedef struct	s_quote {
-	int	q;
-	int	dq;
-	int	type;
+	char	*str;
+	int		type;
 }				t_quote;
 
 struct s_lexer	**lexer(char *str);
@@ -91,5 +90,7 @@ void			free_lexer(t_lexer **lexed);
 void			ft_cd(t_data *data, char *s);
 void			get_home_env(t_data *data);
 char			**split_quote_wspace(char *str);
+char			**lexer_split_quote(char *str);
+void			is_in(char *in, char c);
 
 #endif

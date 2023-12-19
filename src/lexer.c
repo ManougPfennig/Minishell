@@ -6,11 +6,13 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:32:31 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/14 23:54:02 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/19 00:23:18 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+//detecte la présence possible d'un token
 
 int	is_token(char c)
 {
@@ -18,6 +20,8 @@ int	is_token(char c)
 		return (1);
 	return (0);
 }
+
+// determine le token en question et renvoie une valeure attribuée
 
 int	what_token(char word[2])
 {
@@ -34,6 +38,8 @@ int	what_token(char word[2])
 	return (0);
 }
 
+// renvoie le dernier chaînon de la liste chaînée
+
 struct s_lexer *ft_last_link(struct s_lexer **lexer)
 {
 	struct s_lexer	*link;
@@ -46,6 +52,8 @@ struct s_lexer *ft_last_link(struct s_lexer **lexer)
 	}
 	return (link);
 }
+
+// ajoute un word à la liste chaînée renvoyée par le lexer
 
 int	add_word(struct s_lexer **lexer, char *str, int token)
 {
@@ -65,10 +73,16 @@ int	add_word(struct s_lexer **lexer, char *str, int token)
 	return (ft_strlen(new->str));
 }
 
+/*lexer est là pour la première transformation de la string passé
+dans le prompt donné par readline. Elle va d'abord séparer cette
+string en "words", qui constitue les différentes parties de la
+ligne de commande, notant si telle ou telle est un token et en
+interprétant les quotes.*/
+
 struct s_lexer	**lexer(char *str)
 {
 	int				i;
-	char			word[3];
+	char			word[2];
 	char			**tab;
 	struct s_lexer	**lexer;
 
@@ -76,13 +90,11 @@ struct s_lexer	**lexer(char *str)
 	lexer = malloc(1 * sizeof(struct s_lexer *));
 	*lexer = NULL;
 	tab = split_quote_wspace(str);
-	add_word(lexer, str + i, what_token(word));
 	while (tab[i])
 	{
 		printf("word: %s\n", tab[i]);
 		word[0] = tab[i][0];
 		word[1] = tab[i][1];
-		word[2] = tab[i][2];
 		add_word(lexer, tab[i], what_token(word));
 		i++;
 	}
