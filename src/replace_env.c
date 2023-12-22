@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:31:15 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/09 11:40:13 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/22 18:17:17 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,23 @@ char	*to_env(char *str, int i)
 	return (new);
 }
 
+// replace_env va trouver tout les $ (hors simple quote) puis
+// vérifier si le nom qui suit correspond bien à ce qui peut être attribué
+// comme nom à une variable env. Dans le cas échéant, la string est en quelque
+// découpée pour récupérer le nom complet puis recollée avec la
+// valeur de remplacement récupérée grâce à getenv().
+
 char	*replace_env(char *str)
 {
 	int		i;
-	int		quote;
+	char	in;
 
 	i = 0;
-	quote = 0;
+	in = 0;
 	while (str[i])
 	{
-		if (str[i] == 39 && quote == 0)
-			quote = 1;
-		else if (str[i] == 39 && quote == 1)
-			quote = 0;
-		if (str[i] == '$' && quote == 0)
+		is_in(&in, str[i]);
+		if (str[i] == '$' && in != '\'')
 		{
 			if (is_envchar(str[i + 1]))
 			{

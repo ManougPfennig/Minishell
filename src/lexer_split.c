@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:08:48 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/19 01:26:35 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/22 17:55:12 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	**split_quote_wspace(char *str)
 	tab = lexer_split_quote(str);
 	while (tab[i])
 	{
+		tab[i] = replace_env(tab[i]);
 		remove_excess_quote(tab[i]);
 		i++;
 	}

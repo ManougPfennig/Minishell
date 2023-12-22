@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:16:27 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/19 01:34:52 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/22 18:19:10 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ char	**lexer_split_quote(char *str)
 	if (!str)
 		return (NULL);
 	tab_len = word_number((char *)str);
+	printf("nb_word: %i\n", tab_len);
 	tab = (char **)malloc(sizeof(char *) * (tab_len + 1));
 	if (!tab)
 		return (NULL);

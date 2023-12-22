@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:32:31 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/19 00:23:18 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/22 17:59:54 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ struct s_lexer	**lexer(char *str)
 	tab = split_quote_wspace(str);
 	while (tab[i])
 	{
-		printf("word: %s\n", tab[i]);
 		word[0] = tab[i][0];
 		word[1] = tab[i][1];
 		add_word(lexer, tab[i], what_token(word));
