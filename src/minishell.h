@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/19 00:25:42 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/23 14:18:13 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_lexer {
 	struct s_lexer	*prev;
 }				t_lexer;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	char	*input;
 	char	*buffercwd;
@@ -50,14 +50,14 @@ typedef struct	s_data
 	char	*home_env;
 }				t_data;
 
-typedef struct	s_copy {
+typedef struct s_copy {
 	int	len;
 	int	start;
 	int	i;
 	int	y;
 }				t_copy;
 
-typedef struct	s_quote {
+typedef struct s_quote {
 	char	*str;
 	int		type;
 }				t_quote;
@@ -79,7 +79,7 @@ void			ft_env(t_data *data, char *env);
 void			ft_pwd(t_data *data, char *s);
 struct s_lexer	**lexer(char *str);
 int				add_word(struct s_lexer **lexer, char *str, int token);
-struct s_lexer *ft_last_link(struct s_lexer **lexer);
+struct s_lexer	*ft_last_link(struct s_lexer **lexer);
 char			*copy_word(char *str);
 int				what_token(char word[2]);
 int				is_token(char c);

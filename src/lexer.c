@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:32:31 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/22 17:59:54 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/23 14:19:12 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	what_token(char word[2])
 
 // renvoie le dernier chaînon de la liste chaînée
 
-struct s_lexer *ft_last_link(struct s_lexer **lexer)
+struct s_lexer	*ft_last_link(struct s_lexer **lexer)
 {
 	struct s_lexer	*link;
 
@@ -78,6 +78,8 @@ dans le prompt donné par readline. Elle va d'abord séparer cette
 string en "words", qui constitue les différentes parties de la
 ligne de commande, notant si telle ou telle est un token et en
 interprétant les quotes.*/
+
+// note : doit fix les mots vide du style ""
 
 struct s_lexer	**lexer(char *str)
 {

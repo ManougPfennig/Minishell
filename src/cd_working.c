@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_working.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:04:09 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/14 20:26:38 by nicolas          ###   ########.fr       */
+/*   Updated: 2023/12/23 14:11:55 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,3 @@ void	ft_cd(t_data *data, char *s)
 	}
 	print_error_tild_cd(data, s);
 }
-

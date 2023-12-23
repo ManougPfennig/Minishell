@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:16:27 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/22 18:19:10 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/23 14:16:15 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,28 +100,22 @@ void	fill_tab(char **split, char *str)
 	is_in(&in, str[i]);
 	while (str[i])
 	{
-		while (str[i] && is_wspace(str[i]) && !in)
-		{
-			i++;
+		while (str[i] && is_wspace(str[i]) && !in && ++i)
 			is_in(&in, str[i]);
-		}
 		if (str[i] != '\0')
 		{
 			split[word] = quote_copy_word(split[word], str + i);
 			word++;
-		}	
-		while (str[i] && (!is_wspace(str[i]) || in))
-		{
-			i++;
-			is_in(&in, str[i]);
 		}
+		while (str[i] && (!is_wspace(str[i]) || in) && ++i)
+			is_in(&in, str[i]);
 	}
 }
 
-// lexer_split_quote va d'abord determiner le nombre de mots présent dans la string
-// en la faisant défiler dans word_number.
-// La séparation se fera ensuite sur les whitespaces (qui seront supprimé) et
-// uniquement si ils ne sont pas dans des quotes.
+// lexer_split_quote va d'abord determiner le nombre de mots présent dans
+// la string en la faisant défiler dans word_number.
+// La séparation se fera ensuite sur les whitespaces (qui seront supprimé)
+// et uniquement si ils ne sont pas dans des quotes.
 
 char	**lexer_split_quote(char *str)
 {
@@ -131,7 +125,6 @@ char	**lexer_split_quote(char *str)
 	if (!str)
 		return (NULL);
 	tab_len = word_number((char *)str);
-	printf("nb_word: %i\n", tab_len);
 	tab = (char **)malloc(sizeof(char *) * (tab_len + 1));
 	if (!tab)
 		return (NULL);

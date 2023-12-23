@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:08:24 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/12 16:04:07 by nicolas          ###   ########.fr       */
+/*   Updated: 2023/12/23 14:19:58 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,4 @@ void	ft_analyse(t_data *data, char *s)
 	//ft_env(data, s);
 	ft_pwd(data, data->input);
 	ft_cd(data, data->input);
-
 }
