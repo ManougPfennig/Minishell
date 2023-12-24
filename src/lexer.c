@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:32:31 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/23 14:19:12 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/24 16:43:43 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ int	is_token(char c)
 
 // determine le token en question et renvoie une valeure attribuée
 
-int	what_token(char word[2])
+int	what_token(char *str)
 {
-	if (word[0] == '<' && word[1] == '<')
+	if (str[0] == '<' && str[1] == '<' && ft_strlen(str) == 2)
 		return (LESS_LESS);
-	if (word[0] == '>' && word[1] == '>')
+	if (str[0] == '>' && str[1] == '>' && ft_strlen(str) == 2)
 		return (MORE_MORE);
-	if (word[0] == '<')
+	if (str[0] == '<' && ft_strlen(str) == 1)
 		return (LESS_THAN);
-	if (word[0] == '>')
+	if (str[0] == '>' && ft_strlen(str) == 1)
 		return (MORE_THAN);
-	if (word[0] == '|')
+	if (str[0] == '|' && ft_strlen(str) == 1)
 		return (PIPE);
 	return (0);
 }
@@ -83,21 +83,26 @@ interprétant les quotes.*/
 
 struct s_lexer	**lexer(char *str)
 {
-	int				i;
-	char			word[2];
-	char			**tab;
+	char			in;
+	struct s_lexer	*ptr;
 	struct s_lexer	**lexer;
 
-	i = 0;
-	lexer = malloc(1 * sizeof(struct s_lexer *));
-	*lexer = NULL;
-	tab = split_quote_wspace(str);
-	while (tab[i])
+	in = 0;
+	lexer = split_quote_wspace(str);
+	if (!lexer)
+		return (NULL);
+	ptr = *lexer;
+	while (ptr)
 	{
-		word[0] = tab[i][0];
-		word[1] = tab[i][1];
-		add_word(lexer, tab[i], what_token(word));
-		i++;
+		ptr->str = replace_env(ptr->str);
+		in = remove_excess_quote(ptr->str);
+		if (in)
+		{
+			printf("Parsing error near '\\%c'\n", in);
+			free_lexer(lexer);
+			return (NULL);
+		}
+		ptr = ptr->next;
 	}
 	return (lexer);
 }

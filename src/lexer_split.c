@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:08:48 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/23 14:18:48 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/24 16:52:37 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,11 @@ char	remove_excess_quote(char *str)
 		else if (str[i])
 		{
 			move_back(str + i);
-			is_in(&in, str[i]);
-			if (!in)
-				move_back(str + i);
 			while (in && str[i])
 			{
-				i++;
 				is_in(&in, str[i]);
+				if (in)
+					i++;
 			}
 			move_back(str + i);
 		}
@@ -63,24 +61,25 @@ char	remove_excess_quote(char *str)
 // fonction des whitespaces et quotes et retire les quotes de trop.
 // - la première séparation se déroule dans lexer_split_quote
 // - remove_excess_quote va supprimer les quotes délimiteurs et laisser celles
-// qui font réellement parti de la string
+// qui font réellement parti du mot.
 
-char	**split_quote_wspace(char *str)
+struct s_lexer	**split_quote_wspace(char *str)
 {
-	char	**tab;
-	int		i;
-	char	in;
+	int				i;
+	char			**tab;
+	struct s_lexer	**lexer;
 
 	i = 0;
 	if (!str)
 		return (NULL);
+	lexer = malloc(1 * sizeof(struct s_lexer *));
+	*lexer = NULL;
 	tab = lexer_split_quote(str);
 	while (tab[i])
 	{
-		tab[i] = replace_env(tab[i]);
-		in = remove_excess_quote(tab[i]);
-		printf("str: %s | in: %c\n", tab[i], in);
+		add_word(lexer, ft_strdup(tab[i]), what_token(tab[i]));
 		i++;
 	}
-	return (tab);
+	ft_free_tab(tab, NULL);
+	return (lexer);
 }

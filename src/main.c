@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/23 14:11:42 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/24 15:40:47 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char **argv, char **env)
 	while (1)
 	{
 		ft_prompt(data);
-		ft_exitcmd(data->input);
+//		ft_exitcmd(data->input);
 	}
 	return (0);
 }

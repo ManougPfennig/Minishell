@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:18 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/14 20:22:50 by nicolas          ###   ########.fr       */
+/*   Updated: 2023/12/24 16:52:12 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ char	*ft_prompt(t_data *data)
 	}
 	add_history(data->input);
 	data->lex = lexer(data->input);
+	print_lexer(data->lex);
 	parsing(data);
-//	free_lexer(data->lex);
+	free_lexer(data->lex);
 	ft_analyse(data, data->input);
 	return (data->input);
 }

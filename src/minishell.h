@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/23 14:18:13 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/24 16:52:44 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ struct s_lexer	**lexer(char *str);
 int				add_word(struct s_lexer **lexer, char *str, int token);
 struct s_lexer	*ft_last_link(struct s_lexer **lexer);
 char			*copy_word(char *str);
-int				what_token(char word[2]);
+int				what_token(char *str);
 int				is_token(char c);
 int				ft_strcmp(char *s1, char *s2);
 void			parsing(t_data *data);
@@ -89,8 +89,11 @@ char			*ft_strjoin_free(char const *s1, char const *s2, int val);
 void			free_lexer(t_lexer **lexed);
 void			ft_cd(t_data *data, char *s);
 void			get_home_env(t_data *data);
-char			**split_quote_wspace(char *str);
+char			remove_excess_quote(char *str);
+struct s_lexer	**split_quote_wspace(char *str);
 char			**lexer_split_quote(char *str);
 void			is_in(char *in, char c);
+// print_lexer est à supprimer dans le produit fini.
+void			print_lexer(t_lexer **lexed);
 
 #endif
