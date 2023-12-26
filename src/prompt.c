@@ -40,10 +40,13 @@ char	*ft_prompt(t_data *data)
 	}
 	add_history(data->input);
 	data->lex = lexer(data->input);
-	print_lexer(data->lex);
-	parsing(data);
-	free_lexer(data->lex);
-	ft_analyse(data, data->input);
+	if (data->lex)
+	{
+		print_lexer(data->lex);
+		parsing(data);
+		free_lexer(data->lex);
+		ft_analyse(data, data->input);
+	}
 	return (data->input);
 }
 
