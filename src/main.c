@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/24 15:40:47 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/30 11:37:39 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	main(int argc, char **argv, char **env)
 
 	data = malloc(sizeof(t_data));
 	(void)argv;
-	get_env(env, data);
+	(void)env;
+//	get_env(env, data);
 	if (argc != 1)
 	{
 		printf("Error\n");

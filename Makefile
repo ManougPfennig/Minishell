@@ -6,7 +6,7 @@
 #    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2023/12/23 17:01:35 by mapfenni         ###   ########.fr        #
+#    Updated: 2023/12/30 10:49:12 by mapfenni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,16 @@ SRCS = main.c \
 	   prompt.c \
 	   utils.c \
 	   cmd.c \
-	   parsing.c \
+	   parser.c \
 	   lexer.c \
 	   replace_env.c \
 	   ft_strjoin_free.c \
 	   free_lexer.c \
 	   cd_working.c \
 	   lexer_split.c \
-	   lexer_split_quote.c
+	   lexer_split_quote.c \
+	   parser_utils.c \
+	   find_redir.c
 	   
 OBJS = $(addprefix $(OBJECTS)/, $(SRCS:.c=.o))
 

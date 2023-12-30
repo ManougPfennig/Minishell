@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/24 16:52:44 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/30 12:45:25 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,26 @@ typedef struct s_lexer {
 	struct s_lexer	*prev;
 }				t_lexer;
 
+typedef struct s_cmds
+{
+    char			**tab;
+    int				num_redir;
+    char			*hd_file_name;
+    t_lexer			*redir;
+    struct s_cmds	*next;
+    struct s_cmds	*prev;
+}				t_cmds;
+
 typedef struct s_data
 {
 	char	*input;
 	char	*buffercwd;
-	int		buffersize;
 	char	**copy_env;
-	t_lexer	**lex;
 	char	*home_env;
+	int		buffersize;
+	int		pipes;
+	t_lexer	**lex;
+	t_cmds	**cmd;
 }				t_data;
 
 typedef struct s_copy {
@@ -61,6 +73,12 @@ typedef struct s_quote {
 	char	*str;
 	int		type;
 }				t_quote;
+
+typedef struct s_redir {
+	t_lexer	*new;
+	t_lexer	*tmp;
+	t_lexer	*tmp2;
+}				t_redir;
 
 struct s_lexer	**lexer(char *str);
 char			*replace_env(char *str);
@@ -84,7 +102,7 @@ char			*copy_word(char *str);
 int				what_token(char *str);
 int				is_token(char c);
 int				ft_strcmp(char *s1, char *s2);
-void			parsing(t_data *data);
+int				parser(t_data *data);
 char			*ft_strjoin_free(char const *s1, char const *s2, int val);
 void			free_lexer(t_lexer **lexed);
 void			ft_cd(t_data *data, char *s);
@@ -93,6 +111,11 @@ char			remove_excess_quote(char *str);
 struct s_lexer	**split_quote_wspace(char *str);
 char			**lexer_split_quote(char *str);
 void			is_in(char *in, char c);
+void			find_redir(t_data *data);
+void			nb_pipes(t_data *data);
+int				check_error_lexer(t_data *data);
+void			init_cmd_list(t_data *data);
+void			find_redir(t_data *data);
 // print_lexer est à supprimer dans le produit fini.
 void			print_lexer(t_lexer **lexed);
 

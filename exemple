@@ -1,0 +1,78 @@
+[echo] [123] [NULL]
+
+[cat] [NULL]
+
+
+
+cmd->redirections
+[fichier1] - 1
+[fichier2] - 5
+
+
+
+[fichier]
+
+temp {
+	t_lexer *t1;
+	t_lexer *t2;
+	t_lexer *t3;
+}
+
+fonction()
+{
+	t_temp	tmp;
+
+	si lexer->token = 1;
+	tmp->t1 = lexer->prev;
+	temp->t2 = lexer->next;
+	lexer->prev->next = lexer->next->next;
+	command->str_redir = temp->t1->str;
+}
+
+void parser(t_data *data)
+{
+	if (parser_error(data)) // gérer les cas d'erreurs qui stoppent la commande
+		return (NULL);
+	init_list(data); //nombre de structures cmds à malloc et les mettre en liste dans data
+	find_redir(data); //trouver et stocker les tokens
+	store_cmd(data); //une fois que les redir sont sorti de la liste, garder uniquement les
+// composants de la liste séparé par les pipes pour les transformer en tableaux à stocker dans chaque
+// chaînon de la liste cmd
+}
+
+[<]
+[input]
+[cat]
+[>]
+[output]
+
+typedef struct s_simple_cmds
+{
+	char                    **str;
+	int                     (*builtin)(t_tools *, struct s_simple_cmds *);
+	int                     num_redirections;
+	char                    *hd_file_name;
+	t_lexer                 *redirections;
+	struct s_simple_cmds	*next;
+	struct s_simple_cmds	*prev;
+}	t_simple_cmds;
+
+read(input1) -> [1]
+read(input2) -> [1]
+[1]-> pipe ->[0]
+[0] -> stdin
+
+
+**cmd = taille 1(cmd *)
+*cmd1 = taille 1 (cmd)
+*cmd2 = taille 1 (cmd)
+
+cmd[0] = &cmd1;
+cmd1->next = cmd2;
+cmd2->next = NULL;
+
+
+t_cmd new;
+
+new = malloc(sizeof(cmd));
+add_back(**cmd, new);
