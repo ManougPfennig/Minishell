@@ -6,20 +6,11 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:32:31 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/31 00:09:13 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/02 17:00:31 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-//detecte la présence possible d'un token
-
-int	is_token(char c)
-{
-	if (c == '<' || c == '>' || c == '|')
-		return (1);
-	return (0);
-}
 
 // determine le token en question et renvoie une valeure attribuée
 

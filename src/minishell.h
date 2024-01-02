@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/30 12:45:25 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/02 18:03:22 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ struct s_lexer	*ft_last_link(struct s_lexer **lexer);
 char			*copy_word(char *str);
 int				what_token(char *str);
 int				is_token(char c);
+int				has_token(char *str);
 int				ft_strcmp(char *s1, char *s2);
 int				parser(t_data *data);
 char			*ft_strjoin_free(char const *s1, char const *s2, int val);
@@ -110,6 +111,7 @@ void			get_home_env(t_data *data);
 char			remove_excess_quote(char *str);
 struct s_lexer	**split_quote_wspace(char *str);
 char			**lexer_split_quote(char *str);
+int				contain_token(t_lexer **lexer, char *str);
 void			is_in(char *in, char c);
 void			find_redir(t_data *data);
 void			nb_pipes(t_data *data);

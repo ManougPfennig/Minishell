@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:08:48 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/24 16:52:37 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/02 19:27:41 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ char	remove_excess_quote(char *str)
 // - la première séparation se déroule dans lexer_split_quote
 // - remove_excess_quote va supprimer les quotes délimiteurs et laisser celles
 // qui font réellement parti du mot.
+// -contain_quote va permet de récupérer les token de redirection qui ne sont pas
+// séparé du reste par des espaces
 
 struct s_lexer	**split_quote_wspace(char *str)
 {
@@ -77,7 +79,10 @@ struct s_lexer	**split_quote_wspace(char *str)
 	tab = lexer_split_quote(str);
 	while (tab[i])
 	{
-		add_word(lexer, ft_strdup(tab[i]), what_token(tab[i]));
+		if (has_token(tab[i]))
+			contain_token(lexer, tab[i]);
+		else
+			add_word(lexer, ft_strdup(tab[i]), what_token(tab[i]));
 		i++;
 	}
 	ft_free_tab(tab, NULL);
