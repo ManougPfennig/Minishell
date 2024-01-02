@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:18 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/30 11:04:41 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/02 10:31:02 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ char	*ft_prompt(t_data *data)
 	if (data->lex)
 	{
 		print_lexer(data->lex);
-		parser(data);
+		if (parser(data))
+			ft_analyse(data, data->input);
 		free_lexer(data->lex);
-		ft_analyse(data, data->input);
 	}
 	return (data->input);
 }

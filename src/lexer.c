@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:32:31 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/24 16:43:43 by mapfenni         ###   ########.fr       */
+/*   Updated: 2023/12/31 00:09:13 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	add_word(struct s_lexer **lexer, char *str, int token)
 	new->str = str;
 	new->token = token;
 	new->next = NULL;
+	new->prev = NULL;
 	if (lexer[0] == NULL)
 		lexer[0] = new;
 	else
@@ -87,6 +88,8 @@ struct s_lexer	**lexer(char *str)
 	struct s_lexer	*ptr;
 	struct s_lexer	**lexer;
 
+	if (ft_strlen(str) == 0)
+		return (NULL);
 	in = 0;
 	lexer = split_quote_wspace(str);
 	if (!lexer)

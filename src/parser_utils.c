@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 14:53:42 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/30 11:40:56 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/02 11:37:07 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	nb_pipes(t_data *data)
 	t_lexer	*ptr;
 	int		i;
 
+	i = 0;
 	ptr = data->lex[0];
 	while (ptr)
 	{
@@ -35,21 +36,29 @@ void	nb_pipes(t_data *data)
 int	check_error_lexer(t_data *data)
 {
 	t_lexer	*ptr;
+	int		i;
 
+	i = 0;
 	ptr = data->lex[0];
 	if (ptr->token == 3)
 	{
-		printf("bash: syntax error near unexpected token `|'\n");
+		printf("minishell: parse error near `|'\n");
 		return (1);
 	}
 	while (ptr)
 	{
-		if (ptr->token != 0 && ptr->next->token != 0)
-		{
-			printf("bash: syntax error near unexpected token `%s'\n",
-				ptr->next->str);
+		if (ptr->token && !ptr->next && ++i)
+			printf("minishell: parse error near `%s'\n", ptr->str);
+		else if (ptr->token != 0 && ptr->token != PIPE && \
+		ptr->next->token != 0 && ++i)
+			printf("minishell: parse error near `%s'\n", ptr->next->str);
+		else if (ptr->token == PIPE && ptr->next && \
+		ptr->next->token == PIPE && ++i)
+			printf("minishell: parse error near `%s'\n", ptr->next->str);
+		else if (ptr->token == PIPE && !ptr->next && ++i)
+			printf("minishell: parse error near `|'\n");
+		if (i)
 			return (1);
-		}
 		ptr = ptr->next;
 	}
 	return (0);
