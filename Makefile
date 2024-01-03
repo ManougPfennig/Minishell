@@ -6,7 +6,7 @@
 #    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2024/01/02 16:57:08 by mapfenni         ###   ########.fr        #
+#    Updated: 2024/01/03 18:05:56 by mapfenni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,20 +19,20 @@ SRCS = main.c \
 	   prompt.c \
 	   utils.c \
 	   cmd.c \
-	   parser.c \
-	   lexer.c \
-	   replace_env.c \
-	   ft_strjoin_free.c \
-	   free_lexer.c \
 	   cd_working.c \
+	   ft_strjoin_free.c \
+	   lexer.c \
+	   lexer_replace_env.c \
+	   lexer_free.c \
 	   lexer_split.c \
 	   lexer_split_quote.c \
+	   lexer_contain_token.c \
+	   parser.c \
+	   parser_find_redir.c \
 	   parser_utils.c \
-	   find_redir.c \
-	   lexer_contain_token.c
+	   parser_store_cmd.c
 	   
 OBJS = $(addprefix $(OBJECTS)/, $(SRCS:.c=.o))
-
 CFLAGS = -Wall -Wextra -Werror -Iincludes -g
 LDFLAGS = -lreadline
 CC = gcc

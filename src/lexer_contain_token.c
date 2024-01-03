@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 16:56:44 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/02 19:43:51 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/03 20:20:08 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	has_token(char *str)
 	char	in;
 
 	i = 0;
+	in = 0;
 	while (str[i])
 	{
 		is_in(&in, str[i]);
@@ -52,10 +53,15 @@ char	*copy_token(char *str, int type)
 
 	i = 0;
 	new = ft_calloc(3, sizeof(char));
-	while (is_token(str[i]) == type && i < 2)
-	{
+	if (type == PIPE)
 		new[i] = str[i];
-		i++;
+	else
+	{
+		while (is_token(str[i]) == type && i < 2)
+		{
+			new[i] = str[i];
+			i++;
+		}
 	}
 	return (new);
 }

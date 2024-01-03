@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:32:31 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/02 17:00:31 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/03 18:02:26 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,3 +100,5 @@ struct s_lexer	**lexer(char *str)
 	}
 	return (lexer);
 }
+
+// Une semaine pour comprendre comment gérer des quotes... ✺◟(•‿•)◞✺

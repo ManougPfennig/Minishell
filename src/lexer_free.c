@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_lexer.c                                       :+:      :+:    :+:   */
+/*   lexer_free.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 11:47:21 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/24 16:48:39 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/03 20:27:09 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_lexer(t_lexer **lexed)
 	ptr = *lexed;
 	while (ptr)
 	{
-		printf("str: [%s]\ntoken: [%i]\n\n", ptr->str, ptr->token);
+		printf("str: [%s]\ntoken: [%i]\n", ptr->str, ptr->token);
 		ptr = ptr->next;
 	}
 }

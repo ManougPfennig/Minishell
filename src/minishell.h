@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/02 18:03:22 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/03 20:02:28 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@
 # define PATH "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:\
 /usr/games:/usr/local/games:/snap/bin:/snap/bin"
 
-typedef struct s_lexer {
+typedef struct s_lexer
+{
 	char			*str;
 	int				token;
 	struct s_lexer	*next;
@@ -42,12 +43,12 @@ typedef struct s_lexer {
 
 typedef struct s_cmds
 {
-    char			**tab;
-    int				num_redir;
-    char			*hd_file_name;
-    t_lexer			*redir;
-    struct s_cmds	*next;
-    struct s_cmds	*prev;
+	char			**tab;
+	int				num_redir;
+	char			*hd_file_name;
+	t_lexer			*redir;
+	struct s_cmds	*next;
+	struct s_cmds	*prev;
 }				t_cmds;
 
 typedef struct s_data
@@ -62,19 +63,22 @@ typedef struct s_data
 	t_cmds	**cmd;
 }				t_data;
 
-typedef struct s_copy {
+typedef struct s_copy
+{
 	int	len;
 	int	start;
 	int	i;
 	int	y;
 }				t_copy;
 
-typedef struct s_quote {
+typedef struct s_quote
+{
 	char	*str;
 	int		type;
 }				t_quote;
 
-typedef struct s_redir {
+typedef struct s_redir
+{
 	t_lexer	*new;
 	t_lexer	*tmp;
 	t_lexer	*tmp2;
@@ -118,7 +122,9 @@ void			nb_pipes(t_data *data);
 int				check_error_lexer(t_data *data);
 void			init_cmd_list(t_data *data);
 void			find_redir(t_data *data);
+void			store_cmd(t_data *data);
 // print_lexer est à supprimer dans le produit fini.
 void			print_lexer(t_lexer **lexed);
+void			print_tab(char **tab);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_redir.c                                       :+:      :+:    :+:   */
+/*   parser_find_redir.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 23:44:49 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/02 11:54:38 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/03 21:15:24 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	redir_add_back(t_cmds *cmd, t_lexer *new)
 // lex_remove_word permet de retirer un mot de la liste chaînée lexer,
 // en prenant en considéraiton les différentes positions dans la liste.
 
-void	lex_remove_word(t_data *data, t_lexer *ptr, t_lexer * ptr2)
+void	lex_remove_word(t_data *data, t_lexer *ptr, t_lexer *ptr2)
 {
 	t_lexer	*temp;
 
