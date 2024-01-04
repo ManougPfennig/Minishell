@@ -6,7 +6,7 @@
 #    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2024/01/03 18:05:56 by mapfenni         ###   ########.fr        #
+#    Updated: 2024/01/04 20:12:20 by mapfenni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,9 @@ SRCS = main.c \
 	   parser.c \
 	   parser_find_redir.c \
 	   parser_utils.c \
-	   parser_store_cmd.c
+	   parser_store_cmd.c \
+	   executor.c \
+	   executor_heredoc.c
 	   
 OBJS = $(addprefix $(OBJECTS)/, $(SRCS:.c=.o))
 CFLAGS = -Wall -Wextra -Werror -Iincludes -g

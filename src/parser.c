@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:06:37 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/04 11:17:12 by nicolas          ###   ########.fr       */
+/*   Updated: 2024/01/04 20:18:53 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ int	parser(t_data *data)
 	store_cmd(data);
 	print_cmd_list(data);
 	// is_builtin(data); // recupere le premier mot de chaque commande et verifie si c'est un builtin
-	return (0);
+	return (1);
 }

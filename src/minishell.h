@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/04 11:22:46 by nicolas          ###   ########.fr       */
+/*   Updated: 2024/01/04 20:16:25 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+# include <sys/types.h>
+# include <dirent.h>
 # include <signal.h>
 # include <fcntl.h>
 # include <linux/limits.h>
@@ -125,8 +125,11 @@ int				check_error_lexer(t_data *data);
 void			init_cmd_list(t_data *data);
 void			find_redir(t_data *data);
 void			store_cmd(t_data *data);
+void			executor(t_data *data);
+void			find_heredocs(t_data *data);
 // print_lexer est à supprimer dans le produit fini.
 void			print_lexer(t_lexer **lexed);
 void			print_tab(char **tab);
+void			print_cmd_list(t_data *data);
 
 #endif
