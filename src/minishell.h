@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/03 20:02:28 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/04 11:22:46 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_lexer
 typedef struct s_cmds
 {
 	char			**tab;
+	char			*builtin;
 	int				num_redir;
 	char			*hd_file_name;
 	t_lexer			*redir;
@@ -54,6 +55,7 @@ typedef struct s_cmds
 typedef struct s_data
 {
 	char	*input;
+	char	**builtins;
 	char	*buffercwd;
 	char	**copy_env;
 	char	*home_env;
