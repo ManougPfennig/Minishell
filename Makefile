@@ -6,7 +6,7 @@
 #    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2024/01/04 20:12:20 by mapfenni         ###   ########.fr        #
+#    Updated: 2024/01/05 16:28:27 by mapfenni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS = main.c \
 	   parser.c \
 	   parser_find_redir.c \
 	   parser_utils.c \
+	   parser_return_builtin.c \
 	   parser_store_cmd.c \
 	   executor.c \
 	   executor_heredoc.c

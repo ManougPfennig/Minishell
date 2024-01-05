@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_utils_2.c                                   :+:      :+:    :+:   */
+/*   parser_return_builtin.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:21:57 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/04 13:38:44 by nicolas          ###   ########.fr       */
+/*   Updated: 2024/01/05 16:55:42 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,24 @@ void	return_builtin(t_data *data)
 	t_cmds	*cmd;
 	int		i;
 	int		j;
-	int		count;
 
 	cmd = data->cmd[0];
-	count = data->pipes + 1;
-	while (count != 0)
+	i = 0;
+	init_builtins(data);
+	while (cmd)
 	{
 		j = 0;
-		while (data->builtins[i] || j != 0)
+		while (cmd->tab && data->builtins[i] && j == 0)
 		{
-			if (ft_strcmp(data->builtins[i], cmd->tab[0]) == 1)
+			if (ft_strcmp(data->builtins[i], cmd->tab[0]) == 0)
 			{
 				cmd->builtin = ft_strdup(data->builtins[i]);
 				j += 1;
 			}
 			else
-				cmd->builtin = ft_strdup("NULL");
+				cmd->builtin = NULL;
 			i++;
 		}
 		cmd = cmd->next;
-		count--;
 	}
 }

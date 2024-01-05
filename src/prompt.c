@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:18 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/04 20:18:53 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:38:54 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char	*ft_prompt(t_data *data)
 {
 	ft_signal();
 	data->input = readline("minishell> ");
+	data->line_count++;
 	if (data->input == NULL)
 	{
 		printf("quit\n");
@@ -42,10 +43,11 @@ char	*ft_prompt(t_data *data)
 	data->lex = lexer(data->input);
 	if (data->lex)
 	{
+// 		print_lexer à enlever
 		print_lexer(data->lex);
 		if (parser(data))
 			executor(data);
-//			ft_analyse(data, data->input);
+//		ft_analyse(data, data->input);
 		free_lexer(data->lex);
 	}
 	return (data->input);

@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 14:53:42 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/03 21:29:20 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:40:41 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	init_cmd_list(t_data *data)
 	{
 		temp = malloc(sizeof(t_cmds));
 		temp->tab = NULL;
+		temp->builtin = NULL;
 		temp->num_redir = 0;
 		temp->hd_file_name = NULL;
 		temp->redir = NULL;

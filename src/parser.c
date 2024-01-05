@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:06:37 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/04 20:18:53 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/05 16:46:04 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	print_cmd_list(t_data *data)
 		printf("structure -%p-\n-", cmd);
 		printf("redir:\n");
 		print_lexer(&(cmd->redir));
+		printf("builtin:\n%s\n", cmd->builtin);
 		printf("command: ");
 		print_tab(cmd->tab);
 		cmd = cmd->next;
@@ -60,6 +61,6 @@ int	parser(t_data *data)
 	find_redir(data);
 	store_cmd(data);
 	print_cmd_list(data);
-	// is_builtin(data); // recupere le premier mot de chaque commande et verifie si c'est un builtin
+	return_builtin(data);
 	return (1);
 }
