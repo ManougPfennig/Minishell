@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/05 16:26:33 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/06 15:50:33 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # define MORE_MORE 5
 # define PATH "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:\
 /usr/games:/usr/local/games:/snap/bin:/snap/bin"
+# define CTRL_D_HD 300
+# define CTRL_C_HD 300
+# define IN_HD 400
 
 typedef struct s_lexer
 {
@@ -55,7 +58,7 @@ typedef struct s_cmds
 typedef struct s_data
 {
 	char	*input;
-	int		line_count;
+	int		sigint;
 	char	**builtins;
 	char	*buffercwd;
 	char	**copy_env;
@@ -133,5 +136,7 @@ int				find_heredocs(t_data *data);
 void			print_lexer(t_lexer **lexed);
 void			print_tab(char **tab);
 void			print_cmd_list(t_data *data);
+
+extern int		g_sig;
 
 #endif

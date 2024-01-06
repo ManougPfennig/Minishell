@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:18 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/05 16:38:54 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/06 16:17:27 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,23 @@ void	ft_signal(void)
 
 void	ft_controlc(int signal)
 {
-	if (signal == SIGINT)
+	if (g_sig == IN_HD)
 	{
+		g_sig = 2;
 		write(STDERR_FILENO, "\n", 1);
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
 	}
+	write(STDERR_FILENO, "\n", 1);
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
+	(void)signal;
 }
 
 char	*ft_prompt(t_data *data)
 {
 	ft_signal();
 	data->input = readline("minishell> ");
-	data->line_count++;
+	g_sig = 0;
 	if (data->input == NULL)
 	{
 		printf("quit\n");
