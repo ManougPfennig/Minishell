@@ -6,11 +6,11 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 16:56:44 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/03 20:20:08 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:38:18 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 // is_token détermine si il s'agit d'un charactère de type token
 

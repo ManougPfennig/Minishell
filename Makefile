@@ -6,7 +6,7 @@
 #    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2024/01/05 16:28:27 by mapfenni         ###   ########.fr        #
+#    Updated: 2024/01/07 18:36:32 by mapfenni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,24 +16,24 @@ OBJECTS = ./bin
 AFILE = libft/libft.a
 
 SRCS = main.c \
-	   prompt.c \
-	   utils.c \
-	   cmd.c \
-	   cd_working.c \
-	   ft_strjoin_free.c \
-	   lexer.c \
-	   lexer_replace_env.c \
-	   lexer_free.c \
-	   lexer_split.c \
-	   lexer_split_quote.c \
-	   lexer_contain_token.c \
-	   parser.c \
-	   parser_find_redir.c \
-	   parser_utils.c \
-	   parser_return_builtin.c \
-	   parser_store_cmd.c \
-	   executor.c \
-	   executor_heredoc.c
+	   utils/ft_strjoin_free.c \
+	   utils/utils.c \
+	   prompt/prompt.c \
+	   builtin/cmd.c \
+	   builtin/cd_working.c \
+	   lexer/lexer.c \
+	   lexer/lexer_replace_env.c \
+	   lexer/lexer_free.c \
+	   lexer/lexer_split.c \
+	   lexer/lexer_split_quote.c \
+	   lexer/lexer_contain_token.c \
+	   parser/parser.c \
+	   parser/parser_find_redir.c \
+	   parser/parser_utils.c \
+	   parser/parser_return_builtin.c \
+	   parser/parser_store_cmd.c \
+	   executor/executor.c \
+	   executor/executor_heredoc.c
 	   
 OBJS = $(addprefix $(OBJECTS)/, $(SRCS:.c=.o))
 CFLAGS = -Wall -Wextra -Werror -Iincludes -g

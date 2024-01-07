@@ -6,11 +6,11 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 20:10:03 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/06 21:55:28 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:38:13 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	executor(t_data *data)
 {

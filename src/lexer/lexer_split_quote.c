@@ -6,11 +6,11 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:16:27 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/23 14:16:15 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:38:27 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 // is_in permet au programme de savoir quand il est dans des quote et
 // conserver son type ( " ou ' ) lorsqu'il fait défiler la string.

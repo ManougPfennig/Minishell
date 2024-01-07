@@ -6,11 +6,11 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 23:44:49 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/03 21:15:24 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:38:41 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 // redir_add_back permet d'ajouter un chaînon de liste type t_cmds
 // à la fin d'une autre liste.

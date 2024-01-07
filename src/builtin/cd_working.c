@@ -6,11 +6,11 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:04:09 by nicolas           #+#    #+#             */
-/*   Updated: 2023/12/23 14:11:55 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:37:59 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	print_error_tild_cd(t_data *data, char *s)
 {

@@ -6,11 +6,11 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 14:53:42 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/05 16:40:41 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:38:50 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 // La variable pipes permettra de savoir combien de maillons
 // de la struct Parser on aura besoin.

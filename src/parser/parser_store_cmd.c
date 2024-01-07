@@ -6,11 +6,11 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 18:02:43 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/03 21:36:45 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:38:47 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 // add_command fait l'allocation et le remplissage du tableau
 

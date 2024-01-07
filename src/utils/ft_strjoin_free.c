@@ -6,11 +6,11 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 11:35:54 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/04 20:23:16 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:39:05 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	to_free(char *s1, char *s2, int val)
 {

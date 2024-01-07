@@ -6,11 +6,11 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:17:10 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/06 22:01:21 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:39:33 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 char	*replace_env_hd(char *str)
 {
@@ -36,7 +36,7 @@ int	make_heredoc(t_lexer *lex, char *end)
 {
 	char	*buffer;
 
-	g_sig = 0;+
+	g_sig = 0;
 	ft_free_tab(NULL, lex->str);
 	lex->str = NULL;
 	buffer = NULL;

@@ -1,45 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_free.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 11:47:21 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/03 20:27:09 by mapfenni         ###   ########.fr       */
+/*   Created: 2023/11/24 18:54:58 by nicolas           #+#    #+#             */
+/*   Updated: 2024/01/07 18:39:09 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-void	print_lexer(t_lexer **lexed)
+void	print_env(t_data *data)
 {
-	t_lexer	*ptr;
+	int	i;
 
-	if (!lexed)
-		return ;
-	ptr = *lexed;
-	while (ptr)
+	i = 0;
+	while (data->copy_env[i])
 	{
-		printf("str: [%s]\ntoken: [%i]\n", ptr->str, ptr->token);
-		ptr = ptr->next;
+		printf("%s\n", data->copy_env[i]);
+		i++;
 	}
 }
 
-void	free_lexer(t_lexer **lexed)
+int	count(char *src)
 {
-	t_lexer	*ptr;
-	t_lexer	*ex_ptr;
+	int	i;
 
-	if (!lexed)
-		return ;
-	ptr = *lexed;
-	free(lexed);
-	while (ptr)
+	i = 0;
+	while (src[i])
+		i++;
+	return (i);
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	unsigned int	i;
+
+	i = 0;
+	while ((s1[i] || s2[i]))
 	{
-		free(ptr->str);
-		ex_ptr = ptr;
-		ptr = ptr->next;
-		free(ex_ptr);
+		if (s1[i] != s2[i])
+			return ((unsigned char)(s1[i]) - (unsigned char)(s2[i]));
+		i++;
 	}
+	return (0);
 }
