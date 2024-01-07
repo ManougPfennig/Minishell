@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   replace_env.c                                      :+:      :+:    :+:   */
+/*   lexer_replace_env.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:31:15 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/12/22 18:17:17 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/06 21:51:26 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*to_env(char *str, int i)
 
 // replace_env va trouver tout les $ (hors simple quote) puis
 // vérifier si le nom qui suit correspond bien à ce qui peut être attribué
-// comme nom à une variable env. Dans le cas échéant, la string est en quelque
+// comme nom à une variable env. Dans le cas échéant, la string est ensuite
 // découpée pour récupérer le nom complet puis recollée avec la
 // valeur de remplacement récupérée grâce à getenv().
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/06 15:50:33 by nicolas          ###   ########.fr       */
+/*   Updated: 2024/01/06 21:55:33 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ typedef struct s_copy
 	int	y;
 }				t_copy;
 
-typedef struct s_quote
+typedef struct s_exec
 {
-	char	*str;
-	int		type;
-}				t_quote;
+	int	signal;
+	int	old_pipe;
+}				t_exec;
 
 typedef struct s_redir
 {
@@ -90,8 +90,40 @@ typedef struct s_redir
 	t_lexer	*tmp2;
 }				t_redir;
 
+// lexer part
 struct s_lexer	**lexer(char *str);
+struct s_lexer	**split_quote_wspace(char *str);
+char			**lexer_split_quote(char *str);
+struct s_lexer	*ft_last_link(struct s_lexer **lexer);
 char			*replace_env(char *str);
+int				is_envchar(char c);
+char			*to_env(char *str, int i);
+char			*copy_word(char *str);
+int				add_word(struct s_lexer **lexer, char *str, int token);
+void			is_in(char *in, char c);
+int				is_token(char c);
+int				has_token(char *str);
+int				contain_token(t_lexer **lexer, char *str);
+int				what_token(char *str);
+char			remove_excess_quote(char *str);
+void			free_lexer(t_lexer **lexed);
+
+// parser part
+int				parser(t_data *data);
+int				check_error_lexer(t_data *data);
+void			find_redir(t_data *data);
+void			nb_pipes(t_data *data);
+void			init_cmd_list(t_data *data);
+void			find_redir(t_data *data);
+void			store_cmd(t_data *data);
+void			return_builtin(t_data *data);
+
+// executor part
+int				executor(t_data *data);
+int				handle_heredocs(t_data *data);
+
+// signal part
+
 char			*ft_prompt(t_data *data);
 void			ft_exitcmd(char *s);
 void			ft_controlc(int signal);
@@ -105,33 +137,10 @@ int				count(char *src);
 void			ft_analyse(t_data *data, char *s);
 void			ft_env(t_data *data, char *env);
 void			ft_pwd(t_data *data, char *s);
-struct s_lexer	**lexer(char *str);
-int				add_word(struct s_lexer **lexer, char *str, int token);
-struct s_lexer	*ft_last_link(struct s_lexer **lexer);
-char			*copy_word(char *str);
-int				what_token(char *str);
-int				is_token(char c);
-int				has_token(char *str);
 int				ft_strcmp(char *s1, char *s2);
-int				parser(t_data *data);
 char			*ft_strjoin_free(char const *s1, char const *s2, int val);
-void			free_lexer(t_lexer **lexed);
 void			ft_cd(t_data *data, char *s);
 void			get_home_env(t_data *data);
-char			remove_excess_quote(char *str);
-struct s_lexer	**split_quote_wspace(char *str);
-char			**lexer_split_quote(char *str);
-int				contain_token(t_lexer **lexer, char *str);
-void			is_in(char *in, char c);
-void			find_redir(t_data *data);
-void			nb_pipes(t_data *data);
-int				check_error_lexer(t_data *data);
-void			init_cmd_list(t_data *data);
-void			find_redir(t_data *data);
-void			store_cmd(t_data *data);
-void			return_builtin(t_data *data);
-int				executor(t_data *data);
-int				find_heredocs(t_data *data);
 // print_lexer est à supprimer dans le produit fini.
 void			print_lexer(t_lexer **lexed);
 void			print_tab(char **tab);
