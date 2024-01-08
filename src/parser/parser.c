@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:06:37 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/07 18:38:54 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/07 20:03:44 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ int	parser(t_data *data)
 {
 	if (check_error_lexer(data))
 		return (0);
-	printf("------------------\n");
+	//printf("------------------\n");
 	init_cmd_list(data); //nombre de structures cmds à malloc et les mettre
 	// en liste dans data
 	find_redir(data);
 	store_cmd(data);
-	print_cmd_list(data);
+//	print_cmd_list(data);
 	return_builtin(data);
 	return (1);
 }

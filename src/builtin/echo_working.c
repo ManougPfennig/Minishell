@@ -1,59 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   echo_working.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 18:54:58 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/08 10:57:16 by nicolas          ###   ########.fr       */
+/*   Created: 2024/01/07 19:04:17 by nicolas           #+#    #+#             */
+/*   Updated: 2024/01/07 21:09:13 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	print_env(t_data *data)
+void	ft_echo(t_cmds *cmd)
 {
-	int	i;
+	int		i;
+	int		option;
 
-	i = 0;
-	while (data->copy_env[i])
+	i = 1;
+	option = 0;
+	if (cmd->tab[i] && ft_strcmp(cmd->tab[1], "-n") == 0)
 	{
-		printf("%s\n", data->copy_env[i]);
+		i++;
+		option = 1;
+	}
+	if (cmd->tab[i] == NULL && option == 0)
+	{
+		write(1, "\n", 2);
+		return ;
+	}
+	while (cmd->tab[i])
+	{
+		write(1, cmd->tab[i], ft_strlen(cmd->tab[i]));
+		if (cmd->tab[i + 1] != NULL)
+			write(1, " ", 1);
 		i++;
 	}
-}
-
-int	count(char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i])
-		i++;
-	return (i);
-}
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	unsigned int	i;
-
-	i = 0;
-	while ((s1[i] || s2[i]))
-	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)(s1[i]) - (unsigned char)(s2[i]));
-		i++;
-	}
-	return (0);
-}
-
-int	len_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-		i++;
-	return (i);
+	if (option == 0)
+		write(1, "\n", 2);
 }

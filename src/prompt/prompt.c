@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:18 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/07 18:39:00 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/08 11:10:36 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,9 @@ char	*ft_prompt(t_data *data)
 	if (data->lex)
 	{
 // 		print_lexer à enlever
-		print_lexer(data->lex);
+	//	print_lexer(data->lex);
 		if (parser(data))
 			executor(data);
-//		ft_analyse(data, data->input);
 		free_lexer(data->lex);
 	}
 	return (data->input);
@@ -70,6 +69,5 @@ char	**get_env(char	**env, t_data *data)
 		data->copy_env[i] = ft_strdup(env[i]);
 		i++;
 	}
-	get_home_env(data);
 	return (data->copy_env);
 }

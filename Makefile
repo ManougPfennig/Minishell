@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
+#    By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2024/01/07 18:36:32 by mapfenni         ###   ########.fr        #
+#    Updated: 2024/01/08 14:08:41 by nicolas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,9 @@ SRCS = main.c \
 	   prompt/prompt.c \
 	   builtin/cmd.c \
 	   builtin/cd_working.c \
+	   builtin/echo_working.c \
+	   builtin/exit_working.c \
+	   builtin/pwd_working.c \
 	   lexer/lexer.c \
 	   lexer/lexer_replace_env.c \
 	   lexer/lexer_free.c \

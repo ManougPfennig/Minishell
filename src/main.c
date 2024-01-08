@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/06 15:10:19 by nicolas          ###   ########.fr       */
+/*   Updated: 2024/01/07 23:12:15 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	g_sig;
 void	init_data(t_data *data)
 {
 	data->input = NULL;
+	data->buffercwd = NULL;
 	data->sigint = 0;
 	data->builtins = NULL;
-	data->buffercwd = NULL;
 	data->copy_env = NULL;
 	data->home_env = NULL;
 	data->buffersize = 0;

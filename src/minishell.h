@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/06 21:55:33 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/08 14:07:49 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ typedef struct s_lexer
 	struct s_lexer	*prev;
 }				t_lexer;
 
+typedef struct s_exec
+{
+	int	signal;
+	int	old_pipe;
+}				t_exec;
+
 typedef struct s_cmds
 {
 	char			**tab;
@@ -51,16 +57,18 @@ typedef struct s_cmds
 	int				num_redir;
 	char			*hd_file_name;
 	t_lexer			*redir;
+	t_exec			*exec;
 	struct s_cmds	*next;
 	struct s_cmds	*prev;
+	struct s_data	*data;
 }				t_cmds;
 
 typedef struct s_data
 {
 	char	*input;
 	int		sigint;
-	char	**builtins;
 	char	*buffercwd;
+	char	**builtins;
 	char	**copy_env;
 	char	*home_env;
 	int		buffersize;
@@ -77,11 +85,6 @@ typedef struct s_copy
 	int	y;
 }				t_copy;
 
-typedef struct s_exec
-{
-	int	signal;
-	int	old_pipe;
-}				t_exec;
 
 typedef struct s_redir
 {
@@ -117,6 +120,7 @@ void			init_cmd_list(t_data *data);
 void			find_redir(t_data *data);
 void			store_cmd(t_data *data);
 void			return_builtin(t_data *data);
+void			which_cmd(t_cmds *cmd);
 
 // executor part
 int				executor(t_data *data);
@@ -125,7 +129,8 @@ int				handle_heredocs(t_data *data);
 // signal part
 
 char			*ft_prompt(t_data *data);
-void			ft_exitcmd(char *s);
+void			ft_echo(t_cmds *cmd);
+void			ft_exit(t_cmds *cmd);
 void			ft_controlc(int signal);
 char			*create_input(char *input);
 void			ft_signal(void);
@@ -136,11 +141,12 @@ void			print_env(t_data *data);
 int				count(char *src);
 void			ft_analyse(t_data *data, char *s);
 void			ft_env(t_data *data, char *env);
-void			ft_pwd(t_data *data, char *s);
+void			ft_pwd(t_cmds *cmd);
 int				ft_strcmp(char *s1, char *s2);
 char			*ft_strjoin_free(char const *s1, char const *s2, int val);
-void			ft_cd(t_data *data, char *s);
-void			get_home_env(t_data *data);
+int				len_tab(char **tab);
+void			ft_cd(t_cmds *cmd);
+void			get_home_env(t_cmds *cmd);
 // print_lexer est à supprimer dans le produit fini.
 void			print_lexer(t_lexer **lexed);
 void			print_tab(char **tab);

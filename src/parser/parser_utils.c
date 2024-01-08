@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 14:53:42 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/07 18:38:50 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/07 23:17:52 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	init_cmd_list(t_data *data)
 		temp->redir = NULL;
 		temp->next = NULL;
 		temp->prev = NULL;
+		temp->data = data;
 		add_back_cmds(data, temp);
 		temp = NULL;
 		i++;

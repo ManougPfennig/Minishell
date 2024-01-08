@@ -3,41 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   cd_working.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:04:09 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/07 18:37:59 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/08 12:16:22 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	print_error_tild_cd(t_data *data, char *s)
+int	print_error(t_cmds *cmd)
 {
 	int		i;
-	char	**tab;
 
 	i = 0;
-	tab = ft_split(s, ' ');
-	while (tab[i])
+	while (cmd->tab[i])
 		i++;
-	if (i == 2 && ft_strcmp(tab[0], "cd") == 0
-		&& ft_strcmp(tab[1], "~") == 0)
+	if (i > 2)
 	{
-		chdir(data->home_env);
-		data->buffercwd = getcwd(data->buffercwd, PATH_MAX);
-		return ;
+		printf("minishell: cd: too many arguments\n");
+		return (1);
 	}
-	else if (i == 2 && ft_strcmp(tab[0], "cd") == 0
-		&& access(tab[1], F_OK) == -1)
-	{
-		printf("bash: cd: %s: No such file or directory\n", tab[1]);
-		return ;
-	}
-	return ;
+	return (0);
 }
 
-void	get_home_env(t_data *data)
+void	get_home_env(t_cmds *cmd)
 {
 	int		i;
 	int		j;
@@ -46,47 +36,49 @@ void	get_home_env(t_data *data)
 	i = 0;
 	j = 0;
 	k = 0;
-	while (data->copy_env[i])
+	while (cmd->data->copy_env[i])
 	{
-		if (strncmp(data->copy_env[i], "HOME=", 5) == 0)
+		if (strncmp(cmd->data->copy_env[i], "HOME=", 5) == 0)
 			break ;
 		i++;
 	}
-	while (data->copy_env[i][j])
+	while (cmd->data->copy_env[i][j])
 		j++;
-	data->home_env = malloc(sizeof(char) * j - 5);
+	cmd->data->home_env = malloc(sizeof(char) * j - 5);
 	j = 5;
-	while (data->copy_env[i][j])
+	while (cmd->data->copy_env[i][j])
 	{
-		data->home_env[k] = data->copy_env[i][j];
+		cmd->data->home_env[k] = cmd->data->copy_env[i][j];
 		k++;
 		j++;
 	}
+	cmd->data->home_env[k] = '\0';
 }
 
-void	ft_cd(t_data *data, char *s)
+void	ft_cd(t_cmds *cmd)
 {
-	int		i;
-	char	**tab;
-
-	i = 0;
-	tab = ft_split(s, ' ');
-	data->buffercwd = getcwd(data->buffercwd, PATH_MAX);
-	while (tab[i])
-		i++;
-	if (i == 2 && ft_strcmp(tab[0], "cd") == 0
-		&& ft_strcmp(tab[1], "..") == 0)
+	get_home_env(cmd);
+	if (print_error(cmd) == 1)
+		return ;
+	if (ft_strcmp(cmd->tab[1], "~") == 0)
+	{
+		chdir(cmd->data->home_env);
+		cmd->data->buffercwd = getcwd(cmd->data->buffercwd, PATH_MAX);
+		return ;
+	}
+	if (ft_strcmp(cmd->tab[1], "..") == 0)
 	{
 		chdir("..");
-		data->buffercwd = getcwd(data->buffercwd, PATH_MAX);
+		cmd->data->buffercwd = getcwd(cmd->data->buffercwd, PATH_MAX);
 		return ;
 	}
-	else if (i == 2 && ft_strcmp(tab[0], "cd") == 0
-		&& access(tab[1], F_OK) == 0)
+	if (access(cmd->tab[1], F_OK) == 0)
 	{
-		chdir(tab[1]);
-		data->buffercwd = getcwd(data->buffercwd, PATH_MAX);
+		chdir(cmd->tab[1]);
+		cmd->data->buffercwd = getcwd(cmd->data->buffercwd, PATH_MAX);
 		return ;
 	}
-	print_error_tild_cd(data, s);
+	else if (access(cmd->tab[1], F_OK) == -1)
+		printf("minishell: cd: %s: No such file or directory\n", cmd->tab[1]);
+	return ;
 }
