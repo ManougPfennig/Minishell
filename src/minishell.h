@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/08 14:07:49 by nicolas          ###   ########.fr       */
+/*   Updated: 2024/01/08 17:11:04 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void			len_env(char **env, int i, int j);
 void			print_env(t_data *data);
 int				count(char *src);
 void			ft_analyse(t_data *data, char *s);
-void			ft_env(t_data *data, char *env);
+void			ft_env(t_cmds *cmd);
 void			ft_pwd(t_cmds *cmd);
 int				ft_strcmp(char *s1, char *s2);
 char			*ft_strjoin_free(char const *s1, char const *s2, int val);

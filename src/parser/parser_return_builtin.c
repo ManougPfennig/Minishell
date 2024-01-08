@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_return_builtin.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:21:57 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/08 14:09:52 by nicolas          ###   ########.fr       */
+/*   Updated: 2024/01/08 17:13:01 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,12 @@ void	which_cmd(t_cmds *cmd)
 		ft_cd(cmd);
 	if (cmd->builtin && ft_strcmp(cmd->builtin, "exit") == 0)
 		ft_exit(cmd);
-	/*if (ft_strcmp(cmd->builtin, "pwd") == 0)
-		ft_echo(cmd);
-	if (ft_strcmp(cmd->builtin, "env") == 0)
-		ft_echo(cmd);
+	if (cmd->builtin && ft_strcmp(cmd->builtin, "env") == 0)
+		ft_env(cmd);
+	/*	
 	if (ft_strcmp(cmd->builtin, "export") == 0)
 		ft_echo(cmd);
 	if (ft_strcmp(cmd->builtin, "unset") == 0)
-		ft_echo(cmd);
-	if (ft_strcmp(cmd->biltin, "exit") == 0)
-		ft_echo(cmd);
-
-
-
-
-
-
-	*/
+		ft_echo(cmd);*/
 }
 

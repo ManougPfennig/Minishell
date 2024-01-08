@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+         #
+#    By: npatron <npatron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2024/01/08 14:08:41 by nicolas          ###   ########.fr        #
+#    Updated: 2024/01/08 17:10:29 by npatron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS = main.c \
 	   builtin/echo_working.c \
 	   builtin/exit_working.c \
 	   builtin/pwd_working.c \
+	   builtin/env_working.c \
 	   lexer/lexer.c \
 	   lexer/lexer_replace_env.c \
 	   lexer/lexer_free.c \
