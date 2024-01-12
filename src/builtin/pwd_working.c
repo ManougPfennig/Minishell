@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd.c                                              :+:      :+:    :+:   */
+/*   pwd_working.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 14:08:24 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/09 23:07:16 by npatron          ###   ########.fr       */
+/*   Created: 2024/01/07 20:55:45 by nicolas           #+#    #+#             */
+/*   Updated: 2024/01/07 23:10:16 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_exitcmd(char *s)
+void	ft_pwd(t_cmds *cmd)
 {
-	if (ft_strcmp(s, "exit") == 0)
-		exit(EXIT_FAILURE);
-	else
-		return ;
+	cmd->data->buffercwd = getcwd(cmd->data->buffercwd, PATH_MAX);
+	write(1, cmd->data->buffercwd, ft_strlen(cmd->data->buffercwd));
+	write(1, "\n", 2);
+	return ;
 }
+

@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 18:54:58 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/07 18:39:09 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/12 01:42:24 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	print_env(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (data->copy_env[i])
-	{
-		printf("%s\n", data->copy_env[i]);
-		i++;
-	}
-}
 
 int	count(char *src)
 {
@@ -46,4 +34,48 @@ int	ft_strcmp(char *s1, char *s2)
 		i++;
 	}
 	return (0);
+}
+char    **copy_tab(char **tab)
+{
+    char    **copy;
+    int     i;
+
+    i = 0;
+    if (tab == NULL)
+        return (NULL);
+    copy = malloc(sizeof(char *) * (len_tab(tab) + 1));
+    while (tab && tab[i])
+    {
+        copy[i] = ft_strdup(tab[i]);
+        i++;
+    }
+    copy[i] = NULL;
+    return (copy);
+}
+int there_is_egual(char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+    {
+        if (str[i] == '=')
+            return (0);
+        i++;
+    }
+    return (1);
+}
+
+int	len_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+    if (tab[i])
+    {
+	    while (tab[i])
+		    i++;
+	    return (i);
+    }
+    return (0);
 }

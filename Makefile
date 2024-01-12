@@ -6,7 +6,7 @@
 #    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2024/01/07 18:36:32 by mapfenni         ###   ########.fr        #
+#    Updated: 2024/01/12 13:37:55 by mapfenni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,15 @@ AFILE = libft/libft.a
 SRCS = main.c \
 	   utils/ft_strjoin_free.c \
 	   utils/utils.c \
+	   utils/utils_2.c \
 	   prompt/prompt.c \
 	   builtin/cmd.c \
 	   builtin/cd_working.c \
+	   builtin/echo_working.c \
+	   builtin/exit_working.c \
+	   builtin/pwd_working.c \
+	   builtin/env_working.c \
+	   builtin/export_working.c \
 	   lexer/lexer.c \
 	   lexer/lexer_replace_env.c \
 	   lexer/lexer_free.c \
@@ -33,7 +39,11 @@ SRCS = main.c \
 	   parser/parser_return_builtin.c \
 	   parser/parser_store_cmd.c \
 	   executor/executor.c \
-	   executor/executor_heredoc.c
+	   executor/executor_heredoc.c \
+	   executor/executor_check_input_list.c \
+	   executor/executor_change_input_output.c \
+	   executor/executor_get_fd.c \
+	   executor/executor_command_execution.c
 	   
 OBJS = $(addprefix $(OBJECTS)/, $(SRCS:.c=.o))
 CFLAGS = -Wall -Wextra -Werror -Iincludes -g

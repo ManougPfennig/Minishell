@@ -1,0 +1,41 @@
+FONCTIONNEMENT DE EXPORT : 
+
+------------------------------------------------------------
+
+export jean = 12321321321231321
+
+bash: export: `=': not a valid identifier
+bash: export: `12321321321231321': not a valid identifier
+// MESSAGE ERREUR //
+
+------------------------------------------------------------
+
+export jean
+
+RIEN NE SE PASSE
+
+------------------------------------------------------------
+
+export jean=1
+jean=1 dans l'env
+
+------------------------------------------------------------
+
+export 123=123
+bash: export: `123=123': not a valid identifier
+// MESSAGE ERREUR //
+-----> Le nom de la variable ne peut pas etre seulement numerique
+
+------------------------------------------------------------
+
+export jean= qwdqwdqwdqwdqwdqwdqwd
+env : jean=
+
+Par contre :
+
+export jean= 6465464
+bash: export: `6465464': not a valid identifier
+
+------------------------------------------------------------
+tout ce qui est avant le egal = nom de variable
+tout ce qui est apres le egal = valeur de la variable

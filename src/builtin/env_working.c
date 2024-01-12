@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd.c                                              :+:      :+:    :+:   */
+/*   env_working.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 14:08:24 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/09 23:07:16 by npatron          ###   ########.fr       */
+/*   Created: 2024/01/08 17:03:07 by npatron           #+#    #+#             */
+/*   Updated: 2024/01/12 11:07:17 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_exitcmd(char *s)
+void    ft_env(t_cmds *cmd)
 {
-	if (ft_strcmp(s, "exit") == 0)
-		exit(EXIT_FAILURE);
+    int	i;
+
+	i = 0;
+	if (ft_strcmp(cmd->tab[0], "export") != 0)
+	{
+		while (cmd->data->copy_env[i])
+		{
+			write(1, cmd->data->copy_env[i], ft_strlen(cmd->data->copy_env[i]));
+       		write(1, "\n", 1);
+			i++;
+		}
+	}
 	else
-		return ;
+	{
+		while (cmd->data->env_export[i])
+		{
+			write(1, cmd->data->env_export[i], ft_strlen(cmd->data->env_export[i]));
+       		write(1, "\n", 1);
+			i++;
+		}
+	}
 }

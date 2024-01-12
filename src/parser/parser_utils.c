@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 14:53:42 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/07 18:38:50 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/11 20:59:09 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,25 @@ int	check_error_lexer(t_data *data)
 
 	i = 0;
 	ptr = data->lex[0];
+	if (!ptr)
+		return (1);
 	if (ptr->token == 3)
 	{
-		printf("minishell: parse error near `|'\n");
+		printf("minishell: syntax error near `|'\n");
 		return (1);
 	}
 	while (ptr)
 	{
 		if (ptr->token && !ptr->next && ++i)
-			printf("minishell: parse error near `%s'\n", ptr->str);
+			printf("minishell: syntax error near `%s'\n", ptr->str);
 		else if (ptr->token != 0 && ptr->token != PIPE && \
 		ptr->next->token != 0 && ++i)
-			printf("minishell: parse error near `%s'\n", ptr->next->str);
+			printf("minishell: syntax error near `%s'\n", ptr->next->str);
 		else if (ptr->token == PIPE && ptr->next && \
 		ptr->next->token == PIPE && ++i)
-			printf("minishell: parse error near `%s'\n", ptr->next->str);
+			printf("minishell: syntax error near `%s'\n", ptr->next->str);
 		else if (ptr->token == PIPE && !ptr->next && ++i)
-			printf("minishell: parse error near `|'\n");
+			printf("minishell: syntax error near `|'\n");
 		if (i)
 			return (1);
 		ptr = ptr->next;
@@ -97,8 +99,10 @@ void	init_cmd_list(t_data *data)
 		temp->num_redir = 0;
 		temp->hd_file_name = NULL;
 		temp->redir = NULL;
+		temp->exec = NULL;
 		temp->next = NULL;
 		temp->prev = NULL;
+		temp->data = data;
 		add_back_cmds(data, temp);
 		temp = NULL;
 		i++;

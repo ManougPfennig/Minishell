@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:18 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/07 18:39:00 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:57:46 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	ft_controlc(int signal)
 char	*ft_prompt(t_data *data)
 {
 	ft_signal();
+	data->input = NULL;
 	data->input = readline("minishell> ");
-	g_sig = 0;
 	if (data->input == NULL)
 	{
 		printf("quit\n");
@@ -46,14 +46,12 @@ char	*ft_prompt(t_data *data)
 	data->lex = lexer(data->input);
 	if (data->lex)
 	{
-// 		print_lexer à enlever
-		print_lexer(data->lex);
 		if (parser(data))
 			executor(data);
-//		ft_analyse(data, data->input);
 		free_lexer(data->lex);
 	}
-	return (data->input);
+	free(data->input);
+	return (NULL);
 }
 
 char	**get_env(char	**env, t_data *data)
@@ -63,13 +61,14 @@ char	**get_env(char	**env, t_data *data)
 	i = 0;
 	while (env[i])
 		i++;
-	data->copy_env = malloc(sizeof(char *) * i);
+	data->copy_env = malloc(sizeof(char *) * (i + 1));
 	i = 0;
 	while (env[i])
 	{
 		data->copy_env[i] = ft_strdup(env[i]);
 		i++;
 	}
-	get_home_env(data);
+	data->copy_env[i] = NULL;
+	data->new_copy_env = copy_tab(data->copy_env);
 	return (data->copy_env);
 }

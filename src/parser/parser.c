@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:06:37 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/07 18:38:54 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/11 13:07:49 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	print_cmd_list(t_data *data)
 	cmd = data->cmd[0];
 	while (cmd)
 	{
+		printf("----------\n");
 		printf("structure -%p-\n-", cmd);
 		printf("redir:\n");
 		print_lexer(&(cmd->redir));
@@ -55,12 +56,10 @@ int	parser(t_data *data)
 {
 	if (check_error_lexer(data))
 		return (0);
-	printf("------------------\n");
 	init_cmd_list(data); //nombre de structures cmds à malloc et les mettre
 	// en liste dans data
 	find_redir(data);
 	store_cmd(data);
-	print_cmd_list(data);
 	return_builtin(data);
 	return (1);
 }

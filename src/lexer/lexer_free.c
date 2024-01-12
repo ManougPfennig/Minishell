@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 11:47:21 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/07 18:38:20 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/11 20:58:02 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_lexer(t_lexer **lexed)
 {
 	t_lexer	*ptr;
 
-	if (!lexed)
+	if (!lexed || !(*lexed))
 		return ;
 	ptr = *lexed;
 	while (ptr)

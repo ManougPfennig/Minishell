@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:21:57 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/07 18:38:44 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:30:48 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,26 @@ void	return_builtin(t_data *data)
 		}
 		cmd = cmd->next;
 	}
+}
+
+void	which_cmd(t_cmds *cmd)
+{
+	if (cmd->builtin && ft_strcmp(cmd->builtin, "echo") == 0)
+		ft_echo(cmd);
+	else if (cmd->builtin && ft_strcmp(cmd->builtin, "pwd") == 0)
+		ft_pwd(cmd);
+	else if (cmd->builtin && ft_strcmp(cmd->builtin, "cd") == 0)
+		ft_cd(cmd);
+	if (cmd->builtin && ft_strcmp(cmd->builtin, "exit") == 0)
+		ft_exit(cmd);
+	if (cmd->builtin && ft_strcmp(cmd->builtin, "env") == 0)
+		ft_env(cmd);
+	if (cmd->builtin && ft_strcmp(cmd->builtin, "export") == 0
+		&& !cmd->tab[1])
+	{
+		ft_env(cmd);
+		return ;
+	}
+	if (cmd->builtin && ft_strcmp(cmd->builtin, "export") == 0)
+		ft_export(cmd);
 }
