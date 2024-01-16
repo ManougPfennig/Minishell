@@ -5,80 +5,67 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 16:15:56 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/15 11:46:16 by npatron          ###   ########.fr       */
+/*   Created: 2024/01/16 21:55:37 by npatron           #+#    #+#             */
+/*   Updated: 2024/01/16 21:55:44 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	change_export(t_cmds *cmd, char *str)
+char	*get_env_patron_3000(t_env *ptr, char *name)
 {
-	char	*compare;
-	int		i;
-	int		j;
-	
-	j = 0;
-	i = 0;
-	while (str[j] && str[j] != '=')
-		j++;
-	compare = ft_addstring("declare -x ", str);
-	while (cmd->data->env_export[i])
+	while (ptr)
 	{
-		if (ft_strncmp(compare, cmd->data->env_export[i], 11 + j) == 0)
-		{
-			cmd->data->env_export[i] = ft_addstring("declare -x ", var_env_export(str));
-			return (1);
-		}
-		i++;		
+		if (ft_strcmp(name, ptr->name))
+			return (ft_strdup(ptr->value));
+		ptr = ptr->next;
 	}
-	return (0);	
+	return (ft_strdup(""));
 }
 
-int	same_change(t_cmds *cmd, char *str)
+int	has_equal(char *str)
 {
-	char	*compare;
-	int		i;
-	int		j;
-	
-	j = 0;
+	int	i;
+
 	i = 0;
-	while (str[j] && str[j] != '=')
-		j++;
-	compare = ft_addstring("declare -x ", str);
-	while (cmd->data->env_export[i])
+	while (str[i])
 	{
-		if (ft_strncmp(compare, cmd->data->env_export[i], ft_strlen(compare)) == 0
-			&& there_is_egual(str) == 1)
+		if (str[i] == '=')
 			return (1);
-		i++;		
-	}
-	return (0);	
-}
-
-void    add_export(t_cmds *cmd, char *str)
-{
-    char	**tab;
-    int		i;
-
-	i = 0;
-	if (same_change(cmd, str) == 1)
-		return ;
-	if (check_var(str) == 1 || change_export(cmd, str) == 1)
-		return ;
-	tab = malloc(sizeof(char *) * (len_tab(cmd->data->env_export) + 2));
-	while (cmd->data->env_export[i])
-	{
-		tab[i] = ft_strdup(cmd->data->env_export[i]);
 		i++;
 	}
-    if (there_is_egual(str) == 0)
-	    tab[i] = ft_addstring("declare -x ", var_env_export(str));
-    else
+	return (0);
+}
+
+void	modify_export(t_data *data, char *arg)
+{
+	t_env	*ptr;
+	char	**tab;
+
+	tab = NULL;
+	ptr = data->copy_env;
+	tab = ft_split(arg, '=');
+	while (ptr)
 	{
-        tab[i] = ft_addstring("declare -x ", str);
+		if (ft_strcmp(tab[0], ptr->name) == 0)
+		{
+			if (tab[1] && has_equal(arg))
+			{
+				free(ptr->value);
+				if (tab[1])
+					ptr->value = ft_strdup(tab[1]);
+				else
+					ptr->value = ft_strdup("");
+			}
+			ft_free_tab(tab, NULL);
+			return ;
+		}
+		if (ptr->next == NULL)
+		{
+			env_lst_addback(data, env_lst_new(arg));
+			return ;
+		}
+		ptr = ptr->next;
 	}
-	i++;
-	tab[i] = NULL;
-    cmd->data->env_export = copy_tab(tab);
+	ft_free_tab(tab, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:03:07 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/15 10:37:23 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/16 21:47:23 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,18 @@
 
 void    ft_env(t_cmds *cmd)
 {
-    int	i;
+	t_env	*ptr;
 
-	i = 0;
-	if (ft_strcmp(cmd->tab[0], "export") != 0)
+	ptr = cmd->data->copy_env;
+	while (ptr)
 	{
-		while (cmd->data->copy_env[i])
+		if (ptr->equal)
 		{
-			write(1, cmd->data->copy_env[i], ft_strlen(cmd->data->copy_env[i]));
-       		write(1, "\n", 1);
-			i++;
+			write(1, ptr->name, ft_strlen(ptr->name));
+			write(1, "=", 1);
+			write(1, ptr->value, ft_strlen(ptr->value));
+			write(1, "\n", 1);
 		}
-	}
-	else
-	{
-		while (cmd->data->env_export[i])
-		{
-			write(1, cmd->data->env_export[i], ft_strlen(cmd->data->env_export[i]));
-       		write(1, "\n", 1);
-			i++;
-		}
+		ptr = ptr->next;
 	}
 }

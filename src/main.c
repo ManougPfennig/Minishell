@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/16 22:19:50 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/16 21:59:14 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	main(int argc, char **argv, char **env)
 	data = malloc(sizeof(t_data));
 	init_data(data);
 	(void)argv;
-	if (get_env(env, data) == 1)
+	if (init_env(data, env) == 0)
 	{
-		printf("Minishell can't be launch without env.\n");
-		exit(0);
+		printf("Error: Minishell can't be launched without env.\n");
+		exit(1);
 	}
 	if (argc != 1)
 	{
@@ -49,6 +49,7 @@ int	main(int argc, char **argv, char **env)
 		exit(0);
 	}
 	g_sig = 0;
+	data->home_env = get_env_patron_3000(data->copy_env, "HOME");
 	while (1)
 	{
 		ft_prompt(data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/16 22:18:56 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/16 22:00:57 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,11 @@ typedef struct s_exec
 
 typedef struct s_env
 {
-	char	*name;
-	char	*value;
-	t_env	*prev;
-	t_env	*next;
+	int				equal;
+	char			*name;
+	char			*value;
+	struct s_env	*prev;
+	struct s_env	*next;
 }				t_env;
 
 typedef struct s_cmds
@@ -198,6 +199,15 @@ int				multi_free(char *str, char *str2, char *str3);
 void			print_lexer(t_lexer **lexed);
 void			print_tab(char **tab);
 void			print_cmd_list(t_data *data);
+
+// env
+
+int		init_env(t_data *data, char **env);
+char	*get_env_patron_3000(t_env *ptr, char *name);
+t_env	*env_lst_new(char *env);
+int		has_equal(char *str);
+void	modify_export(t_data *data, char *arg);
+void	env_lst_addback(t_data *data, t_env *new);
 
 extern int		g_sig;
 

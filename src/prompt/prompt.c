@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:18 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/16 20:27:28 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/16 21:52:17 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,25 +59,3 @@ char	*ft_prompt(t_data *data)
 	return (NULL);
 }
 
-int	get_env(char **env, t_data *data)
-{
-	int		i;
-
-	i = 0;
-	while (env[i])
-		i++;
-	data->env_export = malloc(sizeof(char *) * (i + 1));
-	data->copy_env = malloc(sizeof(char *) * (i + 1));
-	i = 0;
-	while (env[i])
-	{
-		data->copy_env[i] = ft_strdup(env[i]);
-		data->env_export[i] = ft_addstring("declare -x ", var_env_export(env[i]));
-		i++;
-	}
-	data->copy_env[i] = NULL;
-	data->env_export[i] = NULL;
-	if (len_tab(data->copy_env) == 0)
-		return (1);
-	return (0);
-}

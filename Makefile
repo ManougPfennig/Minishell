@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
+#    By: npatron <npatron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2024/01/16 20:17:04 by mapfenni         ###   ########.fr        #
+#    Updated: 2024/01/16 22:03:35 by npatron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,8 @@ SRCS = main.c \
 	   builtin/exit_working.c \
 	   builtin/pwd_working.c \
 	   builtin/env_working.c \
+	   builtin/init_env.c \
 	   builtin/export_working.c \
-	   builtin/export_working_env.c \
 	   builtin/unset_working.c \
 	   lexer/lexer.c \
 	   lexer/lexer_replace_env.c \

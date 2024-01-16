@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:04:09 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/16 19:07:59 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/16 21:58:17 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,37 +27,8 @@ int	print_error(t_cmds *cmd)
 	return (0);
 }
 
-void	get_home_env(t_cmds *cmd)
-{
-	int		i;
-	int		j;
-	int		k;
-
-	i = 0;
-	j = 0;
-	k = 0;
-	while (cmd->data->copy_env[i])
-	{
-		if (strncmp(cmd->data->copy_env[i], "HOME=", 5) == 0)
-			break ;
-		i++;
-	}
-	while (cmd->data->copy_env[i][j])
-		j++;
-	cmd->data->home_env = malloc(sizeof(char) * j - 4);
-	j = 5;
-	while (cmd->data->copy_env[i][j])
-	{
-		cmd->data->home_env[k] = cmd->data->copy_env[i][j];
-		k++;
-		j++;
-	}
-	cmd->data->home_env[k] = '\0';
-}
-
 void	ft_cd(t_cmds *cmd)
 {
-	get_home_env(cmd);
 	if (print_error(cmd) == 1)
 		return ;
 	if (ft_strcmp(cmd->tab[1], "~") == 0)
