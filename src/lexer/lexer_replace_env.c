@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:31:15 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/15 20:23:32 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/16 22:50:35 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*to_env(t_data *data, char *str, int i)
 	if ((str[i] >= '0' && str[i] <= '9') || (str[i] == '?'))
 		value = special_env(str[i]);
 	else
-		value = find_env_patron(data, name);
+		value = get_env_patron_3000(data->copy_env, name);
 	str[i - 1] = '\0';
 	if ((str[i] >= '0' && str[i] <= '9') || (str[i] == '?'))
 		i++;

@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 20:10:03 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/16 15:39:27 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/16 22:52:10 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_exec(t_data *data, t_exec *exec)
 	exec->fd_in = STDIN_FILENO;
 	exec->fd_out = STDOUT_FILENO;
 	exec->test = NULL;
-	temp = find_env_patron(data, "PATH");
+	temp = get_env_patron_3000(data->copy_env, "PATH");
 	exec->path = ft_split(temp, ':');
 	free(temp);
 }
