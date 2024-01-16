@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 18:02:43 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/07 18:38:47 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/14 20:53:11 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ void	add_command(t_lexer *ptr, int len, t_cmds *cmd)
 	new[len] = NULL;
 	while (ptr && ptr->token != PIPE && i < len)
 	{
-		new[i] = ft_strdup(ptr->str);
+		if (ptr->str)
+		{
+			new[i] = ft_strdup(ptr->str);
+			i++;
+		}
 		ptr = ptr->next;
-		i++;
 	}
 	cmd->tab = new;
 }
@@ -53,7 +56,8 @@ void	store_cmd(t_data *data)
 		temp = ptr;
 		while (ptr && ptr->token != PIPE)
 		{
-			len++;
+			if (ptr->str)
+				len++;
 			ptr = ptr->next;
 		}
 		add_command(temp, len, cmd);

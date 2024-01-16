@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:11:26 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/10 17:42:27 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/16 12:35:02 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,20 @@ int	str_to_fd(char *str)
 
 	pipe(pipefd);
 	pid = fork();
-	if (pid > 0)
+	if (pid == 0)
 	{
 		close(pipefd[0]);
 		write(pipefd[1], str, ft_strlen(str));
 		close(pipefd[1]);
 		exit(EXIT_SUCCESS);
 	}
-	else if (pid == 0)
+	else if (pid > 0)
 	{
 		wait(NULL);
 		close(pipefd[1]);
 		fd = dup(pipefd[0]);
 		close(pipefd[0]);
 	}
-	printf("got here\n");
 	return (fd);
 }
 

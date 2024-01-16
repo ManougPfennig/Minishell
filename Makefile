@@ -6,7 +6,7 @@
 #    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2024/01/12 13:37:55 by mapfenni         ###   ########.fr        #
+#    Updated: 2024/01/16 20:17:04 by mapfenni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS = main.c \
 	   utils/ft_strjoin_free.c \
 	   utils/utils.c \
 	   utils/utils_2.c \
+	   utils/free_all.c \
 	   prompt/prompt.c \
 	   builtin/cmd.c \
 	   builtin/cd_working.c \
@@ -27,8 +28,11 @@ SRCS = main.c \
 	   builtin/pwd_working.c \
 	   builtin/env_working.c \
 	   builtin/export_working.c \
+	   builtin/export_working_env.c \
+	   builtin/unset_working.c \
 	   lexer/lexer.c \
 	   lexer/lexer_replace_env.c \
+	   lexer/lexer_replace_env2.c \
 	   lexer/lexer_free.c \
 	   lexer/lexer_split.c \
 	   lexer/lexer_split_quote.c \

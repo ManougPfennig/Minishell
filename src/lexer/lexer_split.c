@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 17:08:48 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/07 18:38:30 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:51:22 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	remove_excess_quote(char *str)
 
 	i = 0;
 	in = 0;
-	while (str[i])
+	while (str && str[i])
 	{
 		is_in(&in, str[i]);
 		if (!in)

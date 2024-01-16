@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 13:34:12 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/11 19:48:27 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/14 17:04:15 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,27 @@ void	create_file(char *str)
 
 int	check_acces_file(t_lexer *lex)
 {
-	if ((lex->token == 2 || lex->token == 5) && access(lex->str, F_OK))
+	if (!lex->str && printf("minishell: ambiguous redirect\n"))
+		return (ERROR);
+	if ((lex->token == MORE_THAN || lex->token == MORE_MORE) && access(lex->str, F_OK))
 		create_file(lex->str);
-	if (lex->token == 1 && access(lex->str, F_OK))
+	if (lex->token == LESS_THAN && access(lex->str, F_OK))
 	{
 		printf("minishell: %s: No such file or directory\n", lex->str);
 		return (ERROR);
 	}
-	else if (lex->token == 1 && access(lex->str, R_OK))
+	else if (lex->token == LESS_THAN && access(lex->str, R_OK))
 	{
 		printf("minishell: %s: Permission denied\n", lex->str);
 		return (ERROR);
 	}
-	else if ((lex->token == 2 || lex->token == 5) && access(lex->str, W_OK))
+	else if ((lex->token == MORE_THAN || lex->token == MORE_MORE) && access(lex->str, W_OK))
 	{
-		printf("minishell: %s: Permission denied\n", lex->str);
+		printf("-> -%s-\n", lex->str);
+			printf("minishell: %s: Permission denied\n", lex->str);
 		return (ERROR);
 	}
-	else if (lex->token == 2)
+	else if (lex->token == MORE_THAN)
 		close(open(lex->str, O_WRONLY | O_TRUNC));
 	return (NO_ERROR);
 }

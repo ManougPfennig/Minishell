@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_working.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:16:58 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/12 14:22:40 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:02:47 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,9 @@ void	ft_exit(t_cmds *cmd)
 		&& i > 2)
 	{
 		write(1, "minishell: exit: too many arguments\n", 37);
-		g_sig = 1;
-		return ;
+		exit(EXIT_FAILURE);
 	}
-	else if ((cmd->tab[1] && str_is_digit(cmd->tab[1]) == 1))
+	if ((cmd->tab[1] && str_is_digit(cmd->tab[1]) == 1))
 	{
 		write(1, "minishell: exit: ", 18);
 		write(1, cmd->tab[1], ft_strlen(cmd->tab[1]));

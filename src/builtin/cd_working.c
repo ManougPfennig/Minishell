@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_working.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:04:09 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/08 12:16:22 by nicolas          ###   ########.fr       */
+/*   Updated: 2024/01/16 19:07:59 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	get_home_env(t_cmds *cmd)
 	}
 	while (cmd->data->copy_env[i][j])
 		j++;
-	cmd->data->home_env = malloc(sizeof(char) * j - 5);
+	cmd->data->home_env = malloc(sizeof(char) * j - 4);
 	j = 5;
 	while (cmd->data->copy_env[i][j])
 	{

@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 19:44:04 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/12 14:23:15 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/16 20:42:20 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void	check_execution(t_cmds *cmd)
 {
-	waitpid(0, &g_sig, 0);
+	if (!cmd->builtin)
+		waitpid(0, &g_sig, 0);
 	printf("pid ret : %i\n", g_sig % 255);
+	g_sig = g_sig % 255;
 	if (g_sig == 127)
 		printf("%s: command not found\n", cmd->tab[0]);
 }
@@ -43,10 +45,9 @@ void	exec_command(t_cmds *cmd, t_exec *exec, int pipe_fd[2])
 
 	if (cmd->builtin)
 	{
-		printf("le builtin en question : %s\n", cmd->builtin);
 		dup2(exec->fd_in, STDIN_FILENO);
 		dup2(exec->fd_out, STDOUT_FILENO);
-		which_cmd(cmd);
+		g_sig = which_cmd(cmd);
 		dup2(cmd->data->std_in, STDIN_FILENO);
 		dup2(cmd->data->std_out, STDOUT_FILENO);
 	}
@@ -81,5 +82,4 @@ void	cmd_execution(t_cmds *cmd, t_exec *exec)
 	close(exec->stdout_cpy);
 	close(exec->fd_in);
 	close(exec->fd_out);
-//	}
 }

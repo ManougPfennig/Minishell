@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/12 13:56:02 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/16 20:44:33 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@
 # define PIPE 3
 # define LESS_LESS 4
 # define MORE_MORE 5
+# define AMBIGUOUS 6
 # define PATH "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:\
 /usr/games:/usr/local/games:/snap/bin:/snap/bin"
-# define CTRL_D_HD 300
 # define CTRL_C_HD 300
 # define IN_HD 400
 # define NO_ERROR 0
@@ -63,8 +63,6 @@ typedef struct s_cmds
 {
 	char			**tab;
 	char			*builtin;
-	int				num_redir;
-	char			*hd_file_name;
 	t_lexer			*redir;
 	t_exec			*exec;
 	struct s_cmds	*next;
@@ -80,7 +78,6 @@ typedef struct s_data
 	char	**builtins;
 	char	*buffercwd;
 	char	**copy_env;
-	char	**new_copy_env;
 	char	**env_export;
 	char	*home_env;
 	int		buffersize;
@@ -107,13 +104,14 @@ typedef struct s_redir
 }				t_redir;
 
 // lexer part
-struct s_lexer	**lexer(char *str);
+struct s_lexer	**lexer(t_data *data, char *str);
 struct s_lexer	**split_quote_wspace(char *str);
 char			**lexer_split_quote(char *str);
 struct s_lexer	*ft_last_link(struct s_lexer **lexer);
-char			*replace_env(char *str);
+char			*replace_env(t_data *data, char *str);
+char			*special_env(char c);
 int				is_envchar(char c);
-char			*to_env(char *str, int i);
+char			*to_env(t_data *data, char *str, int i);
 char			*copy_word(char *str);
 int				add_word(struct s_lexer **lexer, char *str, int token);
 void			is_in(char *in, char c);
@@ -122,6 +120,8 @@ int				has_token(char *str);
 int				contain_token(t_lexer **lexer, char *str);
 int				what_token(char *str);
 char			remove_excess_quote(char *str);
+void			move_back(char *str);
+char			*find_env_patron(t_data *data, char *name);
 void			free_lexer(t_lexer **lexed);
 
 // parser part
@@ -146,14 +146,16 @@ int				get_output_fd(t_lexer *output);
 int				check_acces_file(t_lexer *lex);
 void			create_file(char *str);
 void			cmd_execution(t_cmds *cmd, t_exec *exec);
-void			which_cmd(t_cmds *cmd);
+int				which_cmd(t_cmds *cmd);
 
 // signal part
 
+void    		add_export(t_cmds *cmd, char *str);
+void    		ft_unset(t_cmds *cmd);
 char			*find_variable(t_cmds *cmd, int j);
 int				is_digit(int c);
+char    		**erase_error_tab(char **tab);
 int 			check_var(char *str);
-void			init_export_tab(t_data *data);
 char			*var_env_export(char *s);
 char			*ft_prompt(t_data *data);
 char			*ft_addstring(char *s, char *s2);
@@ -166,7 +168,7 @@ void			ft_controlc(int signal);
 char			*create_input(char *input);
 void			ft_signal(void);
 void			print_env(t_data *data);
-char			**get_env(char	**env, t_data *data);
+int				get_env(char **env, t_data *data);
 void			len_env(char **env, int i, int j);
 int				count(char *src);
 void			ft_analyse(t_data *data, char *s);
@@ -178,6 +180,12 @@ int				len_tab(char **tab);
 void			ft_cd(t_cmds *cmd);
 void			get_home_env(t_cmds *cmd);
 int				str_is_digit(char *str);
+
+// free part
+
+void			free_exec(t_exec *exec);
+void			free_after_execution(t_data *data, t_exec *exec);
+int				multi_free(char *str, char *str2, char *str3);
 
 // print_lexer est à supprimer dans le produit fini.
 void			print_lexer(t_lexer **lexed);

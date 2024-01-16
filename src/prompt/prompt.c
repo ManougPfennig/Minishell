@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:18 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/12 13:57:46 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/16 20:27:28 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,18 @@ void	ft_controlc(int signal)
 {
 	if (g_sig == IN_HD)
 	{
-		g_sig = 2;
 		write(STDERR_FILENO, "\n", 1);
+		g_sig = CTRL_C_HD;
+		rl_replace_line("", 0);
+		rl_redisplay();
+		rl_done = 1;
+		return ;
 	}
 	write(STDERR_FILENO, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
+	g_sig = 130;
 	(void)signal;
 }
 
@@ -43,7 +48,7 @@ char	*ft_prompt(t_data *data)
 		exit(0);
 	}
 	add_history(data->input);
-	data->lex = lexer(data->input);
+	data->lex = lexer(data, data->input);
 	if (data->lex)
 	{
 		if (parser(data))
@@ -54,21 +59,25 @@ char	*ft_prompt(t_data *data)
 	return (NULL);
 }
 
-char	**get_env(char	**env, t_data *data)
+int	get_env(char **env, t_data *data)
 {
 	int		i;
 
 	i = 0;
 	while (env[i])
 		i++;
+	data->env_export = malloc(sizeof(char *) * (i + 1));
 	data->copy_env = malloc(sizeof(char *) * (i + 1));
 	i = 0;
 	while (env[i])
 	{
 		data->copy_env[i] = ft_strdup(env[i]);
+		data->env_export[i] = ft_addstring("declare -x ", var_env_export(env[i]));
 		i++;
 	}
 	data->copy_env[i] = NULL;
-	data->new_copy_env = copy_tab(data->copy_env);
-	return (data->copy_env);
+	data->env_export[i] = NULL;
+	if (len_tab(data->copy_env) == 0)
+		return (1);
+	return (0);
 }

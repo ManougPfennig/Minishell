@@ -6,20 +6,24 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 20:10:03 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/11 20:50:08 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:39:27 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	init_exec(t_exec *exec)
+void	init_exec(t_data *data, t_exec *exec)
 {
+	char	*temp;
+
 	exec->last_pipe = 0;
 	exec->signal = 0;
 	exec->fd_in = STDIN_FILENO;
 	exec->fd_out = STDOUT_FILENO;
-	exec->path = ft_split(getenv("PATH"), ':');
 	exec->test = NULL;
+	temp = find_env_patron(data, "PATH");
+	exec->path = ft_split(temp, ':');
+	free(temp);
 }
 
 int	open_empty_fd(void)
@@ -39,7 +43,7 @@ void	executor(t_data *data)
 	if (handle_heredocs(data))
 		return ;
 	exec = malloc(sizeof(t_exec));
-	init_exec(exec);
+	init_exec(data, exec);
 	cmd = data->cmd[0];
 	while (cmd)
 	{
@@ -55,11 +59,10 @@ void	executor(t_data *data)
 			if (exec->last_pipe)
 				close(exec->last_pipe);
 			exec->last_pipe = open_empty_fd();
+			g_sig = 1;
 		}
 		cmd = cmd->next;
 	}
 	close(exec->last_pipe);
-// free_everything
-	if(dup2(data->std_in, STDIN_FILENO))
-		perror("dup2 stdin");
+	free_after_execution(data, exec);
 }

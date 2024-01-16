@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:30:38 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/12 13:15:37 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/16 20:45:22 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ char    *var_env_export(char *s)
     int     i;
     int     j;
 
-    result = malloc(sizeof(char) * (ft_strlen(s) + 3));
+    result = malloc(sizeof(char) * (ft_strlen(s) + 4));
     i = 1;
-    j = 0;
-    result[j] = s[0];
+    j = 1;
+    result[0] = s[0];
     while (s[i - 1] != '=')
     {
         result[j] = s[i];
@@ -96,15 +96,17 @@ int check_var(char *str)
     i = 1;
     if ((str[0] >= '!' && str[0] <= '/')
         || (str[0] >= ':' && str[0] <= '?')
-        || (str[0] >= '0' && str[0] <= '9'))
+        || (str[0] >= '0' && str[0] <= '9')
+        || str[0] == '=')
     {
         print_error_env(str);
         return (1);
     }
     while (str[i])
     {
-        if ((str[1] >= '!' && str[1] <= '/')
-        || (str[1] >= ':' && str[1] <= '?'))
+        if ((str[i] >= '!' && str[i] <= '/')
+        || (str[i] >= ':' && str[i] <= '<')
+        || (str[i] >= '>' && str[i] <= '?'))
         {
             print_error_env(str);
             return (1);
@@ -113,3 +115,4 @@ int check_var(char *str)
     }
     return (0);
 }
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:49:39 by mapfenni          #+#    #+#             */
-/*   Updated: 2023/03/27 18:49:40 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/16 12:35:46 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_strlen(const char *s)
 	int	i;
 
 	i = 0;
-	while ((char)s[i])
+	while (s && (char)s[i])
 		i++;
 	return (i);
 }

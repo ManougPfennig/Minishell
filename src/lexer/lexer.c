@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:32:31 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/11 20:02:56 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:51:31 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ interprétant les quotes.*/
 
 // note : doit fix les mots vide du style ""
 
-struct s_lexer	**lexer(char *str)
+struct s_lexer	**lexer(t_data *data, char *str)
 {
 	char			in;
 	struct s_lexer	*ptr;
@@ -88,11 +88,12 @@ struct s_lexer	**lexer(char *str)
 	ptr = *lexer;
 	while (ptr)
 	{
-		ptr->str = replace_env(ptr->str);
+		ptr->str = replace_env(data, ptr->str);
 		in = remove_excess_quote(ptr->str);
 		if (in)
 		{
 			printf("Parsing error near '\\%c'\n", in);
+			g_sig = 2;
 			free_lexer(lexer);
 			return (NULL);
 		}

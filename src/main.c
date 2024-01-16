@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/12 13:56:39 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/16 20:29:32 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	init_data(t_data *data)
 	data->init_env = 0;
 	data->env_export = NULL;
 	data->builtins = NULL;
-	data->copy_env = NULL;
-	data->new_copy_env = NULL;
 	data->copy_env = NULL;
 	data->home_env = NULL;
 	data->buffersize = 0;
@@ -41,8 +39,11 @@ int	main(int argc, char **argv, char **env)
 	data = malloc(sizeof(t_data));
 	init_data(data);
 	(void)argv;
-	get_env(env, data);
-	init_export_tab(data);
+	if (get_env(env, data) == 1)
+	{
+		printf("Minishell can't be launch without env.\n");
+		exit(0);
+	}
 	if (argc != 1)
 	{
 		printf("Error\n");
