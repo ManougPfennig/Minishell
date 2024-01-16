@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/16 20:44:33 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/16 22:18:56 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ typedef struct s_exec
 	int		stdout_cpy;
 }				t_exec;
 
+typedef struct s_env
+{
+	char	*name;
+	char	*value;
+	t_env	*prev;
+	t_env	*next;
+}				t_env;
+
 typedef struct s_cmds
 {
 	char			**tab;
@@ -77,13 +85,12 @@ typedef struct s_data
 	int		init_env;
 	char	**builtins;
 	char	*buffercwd;
-	char	**copy_env;
-	char	**env_export;
 	char	*home_env;
 	int		buffersize;
 	int		pipes;
 	t_lexer	**lex;
 	t_cmds	**cmd;
+	t_env	*copy_env;
 	int		std_in;
 	int		std_out;
 }				t_data;

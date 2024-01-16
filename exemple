@@ -1,78 +1,113 @@
-[echo] [123] [NULL]
+typedef struct	s_env
+{
+	char	*name;
+	char	*value;
+	t_env	*prev;
+	t_env	*next;
+}				t_env;
 
-[cat] [NULL]
+int	init_env(t_data *data, char **env)
+(
+	int	i;
 
+	i = 0;
+	while (env[i])
+	{
+		env_lst_addback(data, env_lst_new(env[i]));
+		i++;
+	}
+	return (i);
+)
 
+t_env	*env_lst_new(char *env)
+{
+	t_env	*new;
+	char	**tab;
 
-cmd->redirections
-[fichier1] - 1
-[fichier2] - 5
+	tab = ft_split(env, '=');
+	new = malloc(sizeof(t_env));
+	new->name = tab[0];
+	if (tab[1])
+		new->value = tab[1];
+	else
+		new->value = ft_strdup("");
+	new->prev = NULL;
+	new->next = NULL;
+	free(tab);
 
-
-
-[fichier]
-
-temp {
-	t_lexer *t1;
-	t_lexer *t2;
-	t_lexer *t3;
 }
 
-fonction()
+void	env_lst_addback(t_data *data, t_env *new)
 {
-	t_temp	tmp;
+	t_env	*ptr;
 
-	si lexer->token = 1;
-	tmp->t1 = lexer->prev;
-	temp->t2 = lexer->next;
-	lexer->prev->next = lexer->next->next;
-	command->str_redir = temp->t1->str;
+	ptr = data->copy_env;
+	if (!ptr)
+	{
+		data->copy_env = new;
+		return ;
+	}
+	while (ptr->next)
+		ptr = ptr->next;
+	ptr->next = new;
+	new->next = ptr;
+	return ;
 }
 
-void parser(t_data *data)
+char	*get_env_patron_3000(t_env *ptr, char *name)
 {
-	if (parser_error(data)) // gérer les cas d'erreurs qui stoppent la commande
-		return (NULL);
-	init_list(data); //nombre de structures cmds à malloc et les mettre en liste dans data
-	find_redir(data); //trouver et stocker les tokens
-	store_cmd(data); //une fois que les redir sont sorti de la liste, garder uniquement les
-// composants de la liste séparé par les pipes pour les transformer en tableaux à stocker dans chaque
-// chaînon de la liste cmd
+	while (ptr)
+	{
+		if (ft_strcmp(name, ptr->name))
+			return (ft_strdup(ptr->value));
+		ptr = ptr->next;
+	}
+	return (ft_strdup(""));
 }
 
-[<]
-[input]
-[cat]
-[>]
-[output]
-
-typedef struct s_simple_cmds
+int	has_equal(char *str)
 {
-	char                    **str;
-	int                     (*builtin)(t_tools *, struct s_simple_cmds *);
-	int                     num_redirections;
-	char                    *hd_file_name;
-	t_lexer                 *redirections;
-	struct s_simple_cmds	*next;
-	struct s_simple_cmds	*prev;
-}	t_simple_cmds;
+	int	i;
 
-read(input1) -> [1]
-read(input2) -> [1]
-[1]-> pipe ->[0]
-[0] -> stdin
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '=')
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
+void	modify_export(t_data *data, char *arg)
+{
+	t_env	*ptr;
+	char	**tab;
 
-**cmd = taille 1(cmd *)
-*cmd1 = taille 1 (cmd)
-*cmd2 = taille 1 (cmd)
-
-cmd[0] = &cmd1;
-cmd1->next = cmd2;
-cmd2->next = NULL;
-
-
-t_cmd new;
-
-new = malloc(sizeof(cmd));
-add_back(**cmd, new);
+	tab = NULL;
+	ptr = data->copy_env;
+	tab = ft_split(arg, '=');
+	while (ptr)
+	{
+		if (ft_strcmp(tab[0], ptr->name) == 0)
+		{
+			if (tab[1] && has_equal(arg))
+			{
+				free(ptr->value);
+				if (tab[1])
+					ptr->value = ft_strdup(tab[1]);
+				else
+					ptr->value = ft_strdup("");
+			}
+			ft_free_tab(tab, NULL);
+			return ;
+		}
+		if (ptr->next == NULL)
+		{
+			env_lst_addback(data, env_lst_new(arg));
+			return ;
+		}
+		ptr = ptr->next;
+	}
+	ft_free_tab(tab, NULL);
+}

@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/16 20:29:32 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/16 22:19:50 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ void	init_data(t_data *data)
 	data->buffercwd = NULL;
 	data->sigint = 0;
 	data->init_env = 0;
-	data->env_export = NULL;
 	data->builtins = NULL;
-	data->copy_env = NULL;
 	data->home_env = NULL;
 	data->buffersize = 0;
 	data->pipes = 0;
 	data->lex = NULL;
 	data->cmd = NULL;
+	data->copy_env = NULL;
 	data->std_in = dup(STDIN_FILENO);
 	data->std_out = dup(STDOUT_FILENO);
 }
