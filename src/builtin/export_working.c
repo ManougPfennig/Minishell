@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_working.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 21:55:37 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/16 21:55:44 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/16 22:57:06 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,9 @@ void	modify_export(t_data *data, char *arg)
 		ptr = ptr->next;
 	}
 	ft_free_tab(tab, NULL);
+}
+
+int	ft_export(t_cmds *cmd)
+{
+	
 }
