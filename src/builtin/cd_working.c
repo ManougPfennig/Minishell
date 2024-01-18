@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:04:09 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/18 21:30:09 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:31:10 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	ft_cd(t_cmds *cmd)
 		return (0);
 	}
 	else if (access(cmd->tab[1], F_OK) == -1)
-		putstr_fd_str("minishell: cd:", cmd->tab[1], ": No such file or directory\n", 2);
+		putstr_fd_str("minishell: cd:", cmd->tab[1], ": No such file or \
+		directory\n", 2);
 	return (1);
 }

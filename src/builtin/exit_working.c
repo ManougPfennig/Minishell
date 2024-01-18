@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:16:58 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/18 20:54:49 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:33:02 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,9 @@ int	ft_exit(t_cmds *cmd)
 		return (will_exit_and_ret(cmd->data, 1, ft_atoi(cmd->tab[1]) % 256));
 	else if (str_is_digit(cmd->tab[1]))
 	{
-			ft_putstr_fd("bash: exit: ", 2);
-			ft_putstr_fd(cmd->tab[1], 2);
-			ft_putstr_fd(": numeric argument required\n", 2);
-			return (will_exit_and_ret(cmd->data, 1, 2));
+		putstr_fd_str("bash: exit: ", cmd->tab[1], ": numeric argument \
+		required\n", 2);
+		return (will_exit_and_ret(cmd->data, 1, 2));
 	}
 	else if (str_is_digit(cmd->tab[1]) == 0 && cmd->tab[2])
 	{

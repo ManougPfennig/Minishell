@@ -6,35 +6,22 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 21:55:37 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/18 20:37:22 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:43:17 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*get_env_patron_3000(t_env *ptr, char *name)
+void	modify2(t_env *ptr, char **tab)
 {
-	while (ptr)
-	{
-		if (ft_strcmp(name, ptr->name) == 0)
-			return (ft_strdup(ptr->value));
-		ptr = ptr->next;
-	}
-	return (ft_strdup(""));
-}
-
-int	has_equal(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '=')
-			return (1);
-		i++;
-	}
-	return (0);
+	ptr->equal = 1;
+	free(ptr->value);
+	if (tab[1])
+		ptr->value = ft_strdup(tab[1]);
+	else
+		ptr->value = ft_strdup("");
+	ft_free_tab(tab, NULL);
+	return ;
 }
 
 void	modify_export(t_data *data, char *arg)
@@ -49,15 +36,7 @@ void	modify_export(t_data *data, char *arg)
 		if (ft_strcmp(tab[0], ptr->name) == 0)
 		{
 			if (has_equal(arg))
-			{
-				ptr->equal = 1;
-				free(ptr->value);
-				if (tab[1])
-					ptr->value = ft_strdup(tab[1]);
-				else
-					ptr->value = ft_strdup("");
-			}
-			ft_free_tab(tab, NULL);
+				modify2(ptr, tab);
 			return ;
 		}
 		if (ptr->next == NULL)

@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 14:53:42 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/18 21:12:48 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:34:03 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ int	parser_error_msg(t_lexer *ptr)
 		putstr_fd_str("minishell: syntax error near `", ptr->str, "'\n", 2);
 	else if (ptr->token != 0 && ptr->token != PIPE && \
 	ptr->next->token != 0 && ++i)
-		putstr_fd_str("minishell: syntax error near `", ptr->next->str, "'\n", 2);
+		putstr_fd_str("minishell: syntax error near `", \
+		ptr->next->str, "'\n", 2);
 	else if (ptr->token == PIPE && ptr->next && \
 	ptr->next->token == PIPE && ++i)
-		putstr_fd_str("minishell: syntax error near `%s", ptr->next->str, "'\n", 2);
+		putstr_fd_str("minishell: syntax error near `%s", \
+		ptr->next->str, "'\n", 2);
 	else if (ptr->token == PIPE && !ptr->next && ++i)
 		ft_putstr_fd("minishell: syntax error near `|'\n", 2);
 	return (i);

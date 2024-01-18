@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 13:34:12 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 21:21:03 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:36:48 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	check_acces_file(t_lexer *lex)
 		create_file(lex->str);
 	if (lex->token == LESS_THAN && access(lex->str, F_OK))
 	{
-		putstr_fd_str("minishell: ", lex->str, ": No such file or directory\n", 2);
+		putstr_fd_str("minishell: ", lex->str, ": No such file or \
+directory\n", 2);
 		return (ERROR);
 	}
 	else if (lex->token == LESS_THAN && access(lex->str, R_OK))

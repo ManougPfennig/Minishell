@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:17:10 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 21:20:12 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:35:21 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	make_heredoc(t_data *data, t_lexer *lex, char *end)
 		if (g_sig == CTRL_C_HD && change_g_sig_to(130))
 			return (multi_free(buffer, end, NULL));
 		if (buffer == NULL && putstr_fd_str("minishell: warning: here-document \
-		wanted \"", end, "\" at end of file\n", 2) && multi_free(end, NULL, NULL))
+wanted \"", end, "\" at end of file\n", 2) && multi_free(end, NULL, NULL))
 			return (0);
 		if (!ft_strcmp(buffer, end))
 			break ;
