@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/18 14:00:17 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 19:34:49 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	init_data(t_data *data)
 	data->copy_env = NULL;
 	data->std_in = dup(STDIN_FILENO);
 	data->std_out = dup(STDOUT_FILENO);
+	data->exit = 0;
 }
 
 int	main(int argc, char **argv, char **env)
@@ -46,9 +47,9 @@ int	main(int argc, char **argv, char **env)
 	}
 	g_sig = 0;
 	data->home_env = get_env_patron_3000(data->copy_env, "HOME");
-	while (1)
+	while (1 && data->exit == 0)
 		ft_prompt(data);
-	return (0);
+	return (g_sig);
 }
 
 //			 |||	

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 18:08:50 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/18 19:36:55 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -94,6 +95,7 @@ typedef struct s_data
 	t_env	*copy_env;
 	int		std_in;
 	int		std_out;
+	int		exit;
 }				t_data;
 
 typedef struct s_copy
@@ -161,39 +163,30 @@ int				which_cmd(t_cmds *cmd);
 
 // signal part
 
-void			add_export(t_cmds *cmd, char *str);
-int				ft_unset(t_cmds *cmd);
-char			*find_variable(t_cmds *cmd, int j);
 int				is_digit(int c);
-char			**erase_error_tab(char **tab);
 int				check_var(char *str);
-char			*var_env_export(char *s);
 char			*ft_prompt(t_data *data);
-char			*ft_addstring(char *s, char *s2);
-char			**copy_tab(char **tab);
-int				there_is_egual(char *str);
-int				ft_echo(t_cmds *cmd);
-void			ft_exit(t_cmds *cmd);
-int				ft_export(t_cmds *cmd);
 void			ft_controlc(int signal);
 char			*create_input(char *input);
 void			ft_signal(void);
-void			print_env(t_data *data);
 int				get_env(char **env, t_data *data);
 void			len_env(char **env, int i, int j);
 int				count(char *src);
-void			ft_analyse(t_data *data, char *s);
-int				ft_env(t_cmds *cmd);
-void			ft_pwd(t_cmds *cmd);
 int				ft_strcmp(char *s1, char *s2);
-char			*ft_strjoin_free(char const *s1, char const *s2, int val);
-int				len_tab(char **tab);
+
+// builtin_part
+
+int				ft_unset(t_cmds *cmd);
 int				ft_cd(t_cmds *cmd);
-void			get_home_env(t_cmds *cmd);
-int				str_is_digit(char *str);
+int				ft_echo(t_cmds *cmd);
+int				ft_exit(t_cmds *cmd);
+int				ft_export(t_cmds *cmd);
+int				ft_env(t_cmds *cmd);
+int				ft_pwd(t_cmds *cmd);
 
 // env part
 
+void			get_home_env(t_cmds *cmd);
 int				init_env(t_data *data, char **env);
 char			*get_env_patron_3000(t_env *ptr, char *name);
 t_env			*env_lst_new(char *env);
@@ -210,6 +203,11 @@ int				multi_free(char *str, char *str2, char *str3);
 // utils part
 
 int				change_g_sig_to(int i);
+long long		ft_atoill(char *str);
+char			*ft_strjoin_free(char const *s1, char const *s2, int val);
+int				str_is_digit(char *str);
+int				len_tab(char **tab);
+char			**copy_tab(char **tab);
 
 // les parties "print_*" sont à supprimer dans le produit fini.
 

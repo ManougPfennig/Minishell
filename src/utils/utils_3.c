@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:48:54 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 15:15:14 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 19:36:18 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,24 @@ int	change_g_sig_to(int i)
 {
 	g_sig = i;
 	return (1);
+}
+
+long long	ft_atoill(char *str)
+{
+	int			i;
+	long long	ret;
+
+	i = 0;
+	ret = 0;
+	if (str[0] == '-' || str[0] == '+')
+		i++;
+	while (str[i])
+	{
+		ret *= 10;
+		ret += str[i] - '0';
+		i++;
+	}
+	if (str[0] == '-')
+		ret *= -1;
+	return (ret);
 }
