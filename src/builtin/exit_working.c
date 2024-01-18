@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:16:58 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/18 19:48:36 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 20:14:14 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,30 +41,28 @@ int	str_is_digit(char *str)
 	return (0);
 }
 
-int	change_exit_to(t_data *data, int i)
+int	will_exit_and_ret(t_data *data, int exit, int ret)
 {
-	data->exit = i;
-	return (1);
+	if (exit == 1)
+		data->exit = 1;
+	return (ret);
 }
 
 int	ft_exit(t_cmds *cmd)
 {
 	ft_putstr_fd("exit\n", 2);
-	if (cmd->tab[1] == NULL && change_exit_to(cmd->data, 1))
+	if (cmd->tab[1] == NULL)
 		return (0);
-	else if (cmd->tab[2] == NULL)
+	else if (str_is_digit(cmd->tab[1]) == 0 && cmd->tab[2] == NULL)
+		return (will_exit_and_ret(cmd->data, 1, ft_atoi(cmd->tab[1]) % 256));
+	else if (str_is_digit(cmd->tab[1]))
 	{
-		if (str_is_digit(cmd->tab[2]) && change_exit_to(cmd->data, 1))
-		{
 			ft_putstr_fd("bash: exit: ", 2);
 			ft_putstr_fd(cmd->tab[1], 2);
 			ft_putstr_fd(": numeric argument required\n", 2);
-			return (2);
-		}
-		else if (change_exit_to(cmd->data, 1))
-			return (ft_atoi(cmd->tab[1]) % 256);
+			return (will_exit_and_ret(cmd->data, 1, 2));
 	}
-	else
+	else if (str_is_digit(cmd->tab[1]) == 0 && cmd->tab[2])
 	{
 		ft_putstr_fd("bash: exit: too many arguments\n", 2);
 		return (1);
