@@ -3,45 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   unset_working.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:55:57 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 14:12:02 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:21:18 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	str_is_in_tab(t_cmds *cmd, char *str)
+void	free_env(t_env *ptr)
+{
+	free(ptr->name);
+	free(ptr->value);
+	free(ptr);
+}
+
+t_env	*str_is_in_tab(t_cmds *cmd, char *str)
 {
 	t_env	*ptr;
 
 	ptr = cmd->data->copy_env;
 	while (ptr)
 	{
-		if (ft_strcmp(ptr->name, str))
-			return (1);
+		if (ft_strcmp(ptr->name, str) == 0)
+			return (ptr);
 		ptr = ptr->next;
 	}
-	return (0);
+	return (NULL);
 }
 
 void	change_var_env(t_cmds *cmd, char *str)
 {
 	t_env	*ptr;
 
-	ptr = cmd->data->copy_env;
-	while (ptr)
+	ptr = str_is_in_tab(cmd, str);
+	if (ptr->prev)
 	{
-		if (ft_strcmp(ptr->name, str))
-		{
-			ptr->prev = ptr;
-			ptr = ptr->next;
-			free(ptr);
-			return ;
-		}
-		ptr = ptr->next;
+		ptr->prev->next = ptr->next;
+		if (ptr->next)
+			ptr->next->prev = ptr->prev;
 	}
+	else
+		cmd->data->copy_env = ptr->next;
+	free_env(ptr);
 }
 
 int	ft_unset(t_cmds *cmd)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_working.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 21:55:37 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/18 14:05:39 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:36:20 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	modify_export(t_data *data, char *arg)
 		{
 			if (has_equal(arg))
 			{
+				ptr->equal = 1;
 				free(ptr->value);
 				if (tab[1])
 					ptr->value = ft_strdup(tab[1]);
@@ -78,7 +79,7 @@ void	print_export(t_cmds *cmd)
 	{
 		write(1, "declare -x ", 12);
 		write(1, ptr->name, ft_strlen(ptr->name));
-		if (ft_strcmp(ptr->value, "") != 0)
+		if (ptr->equal)
 		{
 			write(1, "=", 1);
 			write(1, "\"", 1);
@@ -93,8 +94,10 @@ void	print_export(t_cmds *cmd)
 int	ft_export(t_cmds *cmd)
 {
 	int	i;
+	int	ret;
 
 	i = 1;
+	ret = 0;
 	if (!cmd->tab[1])
 	{
 		print_export(cmd);
@@ -102,8 +105,11 @@ int	ft_export(t_cmds *cmd)
 	}
 	while (cmd->tab[i])
 	{
-		modify_export(cmd->data, cmd->tab[i]);
+		if (check_var(cmd->tab[i]) == 0)
+			modify_export(cmd->data, cmd->tab[i]);
+		else
+			ret = 1;
 		i++;
 	}
-	return (0);
+	return (ret);
 }

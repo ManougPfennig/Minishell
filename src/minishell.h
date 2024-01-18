@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 14:59:03 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 18:08:50 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ char			*ft_prompt(t_data *data);
 char			*ft_addstring(char *s, char *s2);
 char			**copy_tab(char **tab);
 int				there_is_egual(char *str);
-void			ft_echo(t_cmds *cmd);
+int				ft_echo(t_cmds *cmd);
 void			ft_exit(t_cmds *cmd);
 int				ft_export(t_cmds *cmd);
 void			ft_controlc(int signal);
@@ -183,12 +183,12 @@ int				get_env(char **env, t_data *data);
 void			len_env(char **env, int i, int j);
 int				count(char *src);
 void			ft_analyse(t_data *data, char *s);
-void			ft_env(t_cmds *cmd);
+int				ft_env(t_cmds *cmd);
 void			ft_pwd(t_cmds *cmd);
 int				ft_strcmp(char *s1, char *s2);
 char			*ft_strjoin_free(char const *s1, char const *s2, int val);
 int				len_tab(char **tab);
-void			ft_cd(t_cmds *cmd);
+int				ft_cd(t_cmds *cmd);
 void			get_home_env(t_cmds *cmd);
 int				str_is_digit(char *str);
 

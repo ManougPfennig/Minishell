@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo_working.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 19:04:17 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/18 14:09:10 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:59:40 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_condition(char *str)
 	return (0);
 }
 
-void	ft_echo(t_cmds *cmd)
+int	ft_echo(t_cmds *cmd)
 {
 	int		i;
 	int		option;
@@ -40,7 +40,7 @@ void	ft_echo(t_cmds *cmd)
 	if (cmd->tab[i] == NULL)
 	{
 		write(1, "\n", 1);
-		return ;
+		return (0);
 	}
 	while (cmd->tab[i] && check_condition(cmd->tab[i]) == 0)
 	{
@@ -56,4 +56,5 @@ void	ft_echo(t_cmds *cmd)
 	}
 	if (option == 0)
 		write(1, "\n", 2);
+	return (0);
 }

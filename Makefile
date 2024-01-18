@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
+#    By: npatron <npatron@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2024/01/18 14:53:30 by mapfenni         ###   ########.fr        #
+#    Updated: 2024/01/18 17:36:48 by npatron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ SRCS = main.c \
 	   utils/utils_3.c \
 	   utils/free_all.c \
 	   prompt/prompt.c \
-	   builtin/cmd.c \
 	   builtin/cd_working.c \
 	   builtin/echo_working.c \
 	   builtin/exit_working.c \
