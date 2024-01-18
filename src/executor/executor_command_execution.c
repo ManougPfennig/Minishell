@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_command_execution.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 19:44:04 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/16 20:42:20 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/17 09:50:15 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	check_execution(t_cmds *cmd)
 {
 	if (!cmd->builtin)
 		waitpid(0, &g_sig, 0);
-	printf("pid ret : %i\n", g_sig % 255);
+	//printf("pid ret : %i\n", g_sig % 255);
 	g_sig = g_sig % 255;
 	if (g_sig == 127)
 		printf("%s: command not found\n", cmd->tab[0]);

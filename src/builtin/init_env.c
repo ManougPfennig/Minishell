@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 21:46:19 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/16 22:01:54 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/17 11:22:12 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_env	*env_lst_new(char *env)
 	char	**tab;
 
     new = malloc(sizeof(t_env));
+	new->name = NULL;
+	new->value = NULL;
     new->equal = 0;
     if (has_equal(env))
 		new->equal = 1;
@@ -42,7 +44,6 @@ t_env	*env_lst_new(char *env)
 		new->value = ft_strdup("");
 	new->prev = NULL;
 	new->next = NULL;
-	free(tab);
 	return (new);
 }
 
@@ -51,7 +52,7 @@ void	env_lst_addback(t_data *data, t_env *new)
 	t_env	*ptr;
 
 	ptr = data->copy_env;
-	if (!ptr)
+	if (!data->copy_env)
 	{
 		data->copy_env = new;
 		return ;
@@ -59,6 +60,6 @@ void	env_lst_addback(t_data *data, t_env *new)
 	while (ptr->next)
 		ptr = ptr->next;
 	ptr->next = new;
-	new->next = ptr;
+	new->prev = ptr;
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/16 21:59:14 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/18 12:24:42 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,7 @@ int	main(int argc, char **argv, char **env)
 	data = malloc(sizeof(t_data));
 	init_data(data);
 	(void)argv;
-	if (init_env(data, env) == 0)
-	{
-		printf("Error: Minishell can't be launched without env.\n");
-		exit(1);
-	}
+	init_env(data, env);
 	if (argc != 1)
 	{
 		printf("Error\n");
@@ -51,10 +47,7 @@ int	main(int argc, char **argv, char **env)
 	g_sig = 0;
 	data->home_env = get_env_patron_3000(data->copy_env, "HOME");
 	while (1)
-	{
 		ft_prompt(data);
-//		ft_exitcmd(data->input);
-	}
 	return (0);
 }
 

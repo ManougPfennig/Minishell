@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/16 22:00:57 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/17 10:56:20 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ int				which_cmd(t_cmds *cmd);
 // signal part
 
 void    		add_export(t_cmds *cmd, char *str);
-void    		ft_unset(t_cmds *cmd);
+int	    		ft_unset(t_cmds *cmd);
 char			*find_variable(t_cmds *cmd, int j);
 int				is_digit(int c);
 char    		**erase_error_tab(char **tab);
@@ -171,7 +171,7 @@ char			**copy_tab(char **tab);
 int 			there_is_egual(char *str);
 void			ft_echo(t_cmds *cmd);
 void			ft_exit(t_cmds *cmd);
-void			ft_export(t_cmds *cmd);
+int				ft_export(t_cmds *cmd);
 void			ft_controlc(int signal);
 char			*create_input(char *input);
 void			ft_signal(void);

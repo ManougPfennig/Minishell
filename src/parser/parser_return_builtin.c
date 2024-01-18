@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_return_builtin.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:21:57 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/16 20:46:19 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/17 10:58:12 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,6 @@ int	which_cmd(t_cmds *cmd)
 	else if (cmd->builtin && ft_strcmp(cmd->builtin, "exit") == 0)
 		ft_exit(cmd);
 	else if (cmd->builtin && ft_strcmp(cmd->builtin, "env") == 0)
-		ft_env(cmd);
-	else if (cmd->builtin && ft_strcmp(cmd->builtin, "export") == 0
-		&& !cmd->tab[1])
 		ft_env(cmd);
 	else if (cmd->builtin && ft_strcmp(cmd->builtin, "export") == 0)
 		ft_export(cmd);
