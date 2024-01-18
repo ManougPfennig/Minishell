@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_command_execution.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 19:44:04 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/17 09:50:15 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/18 14:05:08 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	check_execution(t_cmds *cmd)
 {
 	if (!cmd->builtin)
 		waitpid(0, &g_sig, 0);
-	//printf("pid ret : %i\n", g_sig % 255);
 	g_sig = g_sig % 255;
 	if (g_sig == 127)
 		printf("%s: command not found\n", cmd->tab[0]);
@@ -60,7 +59,7 @@ void	exec_command(t_cmds *cmd, t_exec *exec, int pipe_fd[2])
 			dup2(exec->fd_out, STDOUT_FILENO);
 			close(pipe_fd[0]);
 			if (!cmd->tab)
-				exit(EXIT_SUCCESS) ;
+				exit(EXIT_SUCCESS);
 			else
 				loop_test(cmd->tab, exec);
 		}

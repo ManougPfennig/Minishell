@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exit_working.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:16:58 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/08 17:02:47 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/18 14:08:20 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	 is_digit(int c)
+int	is_digit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (0);

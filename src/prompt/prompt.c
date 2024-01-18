@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:18 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/16 21:52:17 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/18 14:18:41 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,3 @@ char	*ft_prompt(t_data *data)
 	free(data->input);
 	return (NULL);
 }
-

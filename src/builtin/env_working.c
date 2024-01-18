@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env_working.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:03:07 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/17 10:32:49 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/18 14:08:45 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void    ft_env(t_cmds *cmd)
+void	ft_env(t_cmds *cmd)
 {
 	t_env	*ptr;
 

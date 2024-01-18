@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_working.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:55:57 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/17 09:37:33 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/18 14:12:02 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ int	str_is_in_tab(t_cmds *cmd, char *str)
 		if (ft_strcmp(ptr->name, str))
 			return (1);
 		ptr = ptr->next;
-	} 																										
+	}
 	return (0);
 }
+
 void	change_var_env(t_cmds *cmd, char *str)
 {
 	t_env	*ptr;

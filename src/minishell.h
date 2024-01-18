@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/17 10:56:20 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/18 14:01:29 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,17 +158,17 @@ int				which_cmd(t_cmds *cmd);
 
 // signal part
 
-void    		add_export(t_cmds *cmd, char *str);
-int	    		ft_unset(t_cmds *cmd);
+void			add_export(t_cmds *cmd, char *str);
+int				ft_unset(t_cmds *cmd);
 char			*find_variable(t_cmds *cmd, int j);
 int				is_digit(int c);
-char    		**erase_error_tab(char **tab);
-int 			check_var(char *str);
+char			**erase_error_tab(char **tab);
+int				check_var(char *str);
 char			*var_env_export(char *s);
 char			*ft_prompt(t_data *data);
 char			*ft_addstring(char *s, char *s2);
 char			**copy_tab(char **tab);
-int 			there_is_egual(char *str);
+int				there_is_egual(char *str);
 void			ft_echo(t_cmds *cmd);
 void			ft_exit(t_cmds *cmd);
 int				ft_export(t_cmds *cmd);
@@ -202,12 +202,12 @@ void			print_cmd_list(t_data *data);
 
 // env
 
-int		init_env(t_data *data, char **env);
-char	*get_env_patron_3000(t_env *ptr, char *name);
-t_env	*env_lst_new(char *env);
-int		has_equal(char *str);
-void	modify_export(t_data *data, char *arg);
-void	env_lst_addback(t_data *data, t_env *new);
+int				init_env(t_data *data, char **env);
+char			*get_env_patron_3000(t_env *ptr, char *name);
+t_env			*env_lst_new(char *env);
+int				has_equal(char *str);
+void			modify_export(t_data *data, char *arg);
+void			env_lst_addback(t_data *data, t_env *new);
 
 extern int		g_sig;
 

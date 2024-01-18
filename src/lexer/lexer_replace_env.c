@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:31:15 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/16 22:50:35 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:18:29 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,7 @@ char	*to_env(t_data *data, char *str, int i)
 		value = "";
 	new = ft_strjoin_free(value, str + i, 0);
 	new = ft_strjoin_free(str, new, 2);
-	free(str);
-	free(name);
+	multi_free(str, name, NULL);
 	if (ft_strlen(new) == 0)
 	{
 		free(new);

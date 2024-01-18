@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo_working.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 19:04:17 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/16 18:57:22 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/18 14:09:10 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_condition(char *str)
 {
 	int	i;
-	
+
 	i = 1;
 	if (str[0] != '-')
 		return (1);
@@ -34,7 +34,7 @@ void	ft_echo(t_cmds *cmd)
 {
 	int		i;
 	int		option;
-	
+
 	i = 1;
 	option = 0;
 	if (cmd->tab[i] == NULL)

@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 13:34:12 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/14 17:04:15 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:04:01 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	check_acces_file(t_lexer *lex)
 	else if ((lex->token == MORE_THAN || lex->token == MORE_MORE) && access(lex->str, W_OK))
 	{
 		printf("-> -%s-\n", lex->str);
-			printf("minishell: %s: Permission denied\n", lex->str);
+		printf("minishell: %s: Permission denied\n", lex->str);
 		return (ERROR);
 	}
 	else if (lex->token == MORE_THAN)

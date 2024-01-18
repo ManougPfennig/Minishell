@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export_working.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 21:55:37 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/18 12:14:51 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/18 14:05:39 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
 
 char	*get_env_patron_3000(t_env *ptr, char *name)
 {
@@ -107,5 +106,4 @@ int	ft_export(t_cmds *cmd)
 		i++;
 	}
 	return (0);
-
 }
