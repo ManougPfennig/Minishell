@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 14:00:32 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 14:17:03 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:43:07 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	free_after_execution(t_data *data, t_exec *exec)
 	cmd = data->cmd[0];
 	free(data->cmd);
 	free_exec(exec);
+	free(data->builtins);
 	while (cmd)
 	{
 		redir_ptr = malloc(sizeof(t_lexer *));

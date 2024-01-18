@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:31:15 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 14:18:29 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:41:12 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ char	*to_env(t_data *data, char *str, int i)
 		while (is_simple_envchar(str[i]))
 			i++;
 	if (!value)
-		value = "";
-	new = ft_strjoin_free(value, str + i, 0);
+		value = ft_strdup("");
+	new = ft_strjoin_free(value, str + i, 1);
 	new = ft_strjoin_free(str, new, 2);
 	multi_free(str, name, NULL);
 	if (ft_strlen(new) == 0)
@@ -112,7 +112,8 @@ char	*replace_env(t_data *data, char *str)
 				move_back(str + i);
 			else if (is_envchar(str[i + 1]))
 			{
-				str = to_env(data, ft_strdup(str), i + 1);
+//				str = to_env(data, ft_strdup(str), i + 1);
+				str = to_env(data, str, i + 1);
 				i--;
 			}
 		}
