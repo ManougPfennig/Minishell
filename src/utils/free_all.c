@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 14:00:32 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 14:43:07 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 20:31:26 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,19 @@ void	free_after_execution(t_data *data, t_exec *exec)
 		}
 		cmd = cmd->next;
 	}
+}
+
+void	free_env_list(t_data *data)
+{
+	t_env	*ptr;
+	t_env	*env;
+
+	env = data->copy_env;
+	while (env)
+	{
+		ptr = env;
+		env = env->next;
+		free_env(ptr);
+	}
+	free(data->home_env);
 }

@@ -6,47 +6,11 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:06:37 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 14:17:38 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:13:01 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-void	print_tab(char **tab)
-{
-	int	i;
-
-	i = 0;
-	if (!tab)
-	{
-		printf("(null)\n");
-		return ;
-	}
-	while (tab[i])
-	{
-		printf("-%s- ", tab[i]);
-		i++;
-	}
-	printf("\n");
-}
-
-void	print_cmd_list(t_data *data)
-{
-	t_cmds	*cmd;
-
-	cmd = data->cmd[0];
-	while (cmd)
-	{
-		printf("----------\n");
-		printf("structure -%p-\n-", cmd);
-		printf("redir:\n");
-		print_lexer(&(cmd->redir));
-		printf("builtin:\n%s\n", cmd->builtin);
-		printf("command: ");
-		print_tab(cmd->tab);
-		cmd = cmd->next;
-	}
-}
 
 // parser permet de transformer la liste de mots renvoyée par lexer en
 // une nouvelle liste de commandes, de trouver et stocker les tokens,

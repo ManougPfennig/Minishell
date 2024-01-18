@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 19:36:55 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:19:36 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ int				which_cmd(t_cmds *cmd);
 
 int				is_digit(int c);
 int				check_var(char *str);
-char			*ft_prompt(t_data *data);
+void			ft_prompt(t_data *data);
 void			ft_controlc(int signal);
 char			*create_input(char *input);
 void			ft_signal(void);
@@ -193,12 +193,14 @@ t_env			*env_lst_new(char *env);
 int				has_equal(char *str);
 void			modify_export(t_data *data, char *arg);
 void			env_lst_addback(t_data *data, t_env *new);
+void			free_env(t_env *ptr);
 
 // free part
 
 void			free_exec(t_exec *exec);
 void			free_after_execution(t_data *data, t_exec *exec);
 int				multi_free(char *str, char *str2, char *str3);
+void			free_env_list(t_data *data);
 
 // utils part
 
@@ -208,6 +210,9 @@ char			*ft_strjoin_free(char const *s1, char const *s2, int val);
 int				str_is_digit(char *str);
 int				len_tab(char **tab);
 char			**copy_tab(char **tab);
+int				putstr_fd_str(char *str, char *word, char *str2, int fd);
+int				putstr_fd(char *str, int fd);
+int				putstr_fd_char(char *str, char c, char *str2, int fd);
 
 // les parties "print_*" sont à supprimer dans le produit fini.
 

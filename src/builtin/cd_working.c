@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_working.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 16:04:09 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/18 18:05:51 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/18 21:17:24 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,16 @@ int	print_error(t_cmds *cmd)
 	int		i;
 
 	i = 0;
+	if (!cmd->tab[1] && ft_strlen(cmd->data->home_env) == 0)
+	{
+		ft_putstr_fd("minishell: cd: HOME: is not set\n", 2);
+		return (1);
+	}
 	while (cmd->tab[i])
 		i++;
 	if (i > 2)
 	{
-		printf("minishell: cd: too many arguments\n");
+		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
 		return (1);
 	}
 	return (0);
@@ -50,6 +55,6 @@ int	ft_cd(t_cmds *cmd)
 		return (0);
 	}
 	else if (access(cmd->tab[1], F_OK) == -1)
-		printf("minishell: cd: %s: No such file or directory\n", cmd->tab[1]);
+		putstr_fd_str("minishell: cd:", cmd->tab[1], ": No such file or directory\n", 2);
 	return (1);
 }

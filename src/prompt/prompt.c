@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:18 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/18 14:18:41 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:13:52 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,17 @@ void	ft_controlc(int signal)
 	(void)signal;
 }
 
-char	*ft_prompt(t_data *data)
+void	ft_prompt(t_data *data)
 {
 	ft_signal();
+	data->home_env = get_env_patron_3000(data->copy_env, "HOME");
 	data->input = NULL;
 	data->input = readline("minishell> ");
 	if (data->input == NULL)
 	{
-		printf("quit\n");
-		exit(0);
+		putstr_fd("quit\n", 2);
+		data->exit = 1;
+		return ;
 	}
 	add_history(data->input);
 	data->lex = lexer(data, data->input);
@@ -56,5 +58,7 @@ char	*ft_prompt(t_data *data)
 		free_lexer(data->lex);
 	}
 	free(data->input);
-	return (NULL);
+	if (data->exit == 0)
+		free(data->home_env);
+	return ;
 }

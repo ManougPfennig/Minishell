@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_working.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 21:55:37 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/18 17:36:20 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/18 20:37:22 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	modify_export(t_data *data, char *arg)
 		if (ptr->next == NULL)
 		{
 			env_lst_addback(data, env_lst_new(arg));
+			ft_free_tab(tab, NULL);
 			return ;
 		}
 		ptr = ptr->next;

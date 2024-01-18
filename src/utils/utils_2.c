@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:30:38 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/18 17:34:34 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/18 21:14:31 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	print_error_env(char *str)
 {
-	write(1, "bash: export: '", 15);
-	write(1, str, ft_strlen(str));
-	write(1, "': not a valid identifier\n", 27);
+	write(2, "bash: export: '", 15);
+	write(2, str, ft_strlen(str));
+	write(2, "': not a valid identifier\n", 27);
 }
 
 int	check_var(char *str)

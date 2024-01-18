@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 14:53:42 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/18 15:26:20 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:12:48 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ int	parser_error_msg(t_lexer *ptr)
 
 	i = 0;
 	if (ptr->token && !ptr->next && ++i)
-		printf("minishell: syntax error near `%s'\n", ptr->str);
+		putstr_fd_str("minishell: syntax error near `", ptr->str, "'\n", 2);
 	else if (ptr->token != 0 && ptr->token != PIPE && \
 	ptr->next->token != 0 && ++i)
-		printf("minishell: syntax error near `%s'\n", ptr->next->str);
+		putstr_fd_str("minishell: syntax error near `", ptr->next->str, "'\n", 2);
 	else if (ptr->token == PIPE && ptr->next && \
 	ptr->next->token == PIPE && ++i)
-		printf("minishell: syntax error near `%s'\n", ptr->next->str);
+		putstr_fd_str("minishell: syntax error near `%s", ptr->next->str, "'\n", 2);
 	else if (ptr->token == PIPE && !ptr->next && ++i)
-		printf("minishell: syntax error near `|'\n");
+		ft_putstr_fd("minishell: syntax error near `|'\n", 2);
 	return (i);
 }
 
@@ -62,7 +62,7 @@ int	check_error_lexer(t_data *data)
 	if (!ptr)
 		return (1);
 	if (ptr->token == 3)
-		return (printf("minishell: syntax error near `|'\n"));
+		return (putstr_fd("minishell: syntax error near `|'\n", 2));
 	while (ptr)
 	{
 		i = parser_error_msg(ptr);

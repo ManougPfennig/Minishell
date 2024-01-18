@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 17:32:31 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/14 16:51:31 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:19:08 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ struct s_lexer	**lexer(t_data *data, char *str)
 		in = remove_excess_quote(ptr->str);
 		if (in)
 		{
-			printf("Parsing error near '\\%c'\n", in);
+			putstr_fd_char("Parsing error near '\\", in, "'\n", 2);
 			g_sig = 2;
 			free_lexer(lexer);
 			return (NULL);

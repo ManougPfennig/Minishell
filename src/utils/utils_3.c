@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:48:54 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 19:36:18 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:18:57 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,32 @@ long long	ft_atoill(char *str)
 	if (str[0] == '-')
 		ret *= -1;
 	return (ret);
+}
+
+int	putstr_fd(char *str, int fd)
+{
+	ft_putstr_fd(str, fd);
+	return (1);
+}
+
+int	putstr_fd_str(char *str, char *word, char *str2, int fd)
+{
+	if (str)
+		ft_putstr_fd(str, fd);
+	if (word)
+		ft_putstr_fd(word, fd);
+	if (str2)
+		ft_putstr_fd(str2, fd);
+	return (1);
+}
+
+int	putstr_fd_char(char *str, char c, char *str2, int fd)
+{
+	if (str)
+		ft_putstr_fd(str, fd);
+	if (c)
+		ft_putchar_fd(c, fd);
+	if (str2)
+		ft_putstr_fd(str2, fd);
+	return (1);
 }

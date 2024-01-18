@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 19:44:04 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 14:05:08 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:21:17 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	check_execution(t_cmds *cmd)
 		waitpid(0, &g_sig, 0);
 	g_sig = g_sig % 255;
 	if (g_sig == 127)
-		printf("%s: command not found\n", cmd->tab[0]);
+		putstr_fd_str(cmd->tab[0], ": command not found\n", NULL, 2);
 }
 
 int	loop_test(char **arg, t_exec *exec)

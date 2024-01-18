@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:16:58 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/18 20:14:14 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 20:54:49 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_exit(t_cmds *cmd)
 {
 	ft_putstr_fd("exit\n", 2);
 	if (cmd->tab[1] == NULL)
-		return (0);
+		return (will_exit_and_ret(cmd->data, 1, 0));
 	else if (str_is_digit(cmd->tab[1]) == 0 && cmd->tab[2] == NULL)
 		return (will_exit_and_ret(cmd->data, 1, ft_atoi(cmd->tab[1]) % 256));
 	else if (str_is_digit(cmd->tab[1]))

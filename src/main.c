@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 15:32:13 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/18 19:34:49 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 20:50:15 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,21 @@ void	init_data(t_data *data)
 int	main(int argc, char **argv, char **env)
 {
 	t_data	*data;
+	t_data	temp;
 
-	data = malloc(sizeof(t_data));
-	init_data(data);
-	(void)argv;
-	init_env(data, env);
 	if (argc != 1)
 	{
 		printf("Error\n");
 		exit(0);
 	}
+	data = &temp;
+	init_data(data);
+	(void)argv;
+	init_env(data, env);
 	g_sig = 0;
-	data->home_env = get_env_patron_3000(data->copy_env, "HOME");
 	while (1 && data->exit == 0)
 		ft_prompt(data);
+	free_env_list(data);
 	return (g_sig);
 }
 

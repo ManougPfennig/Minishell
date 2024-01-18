@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 21:46:19 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/18 14:06:35 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 20:34:00 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,14 @@ t_env	*env_lst_new(char *env)
 	if (has_equal(env))
 		new->equal = 1;
 	tab = ft_split(env, '=');
-	new->name = tab[0];
+	new->name = ft_strdup(tab[0]);
 	if (tab[1])
-		new->value = tab[1];
+		new->value = ft_strdup(tab[1]);
 	else
 		new->value = ft_strdup("");
 	new->prev = NULL;
 	new->next = NULL;
+	ft_free_tab(tab, NULL);
 	return (new);
 }
 
