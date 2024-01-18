@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:16:58 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/18 19:26:07 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 19:48:36 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	str_is_digit(char *str)
 	long long	ll;
 
 	i = 0;
+	if (!str)
+		return (0);
 	if (str[0] == '-' || str[0] == '+')
 		i++;
 	while (str[i])
@@ -39,22 +41,28 @@ int	str_is_digit(char *str)
 	return (0);
 }
 
+int	change_exit_to(t_data *data, int i)
+{
+	data->exit = i;
+	return (1);
+}
+
 int	ft_exit(t_cmds *cmd)
 {
 	ft_putstr_fd("exit\n", 2);
-	if (cmd->tab[1] == NULL)
+	if (cmd->tab[1] == NULL && change_exit_to(cmd->data, 1))
 		return (0);
 	else if (cmd->tab[2] == NULL)
 	{
-		if (str_is_digit(cmd->tab[2]))
+		if (str_is_digit(cmd->tab[2]) && change_exit_to(cmd->data, 1))
 		{
 			ft_putstr_fd("bash: exit: ", 2);
 			ft_putstr_fd(cmd->tab[1], 2);
 			ft_putstr_fd(": numeric argument required\n", 2);
 			return (2);
 		}
-		else
-			return (ft_atoi(cmd->tab[1]));
+		else if (change_exit_to(cmd->data, 1))
+			return (ft_atoi(cmd->tab[1]) % 256);
 	}
 	else
 	{
