@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 20:10:03 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/16 22:52:10 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:02:43 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ int	open_empty_fd(void)
 	return (pipe_fd[0]);
 }
 
+int	copy_std_fd(t_data *data, t_exec *exec)
+{
+	exec->stdin_cpy = dup(data->std_in);
+	exec->stdout_cpy = dup(data->std_out);
+	return (1);
+}
+
 void	executor(t_data *data)
 {
 	t_exec	*exec;
@@ -48,12 +55,8 @@ void	executor(t_data *data)
 	while (cmd)
 	{
 		cmd->exec = exec;
-		if (check_input_list(cmd) == NO_ERROR)
-		{
-			exec->stdin_cpy = dup(data->std_in);
-			exec->stdout_cpy = dup(data->std_out);
+		if (check_input_list(cmd) == NO_ERROR && copy_std_fd(data, exec))
 			cmd_execution(cmd, exec);
-		}
 		else
 		{
 			if (exec->last_pipe)

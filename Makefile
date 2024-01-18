@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: npatron <npatron@student.42.fr>            +#+  +:+       +#+         #
+#    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2024/01/16 22:03:35 by npatron          ###   ########.fr        #
+#    Updated: 2024/01/18 14:53:30 by mapfenni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS = main.c \
 	   utils/ft_strjoin_free.c \
 	   utils/utils.c \
 	   utils/utils_2.c \
+	   utils/utils_3.c \
 	   utils/free_all.c \
 	   prompt/prompt.c \
 	   builtin/cmd.c \

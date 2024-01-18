@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 14:01:29 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 14:59:03 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct s_redir
 }				t_redir;
 
 // lexer part
+
 struct s_lexer	**lexer(t_data *data, char *str);
 struct s_lexer	**split_quote_wspace(char *str);
 char			**lexer_split_quote(char *str);
@@ -133,6 +134,7 @@ char			*find_env_patron(t_data *data, char *name);
 void			free_lexer(t_lexer **lexed);
 
 // parser part
+
 int				parser(t_data *data);
 int				check_error_lexer(t_data *data);
 void			find_redir(t_data *data);
@@ -143,6 +145,7 @@ void			store_cmd(t_data *data);
 void			return_builtin(t_data *data);
 
 // executor part
+
 void			executor(t_data *data);
 int				handle_heredocs(t_data *data);
 int				check_input_list(t_cmds *cmd);
@@ -189,18 +192,7 @@ void			ft_cd(t_cmds *cmd);
 void			get_home_env(t_cmds *cmd);
 int				str_is_digit(char *str);
 
-// free part
-
-void			free_exec(t_exec *exec);
-void			free_after_execution(t_data *data, t_exec *exec);
-int				multi_free(char *str, char *str2, char *str3);
-
-// print_lexer est à supprimer dans le produit fini.
-void			print_lexer(t_lexer **lexed);
-void			print_tab(char **tab);
-void			print_cmd_list(t_data *data);
-
-// env
+// env part
 
 int				init_env(t_data *data, char **env);
 char			*get_env_patron_3000(t_env *ptr, char *name);
@@ -208,6 +200,22 @@ t_env			*env_lst_new(char *env);
 int				has_equal(char *str);
 void			modify_export(t_data *data, char *arg);
 void			env_lst_addback(t_data *data, t_env *new);
+
+// free part
+
+void			free_exec(t_exec *exec);
+void			free_after_execution(t_data *data, t_exec *exec);
+int				multi_free(char *str, char *str2, char *str3);
+
+// utils part
+
+int				change_g_sig_to(int i);
+
+// les parties "print_*" sont à supprimer dans le produit fini.
+
+void			print_lexer(t_lexer **lexed);
+void			print_tab(char **tab);
+void			print_cmd_list(t_data *data);
 
 extern int		g_sig;
 

@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 13:31:15 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 14:41:12 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:15:38 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,8 @@ char	*to_env(t_data *data, char *str, int i)
 	new = ft_strjoin_free(value, str + i, 1);
 	new = ft_strjoin_free(str, new, 2);
 	multi_free(str, name, NULL);
-	if (ft_strlen(new) == 0)
-	{
-		free(new);
+	if (ft_strlen(new) == 0 && multi_free(new, NULL, NULL))
 		new = NULL;
-	}
 	return (new);
 }
 
@@ -93,7 +90,7 @@ char	*to_env(t_data *data, char *str, int i)
 // vérifier si le nom qui suit correspond bien à ce qui peut être attribué
 // comme nom à une variable env. Dans le cas échéant, la string est ensuite
 // découpée pour récupérer le nom complet puis recollée avec la
-// valeur de remplacement récupérée grâce à getenv().
+// valeur de remplacement récupérée grâce à get_env_patron_3000().
 // Dans le cas des $ suivi d'un numéro, il retire la partie env de la string.
 
 char	*replace_env(t_data *data, char *str)
@@ -112,7 +109,6 @@ char	*replace_env(t_data *data, char *str)
 				move_back(str + i);
 			else if (is_envchar(str[i + 1]))
 			{
-//				str = to_env(data, ft_strdup(str), i + 1);
 				str = to_env(data, str, i + 1);
 				i--;
 			}

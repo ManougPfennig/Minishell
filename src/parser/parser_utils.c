@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 14:53:42 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/16 20:30:57 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 15:26:20 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 // Ex : cd .. | echo "manouglebgdelastreet" data->pipes = 1
 // Ex : cd .. ---> data->pipes = 0
 // ALors on aura data->pipes + 1 maillon(s).
+
 void	nb_pipes(t_data *data)
 {
 	t_lexer	*ptr;
@@ -33,6 +34,24 @@ void	nb_pipes(t_data *data)
 	data->pipes = i;
 }
 
+int	parser_error_msg(t_lexer *ptr)
+{
+	int	i;
+
+	i = 0;
+	if (ptr->token && !ptr->next && ++i)
+		printf("minishell: syntax error near `%s'\n", ptr->str);
+	else if (ptr->token != 0 && ptr->token != PIPE && \
+	ptr->next->token != 0 && ++i)
+		printf("minishell: syntax error near `%s'\n", ptr->next->str);
+	else if (ptr->token == PIPE && ptr->next && \
+	ptr->next->token == PIPE && ++i)
+		printf("minishell: syntax error near `%s'\n", ptr->next->str);
+	else if (ptr->token == PIPE && !ptr->next && ++i)
+		printf("minishell: syntax error near `|'\n");
+	return (i);
+}
+
 int	check_error_lexer(t_data *data)
 {
 	t_lexer	*ptr;
@@ -43,22 +62,10 @@ int	check_error_lexer(t_data *data)
 	if (!ptr)
 		return (1);
 	if (ptr->token == 3)
-	{
-		printf("minishell: syntax error near `|'\n");
-		return (1);
-	}
+		return (printf("minishell: syntax error near `|'\n"));
 	while (ptr)
 	{
-		if (ptr->token && !ptr->next && ++i)
-			printf("minishell: syntax error near `%s'\n", ptr->str);
-		else if (ptr->token != 0 && ptr->token != PIPE && \
-		ptr->next->token != 0 && ++i)
-			printf("minishell: syntax error near `%s'\n", ptr->next->str);
-		else if (ptr->token == PIPE && ptr->next && \
-		ptr->next->token == PIPE && ++i)
-			printf("minishell: syntax error near `%s'\n", ptr->next->str);
-		else if (ptr->token == PIPE && !ptr->next && ++i)
-			printf("minishell: syntax error near `|'\n");
+		i = parser_error_msg(ptr);
 		if (i)
 			return (1);
 		ptr = ptr->next;
