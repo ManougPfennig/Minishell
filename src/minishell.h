@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 21:19:36 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:45:02 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,12 +213,6 @@ char			**copy_tab(char **tab);
 int				putstr_fd_str(char *str, char *word, char *str2, int fd);
 int				putstr_fd(char *str, int fd);
 int				putstr_fd_char(char *str, char c, char *str2, int fd);
-
-// les parties "print_*" sont à supprimer dans le produit fini.
-
-void			print_lexer(t_lexer **lexed);
-void			print_tab(char **tab);
-void			print_cmd_list(t_data *data);
 
 extern int		g_sig;
 
