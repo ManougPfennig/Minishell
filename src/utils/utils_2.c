@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:30:38 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/18 22:11:25 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:03:22 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,18 @@ int	check_var(char *str)
 		i++;
 	}
 	return (0);
+}
+
+int	len_lst(t_cmds *cmd)
+{
+	t_env	*ptr;
+	int		i;
+
+	ptr = cmd->data->copy_env;
+	while (ptr)
+	{
+		ptr = ptr->next;
+		i++;
+	}
+	return (i);
 }

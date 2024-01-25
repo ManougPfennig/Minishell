@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 21:45:02 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:03:44 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_exec
 
 typedef struct s_env
 {
+	int				rank;
 	int				equal;
 	char			*name;
 	char			*value;
@@ -194,6 +195,7 @@ int				has_equal(char *str);
 void			modify_export(t_data *data, char *arg);
 void			env_lst_addback(t_data *data, t_env *new);
 void			free_env(t_env *ptr);
+void			rank_name(t_data *data);
 
 // free part
 
@@ -209,6 +211,7 @@ long long		ft_atoill(char *str);
 char			*ft_strjoin_free(char const *s1, char const *s2, int val);
 int				str_is_digit(char *str);
 int				len_tab(char **tab);
+int				len_lst(t_cmds *cmd);
 char			**copy_tab(char **tab);
 int				putstr_fd_str(char *str, char *word, char *str2, int fd);
 int				putstr_fd(char *str, int fd);

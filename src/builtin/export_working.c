@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_working.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 21:55:37 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/18 21:43:17 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:22:31 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,24 +50,43 @@ void	modify_export(t_data *data, char *arg)
 	ft_free_tab(tab, NULL);
 }
 
-void	print_export(t_cmds *cmd)
+void	print_export(char *name, char *value, int equal)
+{
+	write(1, "declare -x ", 12);
+	write(1, name, ft_strlen(name));
+	if (equal)
+	{
+		write(1, "=", 1);
+		write(1, "\"", 1);
+		write(1, value, ft_strlen(value));
+		write(1, "\"", 1);
+	}
+	write(1, "\n", 1);
+}
+
+void	print_rank(t_cmds *cmd)
 {
 	t_env	*ptr;
+	int		i;
+	int		j;
+	int		k;
 
-	ptr = cmd->data->copy_env;
-	while (ptr)
+	k = 0;
+	i = 0;
+	j = len_lst(cmd);
+	while (k != j)
 	{
-		write(1, "declare -x ", 12);
-		write(1, ptr->name, ft_strlen(ptr->name));
-		if (ptr->equal)
+		ptr = cmd->data->copy_env;
+		while (ptr)
 		{
-			write(1, "=", 1);
-			write(1, "\"", 1);
-			write(1, ptr->value, ft_strlen(ptr->value));
-			write(1, "\"", 1);
+			if (i == ptr->rank)
+			{
+				print_export(ptr->name, ptr->value, ptr->equal);
+				i++;
+			}
+			ptr = ptr->next;
 		}
-		write(1, "\n", 1);
-		ptr = ptr->next;
+		k++;
 	}
 }
 
@@ -78,9 +97,10 @@ int	ft_export(t_cmds *cmd)
 
 	i = 1;
 	ret = 0;
+	rank_name(cmd->data);
 	if (!cmd->tab[1])
 	{
-		print_export(cmd);
+		print_rank(cmd);
 		return (0);
 	}
 	while (cmd->tab[i])
