@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/25 21:26:42 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/25 22:29:01 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,7 @@ void			modify_export(t_data *data, char *arg);
 void			env_lst_addback(t_data *data, t_env *new);
 void			free_env(t_env *ptr);
 void			rank_name(t_data *data);
-
+char			**recup_tab(char *s);
 // free part
 
 void			free_exec(t_exec *exec);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:30:38 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/25 21:25:53 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/25 22:45:38 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	len_lst(t_cmds *cmd)
 	t_env	*ptr;
 	int		i;
 
+	i = 0;
 	ptr = cmd->data->copy_env;
 	while (ptr)
 	{

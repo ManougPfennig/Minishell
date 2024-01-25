@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_working.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 21:55:37 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/25 21:28:53 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/25 22:52:24 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	modify2(t_env *ptr, char **tab)
 		ptr->value = ft_strdup(tab[1]);
 	else
 		ptr->value = ft_strdup("");
-	ft_free_tab(tab, NULL);
 	return ;
 }
 
@@ -30,21 +29,19 @@ void	modify_export(t_data *data, char *arg)
 	char	**tab;
 
 	ptr = data->copy_env;
-	tab = ft_split(arg, '=');
+	tab = recup_tab(arg);
 	if (!ptr)
-	{
 		env_lst_addback(data, env_lst_new(arg));
-		return ;
-	}
 	while (ptr)
 	{
 		if (ft_strcmp(tab[0], ptr->name) == 0)
 		{
 			if (has_equal(arg))
 				modify2(ptr, tab);
+			ft_free_tab(tab, NULL);
 			return ;
 		}
-		if (ptr->next == NULL)
+		else if (ptr->next == NULL)
 		{
 			env_lst_addback(data, env_lst_new(arg));
 			ft_free_tab(tab, NULL);
@@ -79,6 +76,8 @@ void	print_rank(t_cmds *cmd)
 	k = 0;
 	i = 0;
 	j = len_lst(cmd);
+	if (j == 0)
+		return ;
 	while (k != j)
 	{
 		ptr = cmd->data->copy_env;

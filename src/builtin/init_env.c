@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 21:46:19 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/25 21:47:06 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/25 23:17:34 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	init_env(t_data *data, char **env)
 		env_lst_addback(data, env_lst_new(env[i]));
 		i++;
 	}
+	
 	return (i);
 }
 
@@ -37,7 +38,7 @@ t_env	*env_lst_new(char *env)
 	new->rank = 0;
 	if (has_equal(env))
 		new->equal = 1;
-	tab = ft_split(env, '=');
+	tab = recup_tab(env);
 	new->name = ft_strdup(tab[0]);
 	if (tab[1])
 		new->value = ft_strdup(tab[1]);

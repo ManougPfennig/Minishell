@@ -6,7 +6,7 @@
 /*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 22:55:57 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 17:21:18 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/25 23:12:06 by npatron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	free_env(t_env *ptr)
 {
+	if (!ptr)
+		return ;
 	free(ptr->name);
 	free(ptr->value);
 	free(ptr);
@@ -38,14 +40,19 @@ void	change_var_env(t_cmds *cmd, char *str)
 	t_env	*ptr;
 
 	ptr = str_is_in_tab(cmd, str);
-	if (ptr->prev)
+	if (ptr && ptr->prev)
 	{
 		ptr->prev->next = ptr->next;
 		if (ptr->next)
 			ptr->next->prev = ptr->prev;
 	}
-	else
+	else if (ptr && ptr->next)
+	{
 		cmd->data->copy_env = ptr->next;
+		ptr->next->prev = NULL;
+	}
+	else
+		cmd->data->copy_env = NULL;
 	free_env(ptr);
 }
 
