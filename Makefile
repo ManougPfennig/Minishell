@@ -6,7 +6,7 @@
 #    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2024/01/25 23:35:17 by mapfenni         ###   ########.fr        #
+#    Updated: 2024/01/25 23:39:59 by mapfenni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ SRCS = main.c \
 	   executor/executor_get_fd.c \
 	   executor/executor_simple_command.c \
 	   executor/executor_init_pipes.c \
-	   executor/executor_init_cmds.c
+	   executor/executor_init_cmds.c \
 	   executor/executor_multiple_commands.c \
 	   executor/executor_command_execution.c
 	   

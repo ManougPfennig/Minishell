@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/25 22:29:01 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/25 23:42:03 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,9 @@ void			change_input_output(t_cmds *cmd, t_exec *exec);
 void			multiple_commands(t_data *data);
 int				loop_test(char **arg, t_exec *exec);
 void			init_pid_tab(t_data *data);
+void			close_all_pipes(t_cmds *cmd);
+void			close_all_files(t_cmds *cmd);
+void			prep_cmd_fds(t_data *data);
 
 // signal part
 
@@ -214,6 +217,8 @@ void			free_exec(t_exec *exec);
 void			free_after_execution(t_data *data);
 int				multi_free(char *str, char *str2, char *str3);
 void			free_env_list(t_data *data);
+void			free_pid_tab(t_data *data);
+void			free_pipe_tab(t_data *data);
 
 // utils part
 
