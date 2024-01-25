@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 21:46:19 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/25 23:17:34 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/25 23:33:40 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	init_env(t_data *data, char **env)
 		env_lst_addback(data, env_lst_new(env[i]));
 		i++;
 	}
-	
 	return (i);
 }
 
@@ -88,4 +87,3 @@ void	rank_name(t_data *data)
 		ptr = ptr->next;
 	}
 }
-

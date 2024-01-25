@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 20:10:03 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/25 18:40:44 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/25 23:33:14 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ simultané, toutes reliées entre elles par des pipes (pipeline).
 Le signal de retour de la dernière commande sera gardé comme signal final.
 
 Les tokens heredoc sont gérés avant l'exécution dans handle_heredoc()*/
-
 
 void	executor(t_data *data)
 {

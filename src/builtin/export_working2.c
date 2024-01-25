@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_working2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 21:38:41 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/25 22:40:03 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/25 23:34:00 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,3 @@ char	**recup_tab(char *s)
 		result[1] = NULL;
 	return (result);
 }
-
