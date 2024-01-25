@@ -6,11 +6,14 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 13:34:12 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 21:36:48 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:21:10 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+/*create_file() créé un fichier avec un nom donné, avec les droit standards
+Read-Write-Execute donné aux nouveaux fichiers dans bash.*/
 
 void	create_file(char *str)
 {
@@ -19,6 +22,10 @@ void	create_file(char *str)
 	fd = open(str, O_CREAT | O_TRUNC | O_WRONLY, 0664);
 	close(fd);
 }
+
+/*check_access_file() teste de différentes manières les accès des fichiers
+de redirections pour afficher un message d'erreur si il y en a une ou alors
+créer les fichiers manquants.*/
 
 int	check_acces_file(t_lexer *lex)
 {
@@ -48,6 +55,12 @@ directory\n", 2);
 		close(open(lex->str, O_WRONLY | O_TRUNC));
 	return (NO_ERROR);
 }
+
+/*check_input_list() va faire défiler la liste d'inputs dans une commande
+donnée afin de vérifier les cas d'erreurs de redirections possibles.
+Dans le cas d'une erreur, elle return ERROR, ce qui empêchera la commande
+concernée de s'exécuter et le process se terminera avec un signal d'erreur.
+Un message d'erreur sera écrit sur le fd STDERR (2).*/
 
 int	check_input_list(t_cmds *cmd)
 {

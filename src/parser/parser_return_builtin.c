@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 11:21:57 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/18 21:34:29 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/20 22:10:34 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	return_builtin(t_data *data)
 	int		j;
 
 	cmd = data->cmd[0];
-	i = 0;
 	init_builtins(data);
 	while (cmd)
 	{
+		i = 0;
 		j = 0;
 		while (cmd->tab && data->builtins[i] && j == 0)
 		{

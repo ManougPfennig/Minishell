@@ -6,11 +6,14 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 16:17:10 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 21:35:21 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:37:19 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+/*replace_env_hd() permet de remplacer les éventuels variables d'environnement
+dans les string récupérées par readline().*/
 
 char	*replace_env_hd(t_data *data, char *str)
 {
@@ -31,6 +34,10 @@ char	*replace_env_hd(t_data *data, char *str)
 	}
 	return (str);
 }
+
+/* make_heredoc() fonctionne en remplaçant la string qui contenait le mot
+"EOF" dans la structure t_lexer *lex, par une chaîne de charactères
+contenant une concaténation toutes les lignes récupérées par readline().*/
 
 int	make_heredoc(t_data *data, t_lexer *lex, char *end)
 {
@@ -60,6 +67,11 @@ wanted \"", end, "\" at end of file\n", 2) && multi_free(end, NULL, NULL))
 	multi_free(buffer, end, NULL);
 	return (0);
 }
+
+/* La fonction handle-heredoc va faire défiler la liste d'input de toutes les
+commandes de la liste. Pour chaque token Heredoc "LESS_LESS", make_heredoc()
+sera appelé pour ouvrir un prompt de type heredoc et stocker ce qui aura
+été écrit.*/
 
 int	handle_heredocs(t_data *data)
 {

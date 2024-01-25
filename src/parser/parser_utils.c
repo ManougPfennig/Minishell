@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 14:53:42 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/18 22:04:20 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/21 12:14:51 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,15 @@ int	check_error_lexer(t_data *data)
 	if (!ptr)
 		return (1);
 	if (ptr->token == 3)
+	{
+		g_sig = 2;
 		return (putstr_fd("minishell: syntax error near `|'\n", 2));
+	}
 	while (ptr)
 	{
 		i = parser_error_msg(ptr);
 		if (i)
-			return (1);
+			return (change_g_sig_to(2));
 		ptr = ptr->next;
 	}
 	return (0);

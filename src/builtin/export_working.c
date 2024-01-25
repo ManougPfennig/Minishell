@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_working.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 21:55:37 by npatron           #+#    #+#             */
-/*   Updated: 2024/01/23 19:22:31 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/25 21:28:53 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@ void	modify_export(t_data *data, char *arg)
 
 	ptr = data->copy_env;
 	tab = ft_split(arg, '=');
+	if (!ptr)
+	{
+		env_lst_addback(data, env_lst_new(arg));
+		return ;
+	}
 	while (ptr)
 	{
 		if (ft_strcmp(tab[0], ptr->name) == 0)

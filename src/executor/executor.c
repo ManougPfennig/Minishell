@@ -6,66 +6,72 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 20:10:03 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/18 15:02:43 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/25 18:40:44 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	init_exec(t_data *data, t_exec *exec)
+/*init-exec() alloue de la mémoire pour une structure t_exec, la remplie des
+valeurs nécessaires à l'execution d'une commandes et return un pointeur vers
+cette nouvelle structure.*/
+
+t_exec	*init_exec(t_data *data)
 {
+	t_exec	*exec;
 	char	*temp;
 
-	exec->last_pipe = 0;
-	exec->signal = 0;
-	exec->fd_in = STDIN_FILENO;
-	exec->fd_out = STDOUT_FILENO;
+	exec = malloc(sizeof(t_exec));
+	exec->fd_in = NO_FILE;
+	exec->fd_out = NO_FILE;
+	exec->pipe_in = NULL;
+	exec->pipe_out = NULL;
 	exec->test = NULL;
+	exec->env_tab = env_to_tab(data);
 	temp = get_env_patron_3000(data->copy_env, "PATH");
 	exec->path = ft_split(temp, ':');
 	free(temp);
+	return (exec);
 }
+
+/*open_empty_fd() renvoie un file descriptor de lecture, vide.*/
 
 int	open_empty_fd(void)
 {
 	int	pipe_fd[2];
 
-	pipe(pipe_fd);
+	do_pipe(pipe_fd);
 	close(pipe_fd[1]);
 	return (pipe_fd[0]);
 }
 
-int	copy_std_fd(t_data *data, t_exec *exec)
-{
-	exec->stdin_cpy = dup(data->std_in);
-	exec->stdout_cpy = dup(data->std_out);
-	return (1);
-}
+/* executor va prendre la liste de commandes généré par le parser afin
+de finalement exécuter la ou les commandes dans de nouveaux processes.
+Une liste contenant une commande seule ira dans simple_command() pour être
+exécuté au plus proche du process principal (exemple : exit mettra fin au
+terminal, ce qui n'est pas le cas lorsqu'il est exécuté dans une pipeline).
+Si la liste contient plusieurs commandes, alors elle ira dans
+multiples_commands() et autant de processes que de commandes seront créé en
+simultané, toutes reliées entre elles par des pipes (pipeline).
+Le signal de retour de la dernière commande sera gardé comme signal final.
+
+Les tokens heredoc sont gérés avant l'exécution dans handle_heredoc()*/
+
 
 void	executor(t_data *data)
 {
-	t_exec	*exec;
-	t_cmds	*cmd;
-
 	if (handle_heredocs(data))
 		return ;
-	exec = malloc(sizeof(t_exec));
-	init_exec(data, exec);
-	cmd = data->cmd[0];
-	while (cmd)
+	if (!data->cmd[0]->next)
 	{
-		cmd->exec = exec;
-		if (check_input_list(cmd) == NO_ERROR && copy_std_fd(data, exec))
-			cmd_execution(cmd, exec);
-		else
-		{
-			if (exec->last_pipe)
-				close(exec->last_pipe);
-			exec->last_pipe = open_empty_fd();
-			g_sig = 1;
-		}
-		cmd = cmd->next;
+		if (check_input_list(data->cmd[0]) == NO_ERROR)
+			simple_command(data, data->cmd[0]);
 	}
-	close(exec->last_pipe);
-	free_after_execution(data, exec);
+	else
+	{
+		multiple_commands(data);
+	}
+	free_after_execution(data);
+	printf("signal : %i\n", (g_sig % 256));
+	return ;
 }

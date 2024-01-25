@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 14:46:04 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/15 23:11:23 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:43:30 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,25 @@ t_lexer	*lexer_last_output(t_lexer *lex)
 	return (out);
 }
 
-void	change_input_output(t_cmds *cmd, t_exec *exec, int pipe_fd[2])
+void	change_input_output(t_cmds *cmd, t_exec *exec)
 {
-	t_lexer	*input;
-	t_lexer	*output;
+	int	*pipe_in;
+	int	*pipe_out;
 
-	input = lexer_last_input(cmd->redir);
-	output = lexer_last_output(cmd->redir);
-	if (input)
-		exec->fd_in = get_input_fd(input, cmd);
-	else if (cmd->prev)
-		exec->fd_in = exec->last_pipe;
+	pipe_in = exec->pipe_in;
+	pipe_out = exec->pipe_out;
+	if (exec->fd_in == NO_FILE)
+	{
+		if (cmd->prev)
+			do_dup2(pipe_in[0], STDIN_FILENO);
+	}
 	else
-		exec->fd_in = exec->stdin_cpy;
-	if (output)
-		exec->fd_out = get_output_fd(output);
-	else if (cmd->next)
-		exec->fd_out = pipe_fd[1];
+		do_dup2(exec->fd_in, STDIN_FILENO);
+	if (exec->fd_out == NO_FILE)
+	{
+		if (cmd->next)
+			do_dup2(pipe_out[1], STDOUT_FILENO);
+	}
 	else
-		exec->fd_out = exec->stdout_cpy;
+		do_dup2(exec->fd_out, STDOUT_FILENO);
 }

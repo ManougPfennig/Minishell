@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npatron <npatron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/28 12:56:35 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/23 19:03:44 by npatron          ###   ########.fr       */
+/*   Updated: 2024/01/25 21:26:42 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define IN_HD 400
 # define NO_ERROR 0
 # define ERROR 1
+# define NO_FILE 0
 
 typedef struct s_lexer
 {
@@ -50,14 +51,13 @@ typedef struct s_lexer
 
 typedef struct s_exec
 {
-	int		signal;
-	int		last_pipe;
 	int		fd_in;
 	int		fd_out;
+	int		*pipe_in;
+	int		*pipe_out;
 	char	**path;
 	char	*test;
-	int		stdin_cpy;
-	int		stdout_cpy;
+	char	**env_tab;
 }				t_exec;
 
 typedef struct s_env
@@ -97,6 +97,8 @@ typedef struct s_data
 	int		std_in;
 	int		std_out;
 	int		exit;
+	int		**pipe_tab;
+	pid_t	*pid_tab;
 }				t_data;
 
 typedef struct s_copy
@@ -152,7 +154,6 @@ void			return_builtin(t_data *data);
 void			executor(t_data *data);
 int				handle_heredocs(t_data *data);
 int				check_input_list(t_cmds *cmd);
-void			change_input_output(t_cmds *cmd, t_exec *exec, int pipe_fd[2]);
 t_lexer			*lexer_last_input(t_lexer *lex);
 t_lexer			*lexer_last_output(t_lexer *lex);
 int				get_input_fd(t_lexer *input, t_cmds *cmd);
@@ -161,6 +162,16 @@ int				check_acces_file(t_lexer *lex);
 void			create_file(char *str);
 void			cmd_execution(t_cmds *cmd, t_exec *exec);
 int				which_cmd(t_cmds *cmd);
+t_exec			*init_exec(t_data *data);
+void			init_pipes(t_data *data);
+int				input_fd(t_cmds *cmd);
+int				output_fd(t_cmds *cmd);
+void			simple_command(t_data *data, t_cmds *cmd);
+int				is_direct_execution(char *str);
+void			change_input_output(t_cmds *cmd, t_exec *exec);
+void			multiple_commands(t_data *data);
+int				loop_test(char **arg, t_exec *exec);
+void			init_pid_tab(t_data *data);
 
 // signal part
 
@@ -200,7 +211,7 @@ void			rank_name(t_data *data);
 // free part
 
 void			free_exec(t_exec *exec);
-void			free_after_execution(t_data *data, t_exec *exec);
+void			free_after_execution(t_data *data);
 int				multi_free(char *str, char *str2, char *str3);
 void			free_env_list(t_data *data);
 
@@ -211,11 +222,19 @@ long long		ft_atoill(char *str);
 char			*ft_strjoin_free(char const *s1, char const *s2, int val);
 int				str_is_digit(char *str);
 int				len_tab(char **tab);
-int				len_lst(t_cmds *cmd);
 char			**copy_tab(char **tab);
 int				putstr_fd_str(char *str, char *word, char *str2, int fd);
 int				putstr_fd(char *str, int fd);
 int				putstr_fd_char(char *str, char c, char *str2, int fd);
+pid_t			do_fork(void);
+void			do_dup2(int fd, int fd2);
+int				do_dup(int fd);
+void			do_pipe(int pipe_fd[2]);
+void			do_close(int fd);
+char			**env_to_tab(t_data	*data);
+void			print_tab(char **tab);
+int				cmd_lst_len(t_cmds *cmd);
+int				len_lst(t_cmds *cmd);
 
 extern int		g_sig;
 

@@ -6,7 +6,7 @@
 #    By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 15:32:10 by nicolas           #+#    #+#              #
-#    Updated: 2024/01/18 21:39:36 by mapfenni         ###   ########.fr        #
+#    Updated: 2024/01/21 19:56:16 by mapfenni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ SRCS = main.c \
 	   utils/utils_2.c \
 	   utils/utils_3.c \
 	   utils/free_all.c \
+	   utils/do_function.c \
+	   utils/env_to_tab.c \
 	   prompt/prompt.c \
 	   builtin/cd_working.c \
 	   builtin/echo_working.c \
@@ -48,6 +50,9 @@ SRCS = main.c \
 	   executor/executor_check_input_list.c \
 	   executor/executor_change_input_output.c \
 	   executor/executor_get_fd.c \
+	   executor/executor_simple_command.c \
+	   executor/executor_init_pipes.c \
+	   executor/executor_multiple_commands.c \
 	   executor/executor_command_execution.c
 	   
 OBJS = $(addprefix $(OBJECTS)/, $(SRCS:.c=.o))

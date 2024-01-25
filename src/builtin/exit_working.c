@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:16:58 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/18 21:33:02 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:26:19 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,25 +41,28 @@ int	str_is_digit(char *str)
 	return (0);
 }
 
-int	will_exit_and_ret(t_data *data, int exit, int ret)
+int	will_exit_and_ret(t_cmds *cmd, int exit, int ret)
 {
 	if (exit == 1)
-		data->exit = 1;
+		cmd->data->exit = 1;
+	if (cmd->next || cmd->prev)
+		cmd->data->exit = 0;
 	return (ret);
 }
 
 int	ft_exit(t_cmds *cmd)
 {
-	ft_putstr_fd("exit\n", 2);
+	if (!cmd->next && !cmd->prev)
+		ft_putstr_fd("exit\n", 2);
 	if (cmd->tab[1] == NULL)
-		return (will_exit_and_ret(cmd->data, 1, 0));
+		return (will_exit_and_ret(cmd, 1, 0));
 	else if (str_is_digit(cmd->tab[1]) == 0 && cmd->tab[2] == NULL)
-		return (will_exit_and_ret(cmd->data, 1, ft_atoi(cmd->tab[1]) % 256));
+		return (will_exit_and_ret(cmd, 1, ft_atoi(cmd->tab[1]) % 256));
 	else if (str_is_digit(cmd->tab[1]))
 	{
 		putstr_fd_str("bash: exit: ", cmd->tab[1], ": numeric argument \
-		required\n", 2);
-		return (will_exit_and_ret(cmd->data, 1, 2));
+required\n", 2);
+		return (will_exit_and_ret(cmd, 1, 2));
 	}
 	else if (str_is_digit(cmd->tab[1]) == 0 && cmd->tab[2])
 	{
