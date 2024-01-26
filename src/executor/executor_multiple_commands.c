@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 19:54:47 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/25 23:52:25 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/26 00:17:00 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	get_last_exit_value(t_data *data)
 
 void	cmd_pipe_execution(t_cmds *cmd, t_exec *exec)
 {
+	if (!cmd->tab)
+		exit(EXIT_SUCCESS);
 	if (cmd->builtin)
 		exit(which_cmd(cmd));
 	else

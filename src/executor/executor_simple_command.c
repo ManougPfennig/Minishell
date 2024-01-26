@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 17:41:37 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/25 18:37:36 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/26 01:10:14 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,16 @@ int	output_fd(t_cmds *cmd)
 	return (fd);
 }
 
+/*check_tab() permet d'exit avec un signal de 0, je l'ai mis dans un
+if() purement parce-que la norme des 25 lignes.*/
+
+int	check_tab(t_cmds *cmd)
+{
+	if (!cmd->tab)
+		exit(EXIT_SUCCESS);
+	return (1);
+}
+
 /*command_execution() va tourner en boucle sur tout les chemins existants de
 la variable d'environnement PATH (si il s'agit d'un chemin réel, la commande
 sera testée telle que dans execve()) afin de trouver un chemin correspondant
@@ -63,7 +73,7 @@ int	command_execution(t_cmds *cmd, t_exec *exec)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (is_direct_execution(cmd->tab[0]))
+		if (check_tab(cmd) && is_direct_execution(cmd->tab[0]))
 			execve(cmd->tab[0], cmd->tab, exec->env_tab);
 		while (exec->path && exec->path[i])
 		{
@@ -77,7 +87,7 @@ int	command_execution(t_cmds *cmd, t_exec *exec)
 		exit(127);
 	}
 	wait(&ret);
-	return (ret);
+	return (ret % 255);
 }
 
 /*simple_command() va changer STDIN ou STDOUT en fonction des fichiers de

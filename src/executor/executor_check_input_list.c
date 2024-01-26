@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 13:34:12 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/25 18:21:10 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/25 23:59:20 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,10 @@ int	check_input_list(t_cmds *cmd)
 		if (lex->token == 1 || lex->token == 2 || lex->token == 5)
 		{
 			if (check_acces_file(lex) == ERROR)
+			{
+				g_sig = 1;
 				return (ERROR);
+			}
 		}
 		lex = lex->next;
 	}

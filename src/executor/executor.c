@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 20:10:03 by mapfenni          #+#    #+#             */
-/*   Updated: 2024/01/25 23:33:14 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/26 00:56:54 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,5 @@ void	executor(t_data *data)
 		multiple_commands(data);
 	}
 	free_after_execution(data);
-	printf("signal : %i\n", (g_sig % 256));
 	return ;
 }

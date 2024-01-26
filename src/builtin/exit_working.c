@@ -6,7 +6,7 @@
 /*   By: mapfenni <mapfenni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 12:16:58 by nicolas           #+#    #+#             */
-/*   Updated: 2024/01/25 16:26:19 by mapfenni         ###   ########.fr       */
+/*   Updated: 2024/01/26 01:02:11 by mapfenni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ int	will_exit_and_ret(t_cmds *cmd, int exit, int ret)
 		cmd->data->exit = 1;
 	if (cmd->next || cmd->prev)
 		cmd->data->exit = 0;
+	if (ret == 0)
+		ret = g_sig;
 	return (ret);
 }
 
 int	ft_exit(t_cmds *cmd)
 {
-	if (!cmd->next && !cmd->prev)
-		ft_putstr_fd("exit\n", 2);
 	if (cmd->tab[1] == NULL)
 		return (will_exit_and_ret(cmd, 1, 0));
 	else if (str_is_digit(cmd->tab[1]) == 0 && cmd->tab[2] == NULL)
@@ -66,6 +66,8 @@ required\n", 2);
 	}
 	else if (str_is_digit(cmd->tab[1]) == 0 && cmd->tab[2])
 	{
+		if (!cmd->prev && !cmd->next)
+			ft_putstr_fd("exit\n", 2);
 		ft_putstr_fd("bash: exit: too many arguments\n", 2);
 		return (1);
 	}
